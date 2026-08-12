@@ -10,6 +10,8 @@
   },
   "scripts": {
     "dev": "supabase start",
+    "migration:new": "supabase migration new",
+    "migration:push": "supabase migration push",
     "lint": "eslint . --max-warnings 0",
     "check-types": "tsc --noEmit",
     "gen-types": "supabase gen types typescript --project-id $SUPABASE_PROJECT_ID > src/types.ts"

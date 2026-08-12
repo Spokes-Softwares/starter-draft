@@ -7,6 +7,8 @@
     "db:start": "supabase start",
     "db:stop": "supabase stop",
     "db:gen-types": "supabase gen types --local > packages/db/src/types.ts",
+    "db:migration:new": "pnpm --filter @repo/db migration:new",
+    "db:migration:push": "pnpm --filter @repo/db migration:push",
     "db:reset": "supabase db reset",
     "lint": "turbo run lint",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
