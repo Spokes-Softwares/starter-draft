@@ -1,0 +1,39 @@
+import { cn } from "../../lib/utils";
+import { cva, type VariantProps } from "class-variance-authority";
+
+const headingVariants = cva("text-primary-foreground", {
+  variants: {
+    variant: {
+      h1: "text-5xl",
+      h2: "text-4xl",
+      h3: "text-3xl",
+      h4: "text-2xl",
+      h5: "text-xl",
+    },
+  },
+  defaultVariants: {
+    variant: "h1",
+  },
+});
+
+type HeadingTag = "h1" | "h2" | "h3" | "h4" | "h5";
+
+function Heading({
+  className,
+  variant = "h1",
+  as,
+  ...props
+}: React.ComponentProps<"h1"> &
+  VariantProps<typeof headingVariants> & { as?: HeadingTag }) {
+  const Comp = as ?? variant ?? "h1";
+
+  return (
+    <Comp
+      data-slot="heading"
+      className={cn(headingVariants({ variant, className }))}
+      {...props}
+    />
+  );
+}
+
+export { Heading, headingVariants };
