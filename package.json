@@ -1,30 +1,32 @@
 {
-  "name": "my-turborepo",
+  "name": "spokes-turbo",
   "private": true,
   "scripts": {
     "build": "turbo run build",
     "dev": "turbo run dev",
-    "db:start": "supabase start",
-    "db:stop": "supabase stop",
-    "db:gen-types": "supabase gen types --local > packages/db/src/types.ts",
-    "db:reset": "supabase db reset",
+    "db:start": "supabase start --workdir packages/db",
+    "db:stop": "supabase stop --workdir packages/db",
+    "db:gen-types": "supabase gen types --local --workdir packages/db > packages/db/src/types.ts",
+    "db:migration:new": "pnpm --filter @repo/db migration:new",
+    "db:migration:push": "pnpm --filter @repo/db migration:push",
+    "db:reset": "supabase db reset --workdir packages/db",
     "lint": "turbo run lint",
-    "format": "prettier --write \"**/*.{ts,tsx,md}\"",
-    "check-types": "turbo run check-types"
+    "format": "prettier --write \"**/*.{ts,tsx,md,json,css,mjs}\"",
+    "check-types": "turbo run check-types",
+    "test": "vitest run",
+    "test:watch": "vitest"
   },
   "devDependencies": {
     "prettier": "catalog:",
     "supabase": "catalog:",
     "turbo": "catalog:",
-    "typescript": "catalog:"
+    "typescript": "catalog:",
+    "vitest": "^3.2.4"
   },
-  "packageManager": "pnpm@10.15.0",
   "engines": {
-    "node": ">=18"
+    "node": ">=20"
   },
   "dependencies": {
-    "@supabase/ssr": "^0.12.4",
-    "@supabase/supabase-js": "catalog:",
-    "next": "^16.3.0"
+    "next-themes": "catalog:"
   }
 }

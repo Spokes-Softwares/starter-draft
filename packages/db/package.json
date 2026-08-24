@@ -6,23 +6,25 @@
     "./client": "./src/client.ts",
     "./server": "./src/server.ts",
     "./admin": "./src/admin.ts",
+    "./middleware": "./src/middleware.ts",
     "./types": "./src/types.ts"
   },
   "scripts": {
     "dev": "supabase start",
+    "migration:new": "supabase migration new",
+    "migration:push": "supabase db push",
     "lint": "eslint . --max-warnings 0",
     "check-types": "tsc --noEmit",
-    "gen-types": "supabase gen types typescript --project-id $SUPABASE_PROJECT_ID > src/types.ts"
+    "gen-types": "supabase gen types typescript --local > src/types.ts"
   },
   "dependencies": {
-    "@supabase/ssr": "^0.12.4",
-    "@supabase/supabase-js": "^2.112.3",
-    "next": "16.3.0"
+    "@supabase/ssr": "catalog:",
+    "@supabase/supabase-js": "catalog:",
+    "next": "catalog:"
   },
   "devDependencies": {
     "@repo/eslint-config": "workspace:*",
     "@repo/typescript-config": "workspace:*",
-    "@supabase/ssr": "catalog:",
     "@types/node": "catalog:",
     "eslint": "catalog:",
     "typescript": "catalog:"

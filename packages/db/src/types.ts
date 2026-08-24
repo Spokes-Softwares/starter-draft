@@ -34,18 +34,27 @@ export type Database = {
   }
   public: {
     Tables: {
-      "Test table": {
+      profiles: {
         Row: {
+          id: string
+          email: string | null
+          full_name: string | null
           created_at: string
-          id: number
+          updated_at: string
         }
         Insert: {
+          id: string
+          email?: string | null
+          full_name?: string | null
           created_at?: string
-          id?: number
+          updated_at?: string
         }
         Update: {
+          id?: string
+          email?: string | null
+          full_name?: string | null
           created_at?: string
-          id?: number
+          updated_at?: string
         }
         Relationships: []
       }
