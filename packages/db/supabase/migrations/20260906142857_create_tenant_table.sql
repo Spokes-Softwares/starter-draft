@@ -240,10 +240,13 @@ create policy "Operators and tenants can update hub users"
   using (
     public.is_operator()
     or public.is_hub_tenant(hub_id)
+    or public.is_hub_user(hub_id)
   )
   with check (
     public.is_operator()
     or public.is_hub_tenant(hub_id)
+    or public.is_hub_user(hub_id)
+
   );
 
 create policy "Operators and tenants can delete hub users"
