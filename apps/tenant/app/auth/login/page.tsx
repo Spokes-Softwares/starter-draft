@@ -64,7 +64,6 @@ export default function LoginPage() {
                 value={email}
                 onChange={(event) => setEmail(event.target.value)}
                 required
-
               />
             </div>
             <div className="flex flex-col gap-2">
