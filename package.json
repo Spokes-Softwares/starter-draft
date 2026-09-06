@@ -28,5 +28,6 @@
   },
   "dependencies": {
     "next-themes": "catalog:"
-  }
+  },
+  "packageManager": "pnpm@10.15.0"
 }
