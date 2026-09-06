@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { createClient } from "@repo/db/server";
-import { Badge } from "@repo/ui/components/ui/badge";
-import { Button } from "@repo/ui/components/ui/button";
+import { Badge } from "@repo/ui/components/shadcn-ui/badge";
+import { Button } from "@repo/ui/components/shadcn-ui/button";
 
 export default async function HomePage() {
   const supabase = await createClient();

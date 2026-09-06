@@ -3,16 +3,16 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { createClient } from "@repo/db/client";
-import { Button } from "@repo/ui/components/ui/button";
+import { Button } from "@repo/ui/components/shadcn-ui/button";
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from "@repo/ui/components/ui/card";
-import { Input } from "@repo/ui/components/ui/input";
-import { Label } from "@repo/ui/components/ui/label";
+} from "@repo/ui/components/shadcn-ui/card";
+import { Input } from "@repo/ui/components/shadcn-ui/input";
+import { Label } from "@repo/ui/components/shadcn-ui/label";
 
 export default function LoginPage() {
   const router = useRouter();
