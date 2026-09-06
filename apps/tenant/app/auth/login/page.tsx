@@ -46,17 +46,17 @@ export default function LoginPage() {
   }
 
   return (
-    <div>
+    <div className="flex min-h-screen flex-col items-center justify-center gap-6 p-6">
       <Header image={spokesLogo.src} />
       <Card className="w-full max-w-sm bg-white">
         <CardHeader>
-          <CardTitle>Sign in here</CardTitle>
+          <CardTitle className="dark:text-black">Sign in here</CardTitle>
           <CardDescription>Access your Spokes tenant portal.</CardDescription>
         </CardHeader>
         <CardContent>
           <form onSubmit={handleLogin} className="flex flex-col gap-4">
             <div className="flex flex-col gap-2">
-              <Label htmlFor="email">Email</Label>
+              <Label htmlFor="email" className="dark:text-black">Email</Label>
               <Input
                 id="email"
                 type="email"
@@ -64,10 +64,11 @@ export default function LoginPage() {
                 value={email}
                 onChange={(event) => setEmail(event.target.value)}
                 required
+
               />
             </div>
             <div className="flex flex-col gap-2">
-              <Label htmlFor="password">Password</Label>
+              <Label htmlFor="password" className="dark:text-black">Password</Label>
               <Input
                 id="password"
                 type="password"
