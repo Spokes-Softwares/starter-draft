@@ -29,5 +29,5 @@
   "dependencies": {
     "next-themes": "catalog:"
   },
-  "packageManager": "pnpm@10.15.0"
+  "packageManager": "pnpm@12.3.4"
 }
