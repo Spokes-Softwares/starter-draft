@@ -13,6 +13,8 @@ import {
 } from "@repo/ui/components/shadcn-ui/card";
 import { Input } from "@repo/ui/components/shadcn-ui/input";
 import { Label } from "@repo/ui/components/shadcn-ui/label";
+import Header from "@repo/ui/components/composites-ui/header";
+import spokesLogo from "../../../../../packages/ui/src/components/images/spokesLogo.png";
 
 export default function LoginPage() {
   const router = useRouter();
@@ -44,7 +46,9 @@ export default function LoginPage() {
   }
 
   return (
-      <Card className="w-full max-w-sm bg-red-500">
+    <div>
+      <Header image={spokesLogo.src} />
+      <Card className="w-full max-w-sm">
         <CardHeader>
           <CardTitle>Sign in here</CardTitle>
           <CardDescription>Access your Spokes tenant portal.</CardDescription>
@@ -84,5 +88,6 @@ export default function LoginPage() {
           </form>
         </CardContent>
       </Card>
+    </div>
   );
 }
