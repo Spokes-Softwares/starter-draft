@@ -1,7 +1,7 @@
--- Auth users seeding (local development only)
--- Operators are staff (Operators)
--- Tenants are companies (Admins)
--- Hubs are areas where the assets are (Hubs)
+-- Auth + tenancy seeding (local development only)
+-- Operators are staff (platform-wide)
+-- Tenants are companies (admins of a company)
+-- Hubs are areas where the assets are (scoped under a tenant)
 --
 -- All accounts use password: securepassword
 --
@@ -9,6 +9,10 @@
 --   operator1@spokes.test / operator2@spokes.test
 --   tenant1@spokes.test / tenant2@spokes.test
 --   hub1@spokes.test / hub2@spokes.test / hub3@spokes.test / hub4@spokes.test
+--
+-- Layout:
+--   Tenant One  -> hub1, hub2
+--   Tenant Two  -> hub3, hub4
 --
 -- Profiles are created automatically by public.handle_new_user()
 -- (trigger on_auth_user_created) when rows are inserted into auth.users.
@@ -260,4 +264,74 @@ VALUES
     now(),
     now(),
     now()
+  );
+
+-- Mark operators on profiles (handle_new_user does not set is_operator)
+update public.profiles
+set is_operator = true
+where id in (
+  '11111111-1111-4111-8111-111111111111'::uuid,
+  '11111111-1111-4111-8111-111111111112'::uuid
+);
+
+-- Tenants (companies)
+insert into public.tenants (id, display_name)
+values
+  ('44444444-4444-4444-8444-444444444441'::uuid, 'Tenant One'),
+  ('44444444-4444-4444-8444-444444444442'::uuid, 'Tenant Two');
+
+-- Tenant admins
+insert into public.tenant_users (tenant_id, user_id)
+values
+  (
+    '44444444-4444-4444-8444-444444444441'::uuid,
+    '22222222-2222-4222-8222-222222222221'::uuid
+  ),
+  (
+    '44444444-4444-4444-8444-444444444442'::uuid,
+    '22222222-2222-4222-8222-222222222222'::uuid
+  );
+
+-- Hubs under each tenant (2 hubs per tenant)
+insert into public.tenant_hubs (id, display_name, tenant_id)
+values
+  (
+    '55555555-5555-4555-8555-555555555551'::uuid,
+    'Hub One',
+    '44444444-4444-4444-8444-444444444441'::uuid
+  ),
+  (
+    '55555555-5555-4555-8555-555555555552'::uuid,
+    'Hub Two',
+    '44444444-4444-4444-8444-444444444441'::uuid
+  ),
+  (
+    '55555555-5555-4555-8555-555555555553'::uuid,
+    'Hub Three',
+    '44444444-4444-4444-8444-444444444442'::uuid
+  ),
+  (
+    '55555555-5555-4555-8555-555555555554'::uuid,
+    'Hub Four',
+    '44444444-4444-4444-8444-444444444442'::uuid
+  );
+
+-- Hub users (one user per hub)
+insert into public.hub_users (hub_id, user_id)
+values
+  (
+    '55555555-5555-4555-8555-555555555551'::uuid,
+    '33333333-3333-4333-8333-333333333331'::uuid
+  ),
+  (
+    '55555555-5555-4555-8555-555555555552'::uuid,
+    '33333333-3333-4333-8333-333333333332'::uuid
+  ),
+  (
+    '55555555-5555-4555-8555-555555555553'::uuid,
+    '33333333-3333-4333-8333-333333333333'::uuid
+  ),
+  (
+    '55555555-5555-4555-8555-555555555554'::uuid,
+    '33333333-3333-4333-8333-333333333334'::uuid
   );
