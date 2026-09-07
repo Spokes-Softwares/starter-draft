@@ -1,8 +1,25 @@
-import { updateSession } from "@repo/db/middleware";
+import { accountDestinations, resolveAccountKind } from "@repo/db/account";
+import { redirectKeepingSession, updateSession } from "@repo/db/middleware";
 import { type NextRequest } from "next/server";
 
 export async function proxy(request: NextRequest) {
-  return updateSession(request);
+  const { response, supabase } = await updateSession(request);
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+
+  const authLogin = `${process.env.AUTH_URL}/auth/login`;
+
+  if (!user) {
+    return redirectKeepingSession(authLogin, response);
+  }
+
+  const kind = await resolveAccountKind(supabase, user.id);
+  if (kind !== "tenant") {
+    const destination = kind ? accountDestinations()[kind] : authLogin;
+    return redirectKeepingSession(destination ?? authLogin, response);
+  }
+  return response;
 }
 
 export const config = {

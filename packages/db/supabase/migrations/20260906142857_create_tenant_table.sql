@@ -256,3 +256,11 @@ create policy "Operators and tenants can delete hub users"
     public.is_operator()
     or public.is_hub_tenant(hub_id)
   );
+
+
+-- Signed-in users need table SELECT before row-level policies can apply.
+-- Without these grants, login membership lookups fail with 42501.
+
+grant select on public.profiles to authenticated;
+grant select on public.tenant_users to authenticated;
+grant select on public.hub_users to authenticated;

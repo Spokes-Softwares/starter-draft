@@ -2,7 +2,8 @@ import { updateSession } from "@repo/db/middleware";
 import { type NextRequest } from "next/server";
 
 export async function proxy(request: NextRequest) {
-  return updateSession(request);
+  const { response } = await updateSession(request)
+  return response
 }
 
 export const config = {

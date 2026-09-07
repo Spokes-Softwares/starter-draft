@@ -34,27 +34,152 @@ export type Database = {
   }
   public: {
     Tables: {
+      hub_users: {
+        Row: {
+          created_at: string
+          hub_id: string
+          id: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          hub_id: string
+          id?: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          hub_id?: string
+          id?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "hub_users_hub_id_fkey"
+            columns: ["hub_id"]
+            isOneToOne: false
+            referencedRelation: "tenant_hubs"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "hub_users_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       profiles: {
         Row: {
-          id: string
-          email: string | null
-          full_name: string | null
           created_at: string
+          email: string | null
+          first_name: string
+          id: string
+          is_operator: boolean
+          last_name: string
           updated_at: string
         }
         Insert: {
-          id: string
-          email?: string | null
-          full_name?: string | null
           created_at?: string
+          email?: string | null
+          first_name: string
+          id: string
+          is_operator?: boolean
+          last_name: string
           updated_at?: string
         }
         Update: {
-          id?: string
-          email?: string | null
-          full_name?: string | null
           created_at?: string
+          email?: string | null
+          first_name?: string
+          id?: string
+          is_operator?: boolean
+          last_name?: string
           updated_at?: string
+        }
+        Relationships: []
+      }
+      tenant_hubs: {
+        Row: {
+          created_at: string
+          display_name: string
+          id: string
+          tenant_id: string
+        }
+        Insert: {
+          created_at?: string
+          display_name: string
+          id?: string
+          tenant_id: string
+        }
+        Update: {
+          created_at?: string
+          display_name?: string
+          id?: string
+          tenant_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "tenant_hubs_tenant_id_fkey"
+            columns: ["tenant_id"]
+            isOneToOne: false
+            referencedRelation: "tenants"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      tenant_users: {
+        Row: {
+          created_at: string
+          id: string
+          tenant_id: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          tenant_id: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          tenant_id?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "tenant_users_tenant_id_fkey"
+            columns: ["tenant_id"]
+            isOneToOne: false
+            referencedRelation: "tenants"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "tenant_users_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      tenants: {
+        Row: {
+          created_at: string
+          display_name: string
+          id: string
+        }
+        Insert: {
+          created_at?: string
+          display_name: string
+          id?: string
+        }
+        Update: {
+          created_at?: string
+          display_name?: string
+          id?: string
         }
         Relationships: []
       }
@@ -63,7 +188,10 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      is_hub_tenant: { Args: { p_hub_id: string }; Returns: boolean }
+      is_hub_user: { Args: { p_hub_id: string }; Returns: boolean }
+      is_operator: { Args: never; Returns: boolean }
+      is_tenant: { Args: { p_tenant_id: string }; Returns: boolean }
     }
     Enums: {
       [_ in never]: never
