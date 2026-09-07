@@ -1,4 +1,4 @@
-import AuthBody from "./_components/auth-body";
+import AuthBody from "../../components/app-layout/auth-body";
 
 export default function AuthLayout({
   children,
