@@ -4,11 +4,17 @@ create table public.profiles (
   email text,
   first_name text not null,
   last_name text not null,
+  is_operator boolean not null default false,
   created_at timestamptz default now() not null,
   updated_at timestamptz default now() not null
 );
 
 alter table public.profiles enable row level security;
+
+revoke update on public.profiles from authenticated, anon;
+grant update (
+  email, first_name, last_name, updated_at
+) on public.profiles to authenticated;
 
 create policy "Users can view own profile"
   on public.profiles

@@ -1,0 +1,2 @@
+@import "@repo/ui/styles/global.css";
+@source "../../../packages/ui/src/**/*.{ts,tsx}";
