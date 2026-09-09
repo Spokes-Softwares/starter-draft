@@ -48,15 +48,15 @@ export default function LoginPage() {
   return (
     <div className="flex min-h-screen flex-col items-center justify-center gap-6 p-6">
       <Header image={spokesLogo.src} />
-      <Card className="w-full max-w-sm">
+        <Card className="w-full max-w-sm">
         <CardHeader>
-          <CardTitle className="dark:text-black">Sign in here</CardTitle>
+          <CardTitle>Sign in here</CardTitle>
           <CardDescription>Access your Spokes tenant portal.</CardDescription>
         </CardHeader>
         <CardContent>
           <form onSubmit={handleLogin} className="flex flex-col gap-4">
             <div className="flex flex-col gap-2">
-              <Label htmlFor="email" className="dark:text-black">Email</Label>
+              <Label htmlFor="email">Email</Label>
               <Input
                 id="email"
                 type="email"
@@ -67,7 +67,7 @@ export default function LoginPage() {
               />
             </div>
             <div className="flex flex-col gap-2">
-              <Label htmlFor="password" className="dark:text-black">Password</Label>
+              <Label htmlFor="password">Password</Label>
               <Input
                 id="password"
                 type="password"

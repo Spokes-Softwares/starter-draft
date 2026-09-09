@@ -38,7 +38,7 @@ export default function RootLayout({
         inter.variable,
       )}
     >
-      <body className="min-h-full flex flex-col bg-linear-to-l from-primary to-background">
+      <body className="min-h-full flex flex-col bg-linear-to-l from-primary to-background" >
         <AppShell>{children}</AppShell>
       </body>
     </html>
