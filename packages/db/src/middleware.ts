@@ -38,5 +38,16 @@ export async function updateSession(request: NextRequest) {
 
   await supabase.auth.getUser();
 
-  return supabaseResponse;
+  return {response:supabaseResponse, supabase};
+}
+
+/* Copy the refreshed session onto the new response.
+Otherwise the redirect drops the cookie and the next app looks logged out. */
+export function redirectKeepingSession(url:string, sessionResponse:NextResponse){
+  const redirectResponse = NextResponse.redirect(url);
+  
+  sessionResponse.cookies.getAll().forEach((cookie)=> {
+    redirectResponse.cookies.set(cookie)
+  })
+  return redirectResponse
 }

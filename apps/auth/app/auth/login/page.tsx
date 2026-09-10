@@ -1,8 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import { useRouter } from "next/navigation";
-import { createClient } from "@repo/db/client";
 import { Button } from "@repo/ui/components/shadcn-ui/button";
 import {
   Card,
@@ -15,9 +13,9 @@ import { Input } from "@repo/ui/components/shadcn-ui/input";
 import { Label } from "@repo/ui/components/shadcn-ui/label";
 import Header from "@repo/ui/components/composites-ui/header";
 import spokesLogo from "../../../../../packages/ui/src/components/images/spokesLogo.png";
+import { signIn } from "@/actions/sign-in.action";
 
 export default function LoginPage() {
-  const router = useRouter();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState<string | null>(null);
@@ -28,21 +26,11 @@ export default function LoginPage() {
     setLoading(true);
     setError(null);
 
-    const supabase = createClient();
-    const { error: signInError } = await supabase.auth.signInWithPassword({
-      email,
-      password,
-    });
+    const result = await signIn(new FormData(event.currentTarget));
 
     setLoading(false);
 
-    if (signInError) {
-      setError(signInError.message);
-      return;
-    }
-
-    router.push("/");
-    router.refresh();
+    if (result?.error) setError(result.error);
   }
 
   return (
@@ -60,6 +48,7 @@ export default function LoginPage() {
               <Input
                 id="email"
                 type="email"
+                name="email"
                 autoComplete="email"
                 value={email}
                 onChange={(event) => setEmail(event.target.value)}
@@ -71,6 +60,7 @@ export default function LoginPage() {
               <Input
                 id="password"
                 type="password"
+                name="password"
                 autoComplete="current-password"
                 value={password}
                 onChange={(event) => setPassword(event.target.value)}
