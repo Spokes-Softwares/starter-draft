@@ -1,19 +1,15 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono, Inter } from "next/font/google";
+import { Kanit, Inter } from "next/font/google";
 import "./globals.css";
 import { cn } from "@repo/ui/lib/utils";
 import { AppShell } from "./appShell";
 
-const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const kanit = Kanit({
+  weight: ["100","200","300","400","500","600","700","800","900"],
+  style: ["normal","italic"],
   subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
+  variable: "--font-kanit",
+  display: "swap",
 });
 
 export const metadata: Metadata = {
@@ -32,10 +28,7 @@ export default function RootLayout({
       suppressHydrationWarning
       className={cn(
         "h-full antialiased",
-        geistSans.variable,
-        geistMono.variable,
-        "font-sans",
-        inter.variable,
+        kanit.variable,
       )}
     >
       <body className="min-h-full flex flex-col bg-linear-to-l from-primary to-background" >
