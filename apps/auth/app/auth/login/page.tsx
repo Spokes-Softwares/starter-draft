@@ -35,8 +35,8 @@ export default function LoginPage() {
 
   return (
     <div className="flex min-h-screen flex-col items-center justify-center gap-6 p-6">
-      <Header image={spokesLogo.src} />
-        <Card className="w-full max-w-sm">
+      <Header image={spokesLogo} />
+      <Card className="w-full max-w-sm">
         <CardHeader>
           <CardTitle>Sign in here</CardTitle>
           <CardDescription>Access your Spokes tenant portal.</CardDescription>
