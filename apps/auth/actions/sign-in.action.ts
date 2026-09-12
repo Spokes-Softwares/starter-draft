@@ -1,6 +1,6 @@
 "use server";
 
-import { accountDestinations, resolveAccountKind } from "@repo/db/account";
+import { accountDestinations, resolveAccountKind } from "@repo/db/resolve-account";
 import { createClient } from "@repo/db/server";
 import { redirect } from "next/navigation";
 

@@ -8,7 +8,7 @@
     "./admin": "./src/admin.ts",
     "./middleware": "./src/middleware.ts",
     "./types": "./src/types.ts",
-    "./account":"./src/account.ts"
+    "./resolve-account":"./src/resolve-account.ts"
   },
   "scripts": {
     "dev": "supabase start",

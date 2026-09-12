@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Kanit, Inter } from "next/font/google";
+import { Kanit } from "next/font/google";
 import "./globals.css";
 import { cn } from "@repo/ui/lib/utils";
 import { AppShell } from "./appShell";
