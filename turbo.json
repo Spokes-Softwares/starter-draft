@@ -5,7 +5,11 @@
     "NEXT_PUBLIC_SUPABASE_URL",
     "NEXT_PUBLIC_SUPABASE_ANON_KEY",
     "SUPABASE_SERVICE_ROLE_KEY",
-    "SUPABASE_PROJECT_ID"
+    "SUPABASE_PROJECT_ID",
+    "OPERATIONS_URL",
+    "TENANT_URL",
+    "HUB_URL",
+    "AUTH_URL"
   ],
   "tasks": {
     "build": {

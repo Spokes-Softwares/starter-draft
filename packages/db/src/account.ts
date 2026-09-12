@@ -1,5 +1,8 @@
 /* This is where the prospected logged in users account gets resolved.*/
 
+import { SupabaseClient } from "@supabase/supabase-js";
+import { Database } from "./types";
+
 //Account types:
 export type AccountKind = "operator" | "tenant" | "hub";
 
@@ -14,7 +17,7 @@ export function accountDestinations() {
 
 //Resolve the accounts being logged in
 export async function resolveAccountKind(
-  supabase: { from: (table: string) => any },
+  supabase: SupabaseClient<Database>,
   userId: string,
 ): Promise<AccountKind | null> {
     const { data: profile } = await supabase
