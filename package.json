@@ -16,12 +16,15 @@
     "test": "vitest run",
     "test:watch": "vitest"
   },
+  "dependancies": {
+    "vitest": "catalog:"
+  },
   "devDependencies": {
     "prettier": "catalog:",
     "supabase": "catalog:",
     "turbo": "catalog:",
     "typescript": "catalog:",
-    "vitest": "^3.2.4"
+    "vitest": "catalog:"
   },
   "engines": {
     "node": ">=20"
