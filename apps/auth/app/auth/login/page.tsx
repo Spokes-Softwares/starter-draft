@@ -12,8 +12,8 @@ import {
 import { Input } from "@repo/ui/components/shadcn-ui/input";
 import { Label } from "@repo/ui/components/shadcn-ui/label";
 import Header from "@repo/ui/components/composites-ui/header";
-import spokesLogo from "../../../../../packages/ui/src/components/images/spokesLogo.png";
 import { signIn } from "@/actions/sign-in.action";
+import spokesLogo from "@repo/ui/assets/spokesLogo.png";
 
 export default function LoginPage() {
   const [email, setEmail] = useState("");
@@ -35,7 +35,7 @@ export default function LoginPage() {
 
   return (
     <div className="flex min-h-screen flex-col items-center justify-center gap-6 p-6">
-      <Header image={spokesLogo} />
+      <Header image={spokesLogo.src} />
       <Card className="w-full max-w-sm">
         <CardHeader>
           <CardTitle>Sign in here</CardTitle>
