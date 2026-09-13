@@ -6,6 +6,7 @@ import {
   SidebarFooter,
   SidebarGroup,
   SidebarHeader,
+  SidebarMenuButton,
 } from "@repo/ui/components/shadcn-ui/sidebar";
 import {
   Book,
@@ -56,24 +57,24 @@ export default function TenantDashboard() {
       <Separator className="bg-border" />
       <SidebarContent>
         <SidebarGroup className="flex flex-col pl-5">
-          <div className="flex flex-col gap-2">
-            <div className="grid gap-5">
-              {sidebarMenuItems.map((menuItems, index) => (
-                <div key={index} className="grid gap-2">
-                  <span>{menuItems.title}</span>
-                  <div className="grid gap-2">
-                    {menuItems.items.map((item, index) => (
-                      <div key={index} className="flex flex-row gap-1">
+          <div className="grid gap-5">
+            {sidebarMenuItems.map((menuItems, index) => (
+              <div key={index} className="grid gap-2">
+                <span>{menuItems.title}</span>
+                <div className="grid gap-2">
+                  {menuItems.items.map((item, index) => (
+                    <div key={index} className="flex flex-row gap-1">
+                      <SidebarMenuButton>
                         <item.icon key={index} />
                         <span>{item.label}</span>
                         {item.chevron && <item.chevron className="ml-auto" />}
-                      </div>
-                    ))}
-                  </div>
-                  <Separator className="bg-border mt-5" />
+                      </SidebarMenuButton>
+                    </div>
+                  ))}
                 </div>
-              ))}
-            </div>
+                <Separator className="bg-border mt-5" />
+              </div>
+            ))}
           </div>
         </SidebarGroup>
       </SidebarContent>
