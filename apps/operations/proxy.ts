@@ -1,5 +1,5 @@
 import { updateSession, redirectKeepingSession } from "@repo/db/middleware"
-import { accountDestinations, resolveAccountKind } from "@repo/db/account"
+import { accountDestinations, resolveAccountKind } from "@repo/db/resolve-account"
 import { type NextRequest } from "next/server"
 
 export async function proxy(request: NextRequest) {

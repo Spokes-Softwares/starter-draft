@@ -1,4 +1,4 @@
-import { accountDestinations, resolveAccountKind } from "@repo/db/account";
+import { accountDestinations, resolveAccountKind } from "@repo/db/resolve-account";
 import { redirectKeepingSession, updateSession } from "@repo/db/middleware";
 import { type NextRequest } from "next/server";
 
