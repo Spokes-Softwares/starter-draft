@@ -6,7 +6,7 @@ export default defineConfig({
     alias: {
       "@repo/ui/lib/utils": path.resolve(
         __dirname,
-        "packages/ui/src/lib/utils.ts"
+        "packages/ui/src/lib/utils.ts",
       ),
     },
   },

@@ -5,8 +5,8 @@ import { cn } from "@repo/ui/lib/utils";
 import { AppShell } from "./appShell";
 
 const kanit = Kanit({
-  weight: ["100","200","300","400","500","600","700","800","900"],
-  style: ["normal","italic"],
+  weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
+  style: ["normal", "italic"],
   subsets: ["latin"],
   variable: "--font-kanit",
   display: "swap",
@@ -26,12 +26,9 @@ export default function RootLayout({
     <html
       lang="en"
       suppressHydrationWarning
-      className={cn(
-        "h-full antialiased",
-        kanit.variable,
-      )}
+      className={cn("h-full antialiased", kanit.variable)}
     >
-      <body className="min-h-full flex flex-col bg-linear-to-l from-primary to-background" >
+      <body className="min-h-full flex flex-col bg-linear-to-l from-primary to-background">
         <AppShell>{children}</AppShell>
       </body>
     </html>

@@ -20,7 +20,7 @@ export async function createClient() {
             name: string;
             value: string;
             options: CookieOptions;
-          }[]
+          }[],
         ) {
           try {
             cookiesToSet.forEach(({ name, value, options }) => {
@@ -32,6 +32,6 @@ export async function createClient() {
           }
         },
       },
-    }
+    },
   );
 }

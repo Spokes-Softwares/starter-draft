@@ -10,6 +10,7 @@
     "db:migration:new": "pnpm --filter @repo/db migration:new",
     "db:migration:push": "pnpm --filter @repo/db migration:push",
     "db:reset": "supabase db reset --workdir packages/db",
+    "pr:check": "pnpm lint && pnpm format && pnpm check-types",
     "lint": "turbo run lint",
     "format": "prettier --write \"**/*.{ts,tsx,md,json,css,mjs}\"",
     "check-types": "turbo run check-types",
