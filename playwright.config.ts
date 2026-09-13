@@ -5,7 +5,10 @@ import {
   operationsProject,
   operationsWebServer,
 } from "./apps/operations/playwright.config";
-import { tenantProject, tenantWebServer } from "./apps/tenant/playwright.config";
+import {
+  tenantProject,
+  tenantWebServer,
+} from "./apps/tenant/playwright.config";
 
 /**
  * Root Playwright config: one project per app for UI mode.

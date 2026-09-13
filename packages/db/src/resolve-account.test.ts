@@ -1,5 +1,5 @@
 import { createClient } from "@supabase/supabase-js";
-import { test, describe, expect, beforeAll } from "vitest";
+import { test, describe, expect } from "vitest";
 import type { Database } from "./types";
 import { resolveAccountKind } from "./resolve-account";
 import {

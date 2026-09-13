@@ -1,6 +1,9 @@
-import { updateSession, redirectKeepingSession } from "@repo/db/middleware"
-import { accountDestinations, resolveAccountKind } from "@repo/db/resolve-account"
-import { type NextRequest } from "next/server"
+import { updateSession, redirectKeepingSession } from "@repo/db/middleware";
+import {
+  accountDestinations,
+  resolveAccountKind,
+} from "@repo/db/resolve-account";
+import { type NextRequest } from "next/server";
 
 export async function proxy(request: NextRequest) {
   const { response, supabase } = await updateSession(request);
