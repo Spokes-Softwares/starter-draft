@@ -23,8 +23,14 @@ export async function signIn(formData: FormData) {
   if (!user) return { error: "Signed in but no user was returned" };
 
   //resolve the kind of account that is being logged in and where the destination is
-  const kind = await resolveAccountKind(supabase, user.id);
-  const destination = kind ? accountDestinations()[kind] : null;
+  const accountType = await resolveAccountKind(supabase, user.id);
+
+  if (typeof accountType !== "string") {
+    await supabase.auth.signOut();
+    return { error: accountType.message };
+  }
+
+  const destination = accountDestinations()[accountType];
 
   //if no valid destination - sign the user out
   if (!destination) {
