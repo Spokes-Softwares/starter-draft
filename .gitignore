@@ -37,5 +37,9 @@ yarn-error.log*
 .DS_Store
 *.pem
 
-playwright-report
-test-results
+# Playwright
+/test-results/
+/playwright-report/
+/blob-report/
+/playwright/.cache/
+/playwright/.auth/

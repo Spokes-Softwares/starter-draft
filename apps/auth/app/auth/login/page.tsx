@@ -12,7 +12,7 @@ import {
 import { Input } from "@repo/ui/components/shadcn-ui/input";
 import { Label } from "@repo/ui/components/shadcn-ui/label";
 import Header from "@repo/ui/components/composites-ui/header";
-import { signIn } from "@/actions/sign-in.action";
+import { signIn } from "@/actions/sign-in-action";
 import spokesLogo from "@repo/ui/assets/spokesLogo.png";
 
 export default function LoginPage() {

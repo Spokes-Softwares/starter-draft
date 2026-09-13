@@ -5,6 +5,9 @@ import { Database } from "./types";
 
 //Account types:
 export type AccountKind = "operator" | "tenant" | "hub";
+export type AccountError = {
+  message: string;
+};
 
 //account destinations
 export function accountDestinations() {
@@ -19,7 +22,7 @@ export function accountDestinations() {
 export async function resolveAccountKind(
   supabase: SupabaseClient<Database>,
   userId: string,
-): Promise<AccountKind | null> {
+): Promise<AccountKind | AccountError> {
   const { data: profile } = await supabase
     .from("profiles")
     .select("is_operator")
@@ -46,5 +49,5 @@ export async function resolveAccountKind(
 
   if (hub) return "hub";
 
-  return null;
+  return { message: "Invalid login credentials" } as AccountError;
 }
