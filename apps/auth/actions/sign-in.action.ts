@@ -1,11 +1,13 @@
 "use server";
 
-import { accountDestinations, resolveAccountKind } from "@repo/db/resolve-account";
+import {
+  accountDestinations,
+  resolveAccountKind,
+} from "@repo/db/resolve-account";
 import { createClient } from "@repo/db/server";
 import { redirect } from "next/navigation";
 
 export async function signIn(formData: FormData) {
-
   const email = String(formData.get("email") ?? "");
   const password = String(formData.get("password") ?? "");
   const supabase = await createClient();
@@ -15,7 +17,9 @@ export async function signIn(formData: FormData) {
   if (error) return { error: error.message };
 
   //get the user data back from the logged in user
-  const { data: { user }} = await supabase.auth.getUser();
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
   if (!user) return { error: "Signed in but no user was returned" };
 
   //resolve the kind of account that is being logged in and where the destination is
@@ -28,5 +32,5 @@ export async function signIn(formData: FormData) {
     return { error: "This account is not assigned to a portal" };
   }
 
-  redirect(destination)
+  redirect(destination);
 }

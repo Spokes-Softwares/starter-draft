@@ -6,20 +6,20 @@ Monorepo for the Spokes platform, built with [Turborepo](https://turborepo.dev),
 
 ### Apps
 
-| App | Port | Purpose |
-|-----|------|---------|
-| [`tenant`](apps/tenant) | 3001 | Tenant-facing product portal |
-| [`operations`](apps/operations) | 3000 | Internal operations portal |
-| [`docs`](apps/docs) | 4000 | Documentation site |
+| App                             | Port | Purpose                      |
+| ------------------------------- | ---- | ---------------------------- |
+| [`tenant`](apps/tenant)         | 3001 | Tenant-facing product portal |
+| [`operations`](apps/operations) | 3000 | Internal operations portal   |
+| [`docs`](apps/docs)             | 4000 | Documentation site           |
 
 ### Packages
 
-| Package | Purpose |
-|---------|---------|
-| [`@repo/ui`](packages/ui) | Shared shadcn/Base UI component library |
-| [`@repo/db`](packages/db) | Supabase clients, types, and migrations |
-| [`@repo/eslint-config`](packages/eslint-config) | Shared ESLint configuration |
-| [`@repo/typescript-config`](packages/typescript-config) | Shared TypeScript configuration |
+| Package                                                 | Purpose                                 |
+| ------------------------------------------------------- | --------------------------------------- |
+| [`@repo/ui`](packages/ui)                               | Shared shadcn/Base UI component library |
+| [`@repo/db`](packages/db)                               | Supabase clients, types, and migrations |
+| [`@repo/eslint-config`](packages/eslint-config)         | Shared ESLint configuration             |
+| [`@repo/typescript-config`](packages/typescript-config) | Shared TypeScript configuration         |
 
 ## Getting started
 
@@ -69,19 +69,19 @@ pnpm --filter docs dev
 
 ## Scripts
 
-| Script | Description |
-|--------|-------------|
-| `pnpm dev` | Start all apps in development mode |
-| `pnpm build` | Build all apps and packages |
-| `pnpm lint` | Lint all packages |
-| `pnpm check-types` | Type-check all packages |
-| `pnpm test` | Run unit tests |
-| `pnpm format` | Format code with Prettier |
-| `pnpm db:start` | Start local Supabase |
-| `pnpm db:stop` | Stop local Supabase |
-| `pnpm db:reset` | Reset local database and apply migrations |
-| `pnpm db:gen-types` | Regenerate TypeScript types from local schema |
-| `pnpm db:migration:new` | Create a new database migration |
+| Script                  | Description                                   |
+| ----------------------- | --------------------------------------------- |
+| `pnpm dev`              | Start all apps in development mode            |
+| `pnpm build`            | Build all apps and packages                   |
+| `pnpm lint`             | Lint all packages                             |
+| `pnpm check-types`      | Type-check all packages                       |
+| `pnpm test`             | Run unit tests                                |
+| `pnpm format`           | Format code with Prettier                     |
+| `pnpm db:start`         | Start local Supabase                          |
+| `pnpm db:stop`          | Stop local Supabase                           |
+| `pnpm db:reset`         | Reset local database and apply migrations     |
+| `pnpm db:gen-types`     | Regenerate TypeScript types from local schema |
+| `pnpm db:migration:new` | Create a new database migration               |
 
 ## Project structure
 
