@@ -9,7 +9,7 @@
     "./middleware": "./src/middleware.ts",
     "./types": "./src/types.ts",
     "./resolve-account": "./src/resolve-account.ts",
-    "./actions/*":"./src/actions/*.ts"
+    "./actions/*": "./src/actions/*.ts"
   },
   "scripts": {
     "dev": "supabase start",
