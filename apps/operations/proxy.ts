@@ -17,11 +17,14 @@ export async function proxy(request: NextRequest) {
     return redirectKeepingSession(authLogin, response);
   }
 
-  const kind = await resolveAccountKind(supabase, user.id);
-  if (kind !== "operator") {
-    const destination = kind ? accountDestinations()[kind] : authLogin;
-    return redirectKeepingSession(destination ?? authLogin, response);
+  const accountType = await resolveAccountKind(supabase, user.id);
+  if (accountType === "operator") {
+    return response;
   }
 
-  return response;
+  const destination =
+    typeof accountType === "string"
+      ? accountDestinations()[accountType]
+      : authLogin;
+  return redirectKeepingSession(destination ?? authLogin, response);
 }
