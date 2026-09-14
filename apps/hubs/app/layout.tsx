@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono, Inter } from "next/font/google";
 import "./globals.css";
 import { cn } from "@repo/ui/lib/utils";
-import { ThemeProvider } from "next-themes";
+import { AppShell } from "../../../packages/ui/src/shared/layouts/appShell";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
 
@@ -39,13 +39,7 @@ export default function RootLayout({
       )}
     >
       <body className="min-h-full flex flex-col bg-linear-to-l from-primary to-background">
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="light"
-          enableSystem={false}
-        >
-          {children}
-        </ThemeProvider>
+        <AppShell>{children}</AppShell>
       </body>
     </html>
   );
