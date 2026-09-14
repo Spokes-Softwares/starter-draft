@@ -5,8 +5,12 @@ import {
   SidebarContent,
   SidebarFooter,
   SidebarGroup,
+  SidebarGroupLabel,
   SidebarHeader,
+  SidebarMenu,
+  SidebarMenuBadge,
   SidebarMenuButton,
+  SidebarMenuItem,
 } from "@repo/ui/components/shadcn-ui/sidebar";
 import {
   Book,
@@ -56,26 +60,22 @@ export default function TenantDashboard() {
       </SidebarHeader>
       <Separator className="bg-border" />
       <SidebarContent>
-        <SidebarGroup className="flex flex-col pl-5">
-          <div className="grid gap-5">
-            {sidebarMenuItems.map((menuItems, index) => (
-              <div key={index} className="grid gap-2">
-                <span>{menuItems.title}</span>
-                <div className="grid gap-2">
-                  {menuItems.items.map((item, index) => (
-                    <div key={index} className="flex flex-row gap-1">
-                      <SidebarMenuButton>
-                        <item.icon key={index} />
-                        <span>{item.label}</span>
-                        {item.chevron && <item.chevron className="ml-auto" />}
-                      </SidebarMenuButton>
-                    </div>
-                  ))}
-                </div>
-                <Separator className="bg-border mt-5" />
-              </div>
-            ))}
-          </div>
+        <SidebarGroup className="gap-5">
+          {sidebarMenuItems.map((menuItems, index) => (
+            <SidebarMenu key={index}>
+              <SidebarGroupLabel>{menuItems.title}</SidebarGroupLabel>
+              {menuItems.items.map((item) => (
+                <SidebarMenuItem key={item.label}>
+                  <SidebarMenuButton>
+                    <item.icon />
+                    <span>{item.label}</span>
+                    {item.chevron && <item.chevron className="ml-auto" />}
+                  </SidebarMenuButton>
+                </SidebarMenuItem>
+              ))}
+              <Separator className="bg-border mt-5" />
+            </SidebarMenu>
+          ))}
         </SidebarGroup>
       </SidebarContent>
       <SidebarFooter />
