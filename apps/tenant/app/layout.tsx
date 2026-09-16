@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Kanit } from "next/font/google";
 import "./globals.css";
 import { cn } from "@repo/ui/lib/utils";
-import { AppShell } from "../../../packages/ui/src/shared/layouts/appShell";
+import { AppShell } from "@repo/ui/shared/layouts/appShell";
 
 const kanit = Kanit({
   weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
