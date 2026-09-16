@@ -57,7 +57,7 @@
   --card-foreground: oklch(0.141 0.005 285.823);
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.141 0.005 285.823);
-  --primary: #00786F;
+  --primary: #00786f;
   --primary-foreground: oklch(0.969 0.015 12.422);
   --secondary: oklch(0.967 0.001 286.375);
   --secondary-foreground: oklch(0.21 0.006 285.885);
@@ -92,7 +92,7 @@
   --card-foreground: var(--foreground);
   --popover: var(--background);
   --popover-foreground: var(--foreground);
-  --primary: #00786F;
+  --primary: #00786f;
   --primary-foreground: oklch(0.969 0.015 12.422);
   --secondary: oklch(0.274 0.006 286.033);
   --secondary-foreground: oklch(0.985 0 0);
@@ -127,6 +127,13 @@
     @apply bg-background text-foreground;
   }
   html {
-    font-family: var(--font-kanit), ui-sans-serif, system-ui, -apple-system, "Segoe UI", "Helvetica Neue", Arial;
+    font-family:
+      var(--font-kanit),
+      ui-sans-serif,
+      system-ui,
+      -apple-system,
+      "Segoe UI",
+      "Helvetica Neue",
+      Arial;
   }
 }

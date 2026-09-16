@@ -9,7 +9,8 @@
     "OPERATIONS_URL",
     "TENANT_URL",
     "HUB_URL",
-    "AUTH_URL"
+    "AUTH_URL",
+    "CI"
   ],
   "tasks": {
     "build": {

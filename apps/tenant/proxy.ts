@@ -1,4 +1,7 @@
-import { accountDestinations, resolveAccountKind } from "@repo/db/resolve-account";
+import {
+  accountDestinations,
+  resolveAccountKind,
+} from "@repo/db/resolve-account";
 import { redirectKeepingSession, updateSession } from "@repo/db/middleware";
 import { type NextRequest } from "next/server";
 
@@ -14,12 +17,16 @@ export async function proxy(request: NextRequest) {
     return redirectKeepingSession(authLogin, response);
   }
 
-  const kind = await resolveAccountKind(supabase, user.id);
-  if (kind !== "tenant") {
-    const destination = kind ? accountDestinations()[kind] : authLogin;
-    return redirectKeepingSession(destination ?? authLogin, response);
+  const accountType = await resolveAccountKind(supabase, user.id);
+  if (accountType === "tenant") {
+    return response;
   }
-  return response;
+
+  const destination =
+    typeof accountType === "string"
+      ? accountDestinations()[accountType]
+      : authLogin;
+  return redirectKeepingSession(destination ?? authLogin, response);
 }
 
 export const config = {

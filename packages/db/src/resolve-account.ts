@@ -5,6 +5,9 @@ import { Database } from "./types";
 
 //Account types:
 export type AccountKind = "operator" | "tenant" | "hub";
+export type AccountError = {
+  message: string;
+};
 
 //account destinations
 export function accountDestinations() {
@@ -19,32 +22,32 @@ export function accountDestinations() {
 export async function resolveAccountKind(
   supabase: SupabaseClient<Database>,
   userId: string,
-): Promise<AccountKind | null> {
-    const { data: profile } = await supabase
-    .from('profiles')
-    .select('is_operator')
-    .eq('id', userId)
-    .single()
+): Promise<AccountKind | AccountError> {
+  const { data: profile } = await supabase
+    .from("profiles")
+    .select("is_operator")
+    .eq("id", userId)
+    .single();
 
-    if(profile?.is_operator) return 'operator'
+  if (profile?.is_operator) return "operator";
 
-    const { data: tenant } = await supabase
-    .from('tenant_users')
-    .select('id')
-    .eq('user_id', userId)
+  const { data: tenant } = await supabase
+    .from("tenant_users")
+    .select("id")
+    .eq("user_id", userId)
     .limit(1)
-    .maybeSingle()
+    .maybeSingle();
 
-    if(tenant) return 'tenant'
+  if (tenant) return "tenant";
 
-    const { data: hub } = await supabase
-    .from('hub_users')
-    .select('id')
-    .eq('user_id', userId)
+  const { data: hub } = await supabase
+    .from("hub_users")
+    .select("id")
+    .eq("user_id", userId)
     .limit(1)
-    .maybeSingle()
+    .maybeSingle();
 
-    if(hub) return 'hub'
+  if (hub) return "hub";
 
-    return null;
+  return { message: "Invalid login credentials" } as AccountError;
 }
