@@ -10,7 +10,8 @@
     "./lib/*": "./src/lib/*.ts",
     "./styles/*": "./src/styles/*.css",
     "./styles/*.css": "./src/styles/*.css",
-    "./assets/*": "./src/assets/*"
+    "./assets/*": "./src/assets/*",
+    "./shared/layouts/*": "./src/shared/layouts/*.tsx"
   },
   "scripts": {
     "lint": "eslint . --max-warnings 0",

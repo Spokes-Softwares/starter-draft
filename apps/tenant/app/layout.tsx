@@ -2,7 +2,9 @@ import type { Metadata } from "next";
 import { Kanit } from "next/font/google";
 import "./globals.css";
 import { cn } from "@repo/ui/lib/utils";
-import { AppShell } from "./appShell";
+import { SidebarProvider } from "@repo/ui/components/shadcn-ui/sidebar";
+import TenantDashboard from "./(main)/dashboard/page";
+import {AppShell} from '@repo/ui/shared/layouts/appShell'
 
 const kanit = Kanit({
   weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
@@ -29,7 +31,10 @@ export default function RootLayout({
       className={cn("h-full antialiased", kanit.variable)}
     >
       <body className="min-h-full flex flex-col bg-linear-to-l from-primary to-background">
-        <AppShell>{children}</AppShell>
+        <SidebarProvider>
+          <TenantDashboard />
+          <AppShell>{children}</AppShell>
+        </SidebarProvider>
       </body>
     </html>
   );
