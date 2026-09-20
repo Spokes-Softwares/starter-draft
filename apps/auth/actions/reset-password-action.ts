@@ -1,9 +1,9 @@
 "use server";
 
-import { createClient } from "@repo/db/server";
+import { createSupabaseServerClient } from "@repo/db/server";
 
 export default async function resetPasswordAction(password: string) {
-  const supabase = await createClient();
+  const supabase = await createSupabaseServerClient();
   const {
     data: { user },
   } = await supabase.auth.getUser();

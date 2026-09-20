@@ -1,11 +1,11 @@
 "use server";
 
-import { createClient } from "@repo/db/server";
+import { createSupabaseServerClient } from "@repo/db/server";
 
 export async function forgotPasswordAction(formData: FormData) {
   const email = String(formData.get("email") ?? "");
   if (!email) return { error: "Email is required" };
-  const supabase = await createClient();
+  const supabase = await createSupabaseServerClient();
 
   const { error } = await supabase.auth.resetPasswordForEmail(email, {
     redirectTo: "http://localhost:3010/auth/reset-password",

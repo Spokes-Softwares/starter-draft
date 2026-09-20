@@ -4,16 +4,11 @@ import resetPasswordAction from "@/actions/reset-password-action";
 import { Alert, AlertDescription } from "@repo/ui/components/shadcn-ui/alert";
 import { Button } from "@repo/ui/components/shadcn-ui/button";
 import {
-  Card,
   CardContent,
   CardHeader,
   CardTitle,
 } from "@repo/ui/components/shadcn-ui/card";
-import {
-  Field,
-  FieldGroup,
-  FieldLabel,
-} from "@repo/ui/components/shadcn-ui/field";
+import { Field, FieldLabel } from "@repo/ui/components/shadcn-ui/field";
 import { Input } from "@repo/ui/components/shadcn-ui/input";
 import { AlertCircleIcon } from "lucide-react";
 import { useRouter } from "next/navigation";
@@ -59,56 +54,50 @@ export default function ResetPasswordForm() {
   }
 
   return (
-    <Card className="w-72">
+    <form onSubmit={handleResetPassword} className="grid gap-4">
       <CardHeader>
         <CardTitle>Reset Password</CardTitle>
       </CardHeader>
-      <CardContent>
-        <form onSubmit={handleResetPassword} className="grid gap-6">
-          <FieldGroup>
-            <Field>
-              <FieldLabel htmlFor="initial-password">New Password</FieldLabel>
-              <Input
-                className="rounded-md"
-                id="initial-password"
-                name="initial-password"
-                placeholder="New password"
-                type="password"
-                autoComplete="new-password"
-                required
-                minLength={6}
-              />
-            </Field>
-            <Field>
-              <FieldLabel htmlFor="confirm-password">
-                Confirm Password
-              </FieldLabel>
-              <Input
-                className="rounded-md"
-                id="confirm-password"
-                name="confirm-password"
-                placeholder="Confirm password"
-                type="password"
-                autoComplete="new-password"
-                required
-                minLength={6}
-              />
-            </Field>
-            {error ? (
-              <Alert
-                variant="destructive"
-                className="bg-destructive/10 border-destructive/50"
-              >
-                <AlertCircleIcon />
-                <AlertDescription>{error}</AlertDescription>
-              </Alert>
-            ) : null}
-          </FieldGroup>
-          <Button className="w-full" type="submit" disabled={loading}>
-            {loading ? "Saving..." : "Confirm"}
-          </Button>
-        </form>
+      <CardContent className="grid">
+        <Field>
+          <FieldLabel htmlFor="initial-password">New Password</FieldLabel>
+          <Input
+            className="rounded-md"
+            id="initial-password"
+            name="initial-password"
+            placeholder="New password"
+            type="password"
+            autoComplete="new-password"
+            required
+            minLength={6}
+          />
+        </Field>
+        <Field>
+          <FieldLabel htmlFor="confirm-password">Confirm Password</FieldLabel>
+          <Input
+            className="rounded-md"
+            id="confirm-password"
+            name="confirm-password"
+            placeholder="Confirm password"
+            type="password"
+            autoComplete="new-password"
+            required
+            minLength={6}
+          />
+        </Field>
+        {error ? (
+          <Alert
+            variant="destructive"
+            className="bg-destructive/10 border-destructive/50"
+          >
+            <AlertCircleIcon />
+            <AlertDescription>{error}</AlertDescription>
+          </Alert>
+        ) : null}
+        <Button className="w-full" type="submit" disabled={loading}>
+          {loading ? "Saving..." : "Confirm"}
+        </Button>
       </CardContent>
-    </Card>
+    </form>
   );
 }

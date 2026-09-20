@@ -1,7 +1,7 @@
-import {
-  authRedirect,
-  createAuthRedirectClient,
-} from "@repo/db/middleware";
+/* This is where the token exchange happens.
+This will most likey get moved out into a private area that is not on the main app path. */
+
+import { authRedirect, createAuthRedirectClient } from "@repo/db/middleware";
 import { type EmailOtpType } from "@supabase/supabase-js";
 import { type NextRequest } from "next/server";
 

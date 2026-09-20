@@ -1,9 +1,9 @@
 "use server";
-import { createClient } from "@repo/db/server";
+import { createSupabaseServerClient } from "@repo/db/server";
 import { redirect } from "next/navigation";
 
 export default async function signOutAction() {
-  const supabase = await createClient();
+  const supabase = await createSupabaseServerClient();
   await supabase.auth.signOut();
 
   const AUTH_APP_URL = process.env.AUTH_URL;
