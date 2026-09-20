@@ -1,3 +1,5 @@
+"use client";
+
 import { signIn } from "@/actions/sign-in-action";
 import { useState } from "react";
 
@@ -13,6 +15,12 @@ import { Input } from "@repo/ui/components/shadcn-ui/input";
 import { Label } from "@repo/ui/components/shadcn-ui/label";
 import Header from "@repo/ui/components/composites-ui/header";
 import spokesLogo from "@repo/ui/assets/spokesLogo.png";
+import {
+  Field,
+  FieldDescription,
+  FieldLabel,
+} from "@repo/ui/components/shadcn-ui/field";
+import Link from "next/link";
 
 export default function LoginForm() {
   const [email, setEmail] = useState("");
@@ -31,19 +39,18 @@ export default function LoginForm() {
 
     if (result?.error) setError(result.error);
   }
-
+  /* Add zod to this form */
   return (
-    <div className="flex min-h-screen flex-col items-center justify-center gap-6 p-6">
-      <Header image={spokesLogo.src} />
-      <Card className="w-full max-w-sm">
+      <Card className="w-full max-w-72 grid items-center justify-center">
         <CardHeader>
           <CardTitle>Sign in here</CardTitle>
-          <CardDescription>Access your Spokes tenant portal.</CardDescription>
+          <CardDescription>Access your Spokes portal.</CardDescription>
         </CardHeader>
         <CardContent>
           <form onSubmit={handleLogin} className="flex flex-col gap-4">
-            <div className="flex flex-col gap-2">
-              <Label htmlFor="email">Email</Label>
+            <Field className="flex flex-col gap-2">
+              {/* Controller here */}
+              <FieldLabel htmlFor="email">Email</FieldLabel>
               <Input
                 id="email"
                 type="email"
@@ -53,9 +60,17 @@ export default function LoginForm() {
                 onChange={(event) => setEmail(event.target.value)}
                 required
               />
-            </div>
-            <div className="flex flex-col gap-2">
-              <Label htmlFor="password">Password</Label>
+            </Field>
+            <Field className="flex flex-col gap-2">
+              <div className="flex items-center">
+                <FieldLabel htmlFor="password">Password</FieldLabel>
+                <Link
+                  className="text-xs ml-auto underline"
+                  href={`/auth/forgot-password`}
+                >
+                  Forgot Password
+                </Link>
+              </div>
               <Input
                 id="password"
                 type="password"
@@ -65,18 +80,17 @@ export default function LoginForm() {
                 onChange={(event) => setPassword(event.target.value)}
                 required
               />
-            </div>
+            </Field>
             {error ? (
               <p className="text-sm text-destructive" role="alert">
                 {error}
               </p>
             ) : null}
-            <Button type="submit" disabled={loading}>
+            <Button type="submit" disabled={loading} className="w-full">
               {loading ? "Signing in..." : "Sign in"}
             </Button>
           </form>
         </CardContent>
       </Card>
-    </div>
   );
 }
