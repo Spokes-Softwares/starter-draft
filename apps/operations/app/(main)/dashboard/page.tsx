@@ -1,5 +1,5 @@
 import signOutAction from "@repo/db/actions/sign-out-action";
-import SignOutButton from "../../../components/sign-out-button";
+import SignOutButton from "../../../components/auth/sign-out-button";
 
 export default async function Dashboard() {
   return (
