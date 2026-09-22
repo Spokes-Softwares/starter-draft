@@ -4,13 +4,13 @@ import {
   accountDestinations,
   resolveAccountKind,
 } from "@repo/db/resolve-account";
-import { createClient } from "@repo/db/server";
+import { createSupabaseServerClient } from "@repo/db/server";
 import { redirect } from "next/navigation";
 
 export async function signIn(formData: FormData) {
   const email = String(formData.get("email") ?? "");
   const password = String(formData.get("password") ?? "");
-  const supabase = await createClient();
+  const supabase = await createSupabaseServerClient();
 
   // Sign in using supabase auth helper
   const { error } = await supabase.auth.signInWithPassword({ email, password });
