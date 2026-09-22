@@ -84,7 +84,7 @@ export default function LoginForm() {
             className="border-desetructive/50 bg-destructive/20"
           >
             <InfoIcon />
-            <AlertTitle>An error occured</AlertTitle>
+            <AlertTitle>An error occurred</AlertTitle>
             <AlertDescription>{error}</AlertDescription>
           </Alert>
         ) : null}
