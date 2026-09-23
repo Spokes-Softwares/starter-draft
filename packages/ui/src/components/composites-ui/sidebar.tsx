@@ -20,6 +20,7 @@ import {
   CollapsibleContent,
   CollapsibleTrigger,
 } from "../shadcn-ui/collapsible";
+import { User } from "./user";
 
 export type SidebarMenuItemType = {
   label: string;
@@ -63,6 +64,7 @@ export default function AppSidebar({
           ))}
         </SidebarGroup>
       </SidebarContent>
+      <User />
       <SidebarFooter />
     </Sidebar>
   );
