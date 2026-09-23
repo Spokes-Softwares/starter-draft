@@ -1,6 +1,7 @@
 {
   "extends": "@repo/typescript-config/nextjs.json",
   "compilerOptions": {
+    "jsx": "react",
     "plugins": [
       {
         "name": "next"
@@ -17,7 +18,8 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     ".next/dev/types/**/*.ts",
-    "**/*.mts"
-, "../../packages/ui/src/shared/layouts/appShell.tsx"  ],
+    "**/*.mts",
+    "../../packages/ui/src/shared/layouts/appShell.tsx"
+  ],
   "exclude": ["node_modules"]
 }

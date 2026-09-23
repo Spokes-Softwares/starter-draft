@@ -5,6 +5,7 @@ import { cn } from "@repo/ui/lib/utils";
 import { SidebarProvider } from "@repo/ui/components/shadcn-ui/sidebar";
 import TenantSidebar from "./(main)/dashboard/page";
 import { AppShell } from "@repo/ui/shared/layouts/appShell";
+import React from "react";
 
 const kanit = Kanit({
   weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
