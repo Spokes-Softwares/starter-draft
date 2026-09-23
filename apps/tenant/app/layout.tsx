@@ -3,9 +3,10 @@ import { Kanit } from "next/font/google";
 import "./globals.css";
 import { cn } from "@repo/ui/lib/utils";
 import { SidebarProvider } from "@repo/ui/components/shadcn-ui/sidebar";
-import TenantSidebar from "./(main)/dashboard/page";
 import { AppShell } from "@repo/ui/shared/layouts/appShell";
 import React from "react";
+import AppSidebar from "@repo/ui/components/composites-ui/sidebar";
+import { tenantSidebarMenuItems } from "@/components/nav/navConfig";
 
 const kanit = Kanit({
   weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
@@ -33,7 +34,10 @@ export default function RootLayout({
     >
       <body className="min-h-full flex flex-col bg-linear-to-l from-primary to-background">
         <SidebarProvider>
-          <TenantSidebar />
+          <AppSidebar
+            appHeading={"Tenant Dashboard"}
+            sidebarMenuItems={tenantSidebarMenuItems}
+          />
           <AppShell>{children}</AppShell>
         </SidebarProvider>
       </body>

@@ -4,6 +4,8 @@ import "./globals.css";
 import { cn } from "@repo/ui/lib/utils";
 import { AppShell } from "@repo/ui/shared/layouts/appShell";
 import { SidebarProvider } from "@repo/ui/components/shadcn-ui/sidebar";
+import AppSidebar from "@repo/ui/components/composites-ui/sidebar";
+import { hubsSidebarMenuItems } from "./components/nav/navConfig";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
 
@@ -41,6 +43,10 @@ export default function RootLayout({
     >
       <body className="min-h-full flex flex-col bg-linear-to-l from-primary to-background">
         <SidebarProvider>
+          <AppSidebar
+            appHeading="Hubs dashboard"
+            sidebarMenuItems={hubsSidebarMenuItems}
+          />
           <AppShell>{children}</AppShell>
         </SidebarProvider>
       </body>

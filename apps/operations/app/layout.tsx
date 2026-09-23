@@ -4,6 +4,8 @@ import { cn } from "@repo/ui/lib/utils";
 import { AppShell } from "@repo/ui/shared/layouts/appShell";
 import { Metadata } from "next/dist/types";
 import { SidebarProvider } from "@repo/ui/components/shadcn-ui/sidebar";
+import AppSidebar from "@repo/ui/components/composites-ui/sidebar";
+import { operationsSidebarMenuItems } from "../components/nav/navConfig";
 
 const kanit = Kanit({
   weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
@@ -31,6 +33,10 @@ export default function RootLayout({
     >
       <body className="min-h-full flex flex-col bg-linear-to-l from-primary to-background">
         <SidebarProvider>
+          <AppSidebar
+            appHeading="Operations dashboard"
+            sidebarMenuItems={operationsSidebarMenuItems}
+          />
           <AppShell>{children}</AppShell>
         </SidebarProvider>
       </body>
