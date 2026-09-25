@@ -15,7 +15,3 @@ export function AppShell({ children }: { children: React.ReactNode }) {
     </ThemeProvider>
   );
 }
-
-/*
-TODO: Move the AppShell to ui package so it can be reused across three other apps
-*/

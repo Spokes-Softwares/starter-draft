@@ -1,3 +1,7 @@
-export default function TenantDashboard() {
-  return <div>Hub dashboard goes here</div>;
+export default function HubsDashboard() {
+  return (
+    <div>
+      <span>Hubs dashboard</span>
+    </div>
+  );
 }
