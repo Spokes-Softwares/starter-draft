@@ -1,10 +1,18 @@
 "use server";
 
+import {
+  emailFormSchema,
+  EmailFormValues,
+} from "@/components/forms/schemas/auth-schemas";
 import { createSupabaseServerClient } from "@repo/db/server";
 
-export async function forgotPasswordAction(formData: FormData) {
-  const email = String(formData.get("email") ?? "");
-  if (!email) return { error: "Email is required" };
+export async function forgotPasswordAction(data: EmailFormValues) {
+  const parsed = emailFormSchema.safeParse(data);
+  if (!parsed.success) {
+    return { error: parsed.error.issues[0]?.message ?? "Invalid input" };
+  }
+
+  const { email } = parsed.data;
   const supabase = await createSupabaseServerClient();
 
   const { error } = await supabase.auth.resetPasswordForEmail(email, {
