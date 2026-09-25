@@ -1,8 +1,7 @@
 ---
-lockfileVersion: '9.0'
+lockfileVersion: "9.0"
 
 importers:
-
   .:
     configDependencies: {}
     packageManagerDependencies:
@@ -11,92 +10,117 @@ importers:
         version: 12.3.4
 
 packages:
-
-  '@pnpm/exe.darwin-arm64@12.3.4':
-    resolution: {integrity: sha512-PAyUol8T1+/+ViOiXAt51ECA+QnfXCqz6foL4bW+LsoX0NcVd5XVEM2mRQu+LV4oc7uRz9zf9U0P+XFfuQeDAw==}
+  "@pnpm/exe.darwin-arm64@12.3.4":
+    resolution:
+      {
+        integrity: sha512-PAyUol8T1+/+ViOiXAt51ECA+QnfXCqz6foL4bW+LsoX0NcVd5XVEM2mRQu+LV4oc7uRz9zf9U0P+XFfuQeDAw==,
+      }
     cpu: [arm64]
     os: [darwin]
 
-  '@pnpm/exe.darwin-x64@12.3.4':
-    resolution: {integrity: sha512-fxP9JCk0Cdye+ePuj+GJJLMUMTqHGWRdb1dtv4How876uQ2ehxvenpgiYAir/ceO9PsYUZkFTtyZdx+rRu5QOA==}
+  "@pnpm/exe.darwin-x64@12.3.4":
+    resolution:
+      {
+        integrity: sha512-fxP9JCk0Cdye+ePuj+GJJLMUMTqHGWRdb1dtv4How876uQ2ehxvenpgiYAir/ceO9PsYUZkFTtyZdx+rRu5QOA==,
+      }
     cpu: [x64]
     os: [darwin]
 
-  '@pnpm/exe.linux-arm64-musl@12.3.4':
-    resolution: {integrity: sha512-FBOt0/7ye6O6q4AllVV5QMviB6qE6fqkeczV/+MDWQsmo+QJrlfsh6X7CpH/tClVpBZEyIbjpUoT8bNhCYBxEg==}
+  "@pnpm/exe.linux-arm64-musl@12.3.4":
+    resolution:
+      {
+        integrity: sha512-FBOt0/7ye6O6q4AllVV5QMviB6qE6fqkeczV/+MDWQsmo+QJrlfsh6X7CpH/tClVpBZEyIbjpUoT8bNhCYBxEg==,
+      }
     cpu: [arm64]
     os: [linux]
     libc: [musl]
 
-  '@pnpm/exe.linux-arm64@12.3.4':
-    resolution: {integrity: sha512-t71AVA7LRqiKTyZ5xMYaZc2n5DfdpMbfokZuiIOXHBOM03ECnF0t4iYwaBDqJgVjlKYUOwaF/bRQajGNA4cJ4w==}
+  "@pnpm/exe.linux-arm64@12.3.4":
+    resolution:
+      {
+        integrity: sha512-t71AVA7LRqiKTyZ5xMYaZc2n5DfdpMbfokZuiIOXHBOM03ECnF0t4iYwaBDqJgVjlKYUOwaF/bRQajGNA4cJ4w==,
+      }
     cpu: [arm64]
     os: [linux]
     libc: [glibc]
 
-  '@pnpm/exe.linux-x64-musl@12.3.4':
-    resolution: {integrity: sha512-RPmk7Jb/aYaFvL2iyDN/AtMY+hUEsue732WmXpcuQ9tBpMnGyA5py7Z3+e+qmQaJ0zY/4ni9jJiyPBQHujmv6w==}
+  "@pnpm/exe.linux-x64-musl@12.3.4":
+    resolution:
+      {
+        integrity: sha512-RPmk7Jb/aYaFvL2iyDN/AtMY+hUEsue732WmXpcuQ9tBpMnGyA5py7Z3+e+qmQaJ0zY/4ni9jJiyPBQHujmv6w==,
+      }
     cpu: [x64]
     os: [linux]
     libc: [musl]
 
-  '@pnpm/exe.linux-x64@12.3.4':
-    resolution: {integrity: sha512-2ZqOlSPkfwX1h5cR+FPiWf8+F+2hZT/3TvhUK5sigHqwaQCIiq8R7CGxhndKs63JtcLi2a1Qpo+wX/EoyfjyJQ==}
+  "@pnpm/exe.linux-x64@12.3.4":
+    resolution:
+      {
+        integrity: sha512-2ZqOlSPkfwX1h5cR+FPiWf8+F+2hZT/3TvhUK5sigHqwaQCIiq8R7CGxhndKs63JtcLi2a1Qpo+wX/EoyfjyJQ==,
+      }
     cpu: [x64]
     os: [linux]
     libc: [glibc]
 
-  '@pnpm/exe.win32-arm64@12.3.4':
-    resolution: {integrity: sha512-ANyrHqyqco6SXBysUTRF74itDyyraea7IbFsKFdNXTjcFnfycTDx37EwuhdpPYFNSIh2JhUG4fByclsRfiHX7w==}
+  "@pnpm/exe.win32-arm64@12.3.4":
+    resolution:
+      {
+        integrity: sha512-ANyrHqyqco6SXBysUTRF74itDyyraea7IbFsKFdNXTjcFnfycTDx37EwuhdpPYFNSIh2JhUG4fByclsRfiHX7w==,
+      }
     cpu: [arm64]
     os: [win32]
 
-  '@pnpm/exe.win32-x64@12.3.4':
-    resolution: {integrity: sha512-WH/KqBPY/hq2Tb7SgQltEZytimcjgKRaCRL/aM9CI0c67iKc5TVmHUhIiL3Ux9FB4bWn36i6XewUcScQI+zG8w==}
+  "@pnpm/exe.win32-x64@12.3.4":
+    resolution:
+      {
+        integrity: sha512-WH/KqBPY/hq2Tb7SgQltEZytimcjgKRaCRL/aM9CI0c67iKc5TVmHUhIiL3Ux9FB4bWn36i6XewUcScQI+zG8w==,
+      }
     cpu: [x64]
     os: [win32]
 
   pnpm@12.3.4:
-    resolution: {integrity: sha512-lhqkH7B32joEpEHZ+OFevAyW2o73ELLrZ7+e58sGEOq9SPH9hfUc/+c4RnhfoPh8VqOocqHYk/hEZ0G1zORUVw==}
-    engines: {node: '>=18.*'}
+    resolution:
+      {
+        integrity: sha512-lhqkH7B32joEpEHZ+OFevAyW2o73ELLrZ7+e58sGEOq9SPH9hfUc/+c4RnhfoPh8VqOocqHYk/hEZ0G1zORUVw==,
+      }
+    engines: { node: ">=18.*" }
     hasBin: true
 
 snapshots:
-
-  '@pnpm/exe.darwin-arm64@12.3.4':
+  "@pnpm/exe.darwin-arm64@12.3.4":
     optional: true
 
-  '@pnpm/exe.darwin-x64@12.3.4':
+  "@pnpm/exe.darwin-x64@12.3.4":
     optional: true
 
-  '@pnpm/exe.linux-arm64-musl@12.3.4':
+  "@pnpm/exe.linux-arm64-musl@12.3.4":
     optional: true
 
-  '@pnpm/exe.linux-arm64@12.3.4':
+  "@pnpm/exe.linux-arm64@12.3.4":
     optional: true
 
-  '@pnpm/exe.linux-x64-musl@12.3.4':
+  "@pnpm/exe.linux-x64-musl@12.3.4":
     optional: true
 
-  '@pnpm/exe.linux-x64@12.3.4':
+  "@pnpm/exe.linux-x64@12.3.4":
     optional: true
 
-  '@pnpm/exe.win32-arm64@12.3.4':
+  "@pnpm/exe.win32-arm64@12.3.4":
     optional: true
 
-  '@pnpm/exe.win32-x64@12.3.4':
+  "@pnpm/exe.win32-x64@12.3.4":
     optional: true
 
   pnpm@12.3.4:
     optionalDependencies:
-      '@pnpm/exe.darwin-arm64': 12.3.4
-      '@pnpm/exe.darwin-x64': 12.3.4
-      '@pnpm/exe.linux-arm64': 12.3.4
-      '@pnpm/exe.linux-arm64-musl': 12.3.4
-      '@pnpm/exe.linux-x64': 12.3.4
-      '@pnpm/exe.linux-x64-musl': 12.3.4
-      '@pnpm/exe.win32-arm64': 12.3.4
-      '@pnpm/exe.win32-x64': 12.3.4
+      "@pnpm/exe.darwin-arm64": 12.3.4
+      "@pnpm/exe.darwin-x64": 12.3.4
+      "@pnpm/exe.linux-arm64": 12.3.4
+      "@pnpm/exe.linux-arm64-musl": 12.3.4
+      "@pnpm/exe.linux-x64": 12.3.4
+      "@pnpm/exe.linux-x64-musl": 12.3.4
+      "@pnpm/exe.win32-arm64": 12.3.4
+      "@pnpm/exe.win32-x64": 12.3.4
 
 ---
 lockfileVersion: '9.0'
@@ -113,6 +137,9 @@ catalogs:
     '@eslint/js':
       specifier: ^9.39.1
       version: 9.39.1
+    '@hookform/resolvers':
+      specifier: ^5.9.1
+      version: 5.9.1
     '@next/eslint-plugin-next':
       specifier: ^16.2.12
       version: 16.2.12
@@ -180,8 +207,8 @@ catalogs:
       specifier: ^1.4.2
       version: 1.4.2
     lucide-react:
-      specifier: 1.31.0
-      version: 1.31.0
+      specifier: ^1.47.0
+      version: 1.47.0
     next:
       specifier: 16.3.0
       version: 16.3.0
@@ -200,6 +227,9 @@ catalogs:
     react-dom:
       specifier: ^19.2.4
       version: 19.2.4
+    react-hook-form:
+      specifier: ^7.88.0
+      version: 7.88.0
     react-resizable-panels:
       specifier: ^4.12.3
       version: 4.12.3
@@ -233,17 +263,29 @@ catalogs:
     vitest:
       specifier: ^3.2.4
       version: 3.2.7
+    zod:
+      specifier: ^4.6.5
+      version: 4.6.5
 
 importers:
 
   .:
     dependencies:
+      '@hookform/resolvers':
+        specifier: 'catalog:'
+        version: 5.9.1(@standard-schema/spec@1.1.0)(ajv-formats@2.1.1(ajv@8.20.0))(ajv@8.20.0)(react-hook-form@7.88.0(react@19.2.4))(zod@4.6.5)
       lucide-react:
-        specifier: ^1.45.0
-        version: 1.45.0(react@19.2.4)
+        specifier: 'catalog:'
+        version: 1.47.0(react@19.2.4)
       next-themes:
         specifier: 'catalog:'
         version: 0.4.6(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
+      react-hook-form:
+        specifier: 'catalog:'
+        version: 7.88.0(react@19.2.4)
+      zod:
+        specifier: 'catalog:'
+        version: 4.6.5
     devDependencies:
       '@playwright/test':
         specifier: 'catalog:'
@@ -591,7 +633,7 @@ importers:
         version: 1.4.2(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
       lucide-react:
         specifier: 'catalog:'
-        version: 1.31.0(react@19.2.4)
+        version: 1.47.0(react@19.2.4)
       react:
         specifier: 'catalog:'
         version: 19.2.4
@@ -1042,6 +1084,84 @@ packages:
     peerDependencies:
       hono: ^4
 
+  '@hookform/resolvers@5.9.1':
+    resolution: {integrity: sha512-7b7vsbraJxKgjVSA1Nur9tLwj539WGJUBLA7QNvXnFoT2pM5Z7G+6rlukk4B2/QrTZy6huRtH6wKeESPKuIr6w==}
+    peerDependencies:
+      '@sinclair/typebox': '>=0.25.24'
+      '@standard-schema/spec': ^1.0.0
+      '@typeschema/main': '>=0.13.7'
+      '@vinejs/vine': ^2.0.0 || ^3.0.0 || ^4.0.0
+      ajv: ^8.12.0
+      ajv-errors: ^3.0.0
+      ajv-formats: ^2.1.1
+      arktype: ^2.0.0
+      ata-validator: ^1.2.0
+      class-transformer: '>=0.4.0'
+      class-validator: '>=0.12.0'
+      computed-types: ^1.0.0
+      effect: ^3.10.3
+      fluentvalidation-ts: ^3.0.0
+      fp-ts: ^2.7.0
+      io-ts: ^2.0.0
+      joi: ^17.0.0 || ^18.0.0
+      nope-validator: '>=0.12.0'
+      react-hook-form: ^7.55.0
+      superstruct: '>=0.12.0'
+      typanion: ^3.3.2
+      valibot: '>=0.31.0 || ^1.0.0-beta.4 || ^1.0.0-rc'
+      vest: '>=6.0.0'
+      yup: ^1.0.0
+      zod: ^3.25.0 || ^4.0.0
+    peerDependenciesMeta:
+      '@sinclair/typebox':
+        optional: true
+      '@standard-schema/spec':
+        optional: true
+      '@typeschema/main':
+        optional: true
+      '@vinejs/vine':
+        optional: true
+      ajv:
+        optional: true
+      ajv-errors:
+        optional: true
+      ajv-formats:
+        optional: true
+      arktype:
+        optional: true
+      ata-validator:
+        optional: true
+      class-transformer:
+        optional: true
+      class-validator:
+        optional: true
+      computed-types:
+        optional: true
+      effect:
+        optional: true
+      fluentvalidation-ts:
+        optional: true
+      fp-ts:
+        optional: true
+      io-ts:
+        optional: true
+      joi:
+        optional: true
+      nope-validator:
+        optional: true
+      superstruct:
+        optional: true
+      typanion:
+        optional: true
+      valibot:
+        optional: true
+      vest:
+        optional: true
+      yup:
+        optional: true
+      zod:
+        optional: true
+
   '@humanfs/core@0.19.1':
     resolution: {integrity: sha512-5DyQ4+1JEUzejeK1JGICcideyfUbGixgS9jNgex5nqkW+cY7WZhxBigmieN5Qnw9ZosSNVC9KQKyb+GUaGyKUA==}
     engines: {node: '>=18.18.0'}
@@ -1251,6 +1371,7 @@ packages:
     engines: {node: ^22.20 || ^24.12 || >=25}
     cpu: [x64]
     os: [linux]
+    libc: [glibc]
 
   '@next/env@16.3.0':
     resolution: {integrity: sha512-o9r1S0BNiNreHP9Vs+Qnqd9kviDkJh8xIACY7UFZSmiGbbQRzPBBosvHzAU4TULHOIuOj/18RSsyz2qrREmIFw==}
@@ -1546,66 +1667,79 @@ packages:
     resolution: {integrity: sha512-81wiiX3v7aqy+T+bT61TJ78yJjRquqFFTTbAPt08imfQQzkPIW8t6aJbkTagtCCrXMNc9D66+geqlK7ydLPNqA==}
     cpu: [arm]
     os: [linux]
+    libc: [glibc]
 
   '@rollup/rollup-linux-arm-musleabihf@4.62.4':
     resolution: {integrity: sha512-9kmDIvNZqdoHOBZgNtpTBeLWYO/LVipM3H/j62P8848/l/VPEQL6N3uxU9pvP1oZAsXyC2MEnFP3ovRjo7WYNQ==}
     cpu: [arm]
     os: [linux]
+    libc: [musl]
 
   '@rollup/rollup-linux-arm64-gnu@4.62.4':
     resolution: {integrity: sha512-CcnXHWnXg69g+DX5VWL3FHts3qMRN2uVEHX+BZvGLdd07/gXkn3ePjYtO1LDJvxkGKVHMclKBRa1QUTH+6toYQ==}
     cpu: [arm64]
     os: [linux]
+    libc: [glibc]
 
   '@rollup/rollup-linux-arm64-musl@4.62.4':
     resolution: {integrity: sha512-iFOibiHnTRuhrWLlRsOQFdZJJIa7S8OwkneJr4ocALP16u5yk6lWLINFwhHaEqBFMsKDUZofLkGos7+CPzGB3g==}
     cpu: [arm64]
     os: [linux]
+    libc: [musl]
 
   '@rollup/rollup-linux-loong64-gnu@4.62.4':
     resolution: {integrity: sha512-XnWYMI7euHlb5a871xPja+Gm7DRCFU+FGRrtS2sMq9N8FvqtpagUy6gD4YOemC5MRk9xbh8+jYMEJbigFQwsgA==}
     cpu: [loong64]
     os: [linux]
+    libc: [glibc]
 
   '@rollup/rollup-linux-loong64-musl@4.62.4':
     resolution: {integrity: sha512-qGDAlO0U8xedCcsdRm9oaoQY8DAx/QT7uIxJWhCdx0ceIWX783UC9QSYkdpzAe29wNiVfp24+bZdQmn49o45SQ==}
     cpu: [loong64]
     os: [linux]
+    libc: [musl]
 
   '@rollup/rollup-linux-ppc64-gnu@4.62.4':
     resolution: {integrity: sha512-ru4H6ezD7ysA5EiEK6qkkaEb4modH8CTej6kUy/gQi20u3kB3G7Zn8snXXkeJSCOFKG/rbPPtM/+9Wgas1961w==}
     cpu: [ppc64]
     os: [linux]
+    libc: [glibc]
 
   '@rollup/rollup-linux-ppc64-musl@4.62.4':
     resolution: {integrity: sha512-2W4MO5WQVJnbJaZdvDb9rhBDuFU1nKIepPFpJUBsTh2k1YY2g+ODViaWuyOAjQ5cOP7NvrvLzt3wvHOoiAvc7w==}
     cpu: [ppc64]
     os: [linux]
+    libc: [musl]
 
   '@rollup/rollup-linux-riscv64-gnu@4.62.4':
     resolution: {integrity: sha512-+fxjfuoAmVMCYV5QyjoIpu0cp5DOiOTeqYFk1AVaxGr+/ravWLX89XfQmptsoWcaVy/TGf2hexzbUOrCQIL1CQ==}
     cpu: [riscv64]
     os: [linux]
+    libc: [glibc]
 
   '@rollup/rollup-linux-riscv64-musl@4.62.4':
     resolution: {integrity: sha512-jTn8JfHGL4djjFxPuM06LmNUJDsst2jeVlsd9OmIH6zc5sC9K6rIuO4YajXatLUpBmBKl6b35ro1QZocLi+tcA==}
     cpu: [riscv64]
     os: [linux]
+    libc: [musl]
 
   '@rollup/rollup-linux-s390x-gnu@4.62.4':
     resolution: {integrity: sha512-oCJCJL4pXsoDcP2QZ+JVlPTIRc6266zsIaeJJsWImmF7HO0W8nb6HuSgZlMWxJwaPf8ehbSw8yo0EUw925hKsA==}
     cpu: [s390x]
     os: [linux]
+    libc: [glibc]
 
   '@rollup/rollup-linux-x64-gnu@4.62.4':
     resolution: {integrity: sha512-W69hukhZ3KKNRCaMIEzKvcFye42hh0FE1+YoYaf5+Ikacuftoco6yO/xouz0hc5d5W/s3yBro5jRiuEE/Q5vUw==}
     cpu: [x64]
     os: [linux]
+    libc: [glibc]
 
   '@rollup/rollup-linux-x64-musl@4.62.4':
     resolution: {integrity: sha512-qiXbGG2jkjXhzXpsFZSR2Xpb8DN/UaxYsbb/STbuR/6fpaDgRmmaq1B/LmtF2wQFOFOSsK2jdE0RZ3a0zHn4QA==}
     cpu: [x64]
     os: [linux]
+    libc: [musl]
 
   '@rollup/rollup-openbsd-x64@4.62.4':
     resolution: {integrity: sha512-nWeM//hxv8mIo6jD7Hu4o48DVmV9pbV6gsKaWU+4NFyqHoPKwrkRiZGLKUhOBk8qNmDmpwFtPKg80Bo/Tn4xiQ==}
@@ -1679,21 +1813,25 @@ packages:
     resolution: {integrity: sha512-G5/97+h2CXzoK95jNlWY8CyOt+Zm0k3A9/d1r/jDYoB/y1P5cQmK1TYPPfI+ErWYQeoiQ6okfftAAg8bZEGqcA==}
     cpu: [arm64]
     os: [linux]
+    libc: [musl]
 
   '@supabase/cli-linux-arm64@2.114.0':
     resolution: {integrity: sha512-vYFAP+gI6BOcwjZ+Zs9kpqtUt3KTE5kL56H65CTCdwRBJ/fXU+vCW3WvhLyFmKmJ8sDzjCvMcHwuhjKPbTmM7A==}
     cpu: [arm64]
     os: [linux]
+    libc: [glibc]
 
   '@supabase/cli-linux-x64-musl@2.114.0':
     resolution: {integrity: sha512-87e8MzkKZryXOsmMSbrS4b4jX95uPohS/AplJb2QWwTzLuOXZ+G60e0NR9tkuYYc7TIrDAHhFxcGaQweRIERug==}
     cpu: [x64]
     os: [linux]
+    libc: [musl]
 
   '@supabase/cli-linux-x64@2.114.0':
     resolution: {integrity: sha512-MKgeafQEWYVKCtJgOgGJo1SqiKI4dd5eN460FbLOg01j1sYh7zGqhHk8WxF3enc4WeFQpVMpv147UyrOueHheg==}
     cpu: [x64]
     os: [linux]
+    libc: [glibc]
 
   '@supabase/cli-windows-arm64@2.114.0':
     resolution: {integrity: sha512-nhF/H5tPs0YsuKcdX5gGV6Ku7pFpSobXubt0y3rHfmR4itG6hhGE2We1hCyc7it0ozlDsA2NxOb1m9YlmY38+A==}
@@ -3412,13 +3550,8 @@ packages:
   lru-cache@5.1.1:
     resolution: {integrity: sha512-KpNARQA3Iwv+jTA0utUVVbrh+Jlrr1Fv0e56GGzAFOXN7dk/FviaDW8LHmK52DlcH4WP2n6gI8vN1aesBFgo9w==}
 
-  lucide-react@1.31.0:
-    resolution: {integrity: sha512-G8u2eEtoHUnUa9f8lbvqDhCiORMnYLdUEo06EEG9MQvHQrInKcX3Pa2TH39MM5qyzRcWETxB0+aOwAPI1g1kEg==}
-    peerDependencies:
-      react: ^16.5.1 || ^17.0.0 || ^18.0.0 || ^19.0.0
-
-  lucide-react@1.45.0:
-    resolution: {integrity: sha512-yH1ubCAduho9UR7oJhRXIQXogksRILBiTuZC4/bQIGeB9JOkxMlSuEHyyZpo1Z3S0yWJO2KTSUZbjiNvVxeOUw==}
+  lucide-react@1.47.0:
+    resolution: {integrity: sha512-o8C23aXpNQypRY73W7fW02EyvWJinEMXgKeGjFoKym0zj3Q73hD97A1IQps1g8C14HTGsOpZL0Am+xjfgFZAbg==}
     peerDependencies:
       react: ^16.5.1 || ^17.0.0 || ^18.0.0 || ^19.0.0
 
@@ -3781,6 +3914,12 @@ packages:
     resolution: {integrity: sha512-AXJdLo8kgMbimY95O2aKQqsz2iWi9jMgKJhRBAxECE4IFxfcazB2LmzloIoibJI3C12IlY20+KFaLv+71bUJeQ==}
     peerDependencies:
       react: ^19.2.4
+
+  react-hook-form@7.88.0:
+    resolution: {integrity: sha512-QRaLOWhX93YCnMiRfnOFRSwWXZNt8qhm2JTZwypoDvKpSffTJHmpzMXt8U6PV5UThvL3IiiLDUWe2nHMtz6Mmw==}
+    engines: {node: '>=18.0.0'}
+    peerDependencies:
+      react: ^16.8.0 || ^17 || ^18 || ^19
 
   react-is@16.13.1:
     resolution: {integrity: sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==}
@@ -4452,6 +4591,9 @@ packages:
   zod@3.25.76:
     resolution: {integrity: sha512-gzUt/qt81nXsFGKIFcC3YnfEAx5NkunCfnDlvuBSSFS02bcXu4Lmea0AFIUwbLWxWPx3d9p8S5QoaujKcNQxcQ==}
 
+  zod@4.6.5:
+    resolution: {integrity: sha512-v5l/aFXZQeai4awLbOpSoHecE9UiMrnfx75tEXLjNonXVARxQ5mOeipTjROUchszUNCqnE+hqAMujRsRHsut2Q==}
+
 snapshots:
 
   '@alloc/quick-lru@5.2.0': {}
@@ -4845,6 +4987,16 @@ snapshots:
   '@hono/node-server@2.1.1(hono@4.13.3)':
     dependencies:
       hono: 4.13.3
+
+  '@hookform/resolvers@5.9.1(@standard-schema/spec@1.1.0)(ajv-formats@2.1.1(ajv@8.20.0))(ajv@8.20.0)(react-hook-form@7.88.0(react@19.2.4))(zod@4.6.5)':
+    dependencies:
+      '@standard-schema/utils': 0.3.0
+      react-hook-form: 7.88.0(react@19.2.4)
+    optionalDependencies:
+      '@standard-schema/spec': 1.1.0
+      ajv: 8.20.0
+      ajv-formats: 2.1.1(ajv@8.20.0)
+      zod: 4.6.5
 
   '@humanfs/core@0.19.1': {}
 
@@ -7047,11 +7199,7 @@ snapshots:
     dependencies:
       yallist: 3.1.1
 
-  lucide-react@1.31.0(react@19.2.4):
-    dependencies:
-      react: 19.2.4
-
-  lucide-react@1.45.0(react@19.2.4):
+  lucide-react@1.47.0(react@19.2.4):
     dependencies:
       react: 19.2.4
 
@@ -7395,6 +7543,10 @@ snapshots:
     dependencies:
       react: 19.2.4
       scheduler: 0.27.0
+
+  react-hook-form@7.88.0(react@19.2.4):
+    dependencies:
+      react: 19.2.4
 
   react-is@16.13.1: {}
 
@@ -8337,3 +8489,5 @@ snapshots:
       zod: 3.25.76
 
   zod@3.25.76: {}
+
+  zod@4.6.5: {}
