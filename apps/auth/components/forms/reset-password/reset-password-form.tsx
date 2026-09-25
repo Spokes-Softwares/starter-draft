@@ -17,7 +17,7 @@ import { Input } from "@repo/ui/components/shadcn-ui/input";
 import { AlertCircleIcon, InfoIcon } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-import { Controller, useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import {
   resetPasswordFormSchema,
   ResetPasswordValues,
@@ -29,7 +29,11 @@ export default function ResetPasswordForm() {
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
 
-  const form = useForm<ResetPasswordValues>({
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<ResetPasswordValues>({
     resolver: zodResolver(resetPasswordFormSchema),
     defaultValues: {
       password: "",
@@ -54,66 +58,51 @@ export default function ResetPasswordForm() {
   }
 
   return (
-    <form
-      onSubmit={form.handleSubmit(handleResetPassword)}
-      className="grid gap-4"
-    >
+    <form onSubmit={handleSubmit(handleResetPassword)} className="grid gap-4">
       <CardHeader>
         <CardTitle>Reset Password</CardTitle>
       </CardHeader>
       <CardContent className="grid gap-4">
-        <Controller
-          name="password"
-          control={form.control}
-          render={({ field, fieldState }) => (
-            <Field data-invalid={fieldState.invalid}>
-              <FieldLabel htmlFor="initial-password">New Password</FieldLabel>
-              <Input
-                {...field}
-                className="rounded-md"
-                id="initial-password"
-                placeholder="New password"
-                type="password"
-              />
-              {fieldState.invalid && (
-                <Alert
-                  variant="destructive"
-                  className="bg-destructive/10 border-destructive/20"
-                >
-                  <InfoIcon />
-                  <AlertTitle>{fieldState.error?.message}</AlertTitle>
-                </Alert>
-              )}
-            </Field>
+        <Field data-invalid={!!errors.password}>
+          <FieldLabel htmlFor="initial-password">New Password</FieldLabel>
+          <Input
+            id="initial-password"
+            className="rounded-md"
+            placeholder="New password"
+            type="password"
+            aria-invalid={!!errors.password}
+            {...register("password")}
+          />
+          {errors.password && (
+            <Alert
+              variant="destructive"
+              className="bg-destructive/10 border-destructive/20"
+            >
+              <InfoIcon />
+              <AlertTitle>{errors.password.message}</AlertTitle>
+            </Alert>
           )}
-        />
-        <Controller
-          name="confirm"
-          control={form.control}
-          render={({ field, fieldState }) => (
-            <Field data-invalid={fieldState.invalid}>
-              <FieldLabel htmlFor="confirm-password">
-                Confirm Password
-              </FieldLabel>
-              <Input
-                {...field}
-                className="rounded-md"
-                id="confirm-password"
-                placeholder="Confirm password"
-                type="password"
-              />
-              {fieldState.invalid && (
-                <Alert
-                  variant="destructive"
-                  className="bg-destructive/10 border-destructive/20"
-                >
-                  <InfoIcon />
-                  <AlertTitle>{fieldState.error?.message}</AlertTitle>
-                </Alert>
-              )}
-            </Field>
+        </Field>
+        <Field data-invalid={!!errors.confirm}>
+          <FieldLabel htmlFor="confirm-password">Confirm Password</FieldLabel>
+          <Input
+            id="confirm-password"
+            className="rounded-md"
+            placeholder="Confirm password"
+            type="password"
+            aria-invalid={!!errors.confirm}
+            {...register("confirm")}
+          />
+          {errors.confirm && (
+            <Alert
+              variant="destructive"
+              className="bg-destructive/10 border-destructive/20"
+            >
+              <InfoIcon />
+              <AlertTitle>{errors.confirm.message}</AlertTitle>
+            </Alert>
           )}
-        />
+        </Field>
         {error ? (
           <Alert
             variant="destructive"
