@@ -17,8 +17,8 @@ export async function signIn(data: LoginFormValues) {
     return { error: parsed.error.issues[0]?.message ?? "Invalid input" };
   }
 
-  const { email } =  parsed.data;
-  const { password }  = parsed.data;
+  const { email, password } =  parsed.data;
+ 
   const supabase = await createSupabaseServerClient();
 
   // Sign in using supabase auth helper
