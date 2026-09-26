@@ -12,7 +12,7 @@ export default async function resetPasswordAction(values: ResetPasswordValues) {
     return { error: parsed.error.issues[0]?.message ?? "Invalid input" };
   }
 
-  const password = parsed.data.password;
+  const { password }  = parsed.data;
 
   const supabase = await createSupabaseServerClient();
   const {
