@@ -7,4 +7,4 @@ export const tenantOnboardSchema = z.object({
   password: z.string().min(8, "A password is required"),
 });
 
-export type TenantInviteValues = z.infer<typeof tenantOnboardSchema>;
+export type TenantOnboardValues = z.infer<typeof tenantOnboardSchema>;
