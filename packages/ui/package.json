@@ -4,6 +4,8 @@
   "private": true,
   "exports": {
     "./components/shadcn-ui/button": "./src/components/shadcn-ui/button/index.tsx",
+    "./components/shadcn-ui/input": "./src/components/shadcn-ui/input/index.tsx",
+    "./components/shadcn-ui/heading": "./src/components/shadcn-ui/heading/index.tsx",
     "./components/shadcn-ui/*": "./src/components/shadcn-ui/*.tsx",
     "./components/composites-ui/*": "./src/components/composites-ui/*.tsx",
     "./hooks/*": "./src/hooks/*.ts",

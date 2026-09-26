@@ -19,46 +19,63 @@ import {
   AlertTitle,
 } from "@repo/ui/components/shadcn-ui/alert";
 import { InfoIcon } from "lucide-react";
+import { loginFormSchema, LoginFormValues } from "../schemas/auth-schemas";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
 
 export default function LoginForm() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
 
-  async function handleLogin(event: React.FormEvent<HTMLFormElement>) {
-    event.preventDefault();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<LoginFormValues>({
+    resolver: zodResolver(loginFormSchema),
+    defaultValues: {
+      email: "",
+      password: "",
+    },
+  });
+
+  async function handleLogin(values: LoginFormValues) {
     setLoading(true);
     setError(null);
 
-    const result = await signIn(new FormData(event.currentTarget));
-
+    const result = await signIn(values);
     setLoading(false);
 
     if (result?.error) setError(result.error);
   }
-  /* Add zod to this form */
+
   return (
-    <form onSubmit={handleLogin} className="grid gap-4">
+    <form onSubmit={handleSubmit(handleLogin)} className="grid gap-4">
       <CardHeader>
         <CardTitle>Sign in here</CardTitle>
         <CardDescription>Access your Spokes portal.</CardDescription>
       </CardHeader>
       <CardContent className="grid gap-6">
-        <Field className="grid gap-2">
-          {/* Controller here */}
+        <Field className="grid gap-2" data-invalid={!!errors.email}>
           <FieldLabel htmlFor="email">Email</FieldLabel>
           <Input
             id="email"
-            type="email"
-            name="email"
+            type="text"
             autoComplete="email"
-            value={email}
-            onChange={(event) => setEmail(event.target.value)}
-            required
+            aria-invalid={!!errors.email}
+            {...register("email")}
           />
+          {errors.email && (
+            <Alert
+              variant="destructive"
+              className="bg-destructive/10 border-destructive/20"
+            >
+              <InfoIcon />
+              <AlertDescription>{errors.email.message}</AlertDescription>
+            </Alert>
+          )}
         </Field>
-        <Field className="grid gap-2">
+        <Field data-invalid={!!errors.password} className="grid gap-2">
           <div className="flex items-center">
             <FieldLabel htmlFor="password">Password</FieldLabel>
             <Link
@@ -71,23 +88,31 @@ export default function LoginForm() {
           <Input
             id="password"
             type="password"
-            name="password"
-            autoComplete="current-password"
-            value={password}
-            onChange={(event) => setPassword(event.target.value)}
-            required
+            aria-invalid={!!errors.password}
+            {...register("password")}
           />
+          {errors.password && (
+            <Alert
+              variant="destructive"
+              className="bg-destructive/10 border-destructive/20"
+            >
+              <InfoIcon />
+              <AlertTitle>{errors.password.message}</AlertTitle>
+            </Alert>
+          )}
         </Field>
+
         {error ? (
           <Alert
             variant="destructive"
-            className="border-desetructive/50 bg-destructive/20"
+            className="bg-destructive/10 border-destructive/20"
           >
             <InfoIcon />
             <AlertTitle>An error occurred</AlertTitle>
             <AlertDescription>{error}</AlertDescription>
           </Alert>
         ) : null}
+
         <Button type="submit" disabled={loading} className="w-full">
           {loading ? "Signing in..." : "Sign in"}
         </Button>

@@ -1,15 +1,24 @@
 "use server";
 
 import {
+  loginFormSchema,
+  LoginFormValues,
+} from "@/components/forms/schemas/auth-schemas";
+import {
   accountDestinations,
   resolveAccountKind,
 } from "@repo/db/resolve-account";
 import { createSupabaseServerClient } from "@repo/db/server";
 import { redirect } from "next/navigation";
 
-export async function signIn(formData: FormData) {
-  const email = String(formData.get("email") ?? "");
-  const password = String(formData.get("password") ?? "");
+export async function signIn(data: LoginFormValues) {
+  const parsed = loginFormSchema.safeParse(data);
+  if (!parsed.success) {
+    return { error: parsed.error.issues[0]?.message ?? "Invalid input" };
+  }
+
+  const { email, password } =  parsed.data;
+ 
   const supabase = await createSupabaseServerClient();
 
   // Sign in using supabase auth helper

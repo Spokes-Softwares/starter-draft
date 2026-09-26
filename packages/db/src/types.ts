@@ -167,18 +167,21 @@ export type Database = {
       };
       tenants: {
         Row: {
+          company_name: string;
           created_at: string;
-          display_name: string;
+          display_name: string | null;
           id: string;
         };
         Insert: {
+          company_name: string;
           created_at?: string;
-          display_name: string;
+          display_name?: string | null;
           id?: string;
         };
         Update: {
+          company_name?: string;
           created_at?: string;
-          display_name?: string;
+          display_name?: string | null;
           id?: string;
         };
         Relationships: [];

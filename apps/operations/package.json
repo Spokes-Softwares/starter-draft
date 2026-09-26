@@ -16,7 +16,12 @@
     "react": "catalog:",
     "react-dom": "catalog:",
     "@repo/db": "workspace:*",
-    "vitest": "catalog:"
+    "vitest": "catalog:",
+    "@hookform/resolvers": "catalog:",
+    "zod": "catalog:",
+    "react-hook-form": "catalog:",
+    "lucide-react": "catalog:",
+    "next-themes": "catalog:"
   },
   "devDependencies": {
     "@repo/eslint-config": "workspace:*",

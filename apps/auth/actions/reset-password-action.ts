@@ -1,8 +1,19 @@
 "use server";
 
+import {
+  resetPasswordFormSchema,
+  ResetPasswordValues,
+} from "@/components/forms/schemas/auth-schemas";
 import { createSupabaseServerClient } from "@repo/db/server";
 
-export default async function resetPasswordAction(password: string) {
+export default async function resetPasswordAction(values: ResetPasswordValues) {
+  const parsed = resetPasswordFormSchema.safeParse(values);
+  if (!parsed.success) {
+    return { error: parsed.error.issues[0]?.message ?? "Invalid input" };
+  }
+
+  const { password }  = parsed.data;
+
   const supabase = await createSupabaseServerClient();
   const {
     data: { user },
