@@ -10,19 +10,18 @@ import { Heading } from "@repo/ui/components/shadcn-ui/heading";
 export default async function NewTenantPage() {
   return (
     <div className="flex min-h-screen items-center justify-center">
-
-    <Card>
-      <CardHeader>
-        <Heading variant="h3">Invite Tenant</Heading>
-        <CardDescription>
-          Set the credentials for the new tenant. Take note of the password as
-          you will not be able to see it again!
-        </CardDescription>
-      </CardHeader>
-      <CardContent>
-        <TenantOnboardForm />
-      </CardContent>
-    </Card>
+      <Card>
+        <CardHeader>
+          <Heading variant="h3">Invite Tenant</Heading>
+          <CardDescription>
+            Set the credentials for the new tenant. Take note of the password as
+            you will not be able to see it again!
+          </CardDescription>
+        </CardHeader>
+        <CardContent>
+          <TenantOnboardForm />
+        </CardContent>
+      </Card>
     </div>
   );
 }
