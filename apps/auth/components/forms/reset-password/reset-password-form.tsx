@@ -1,7 +1,11 @@
 "use client";
 
 import resetPasswordAction from "@/actions/reset-password-action";
-import { Alert, AlertDescription } from "@repo/ui/components/shadcn-ui/alert";
+import {
+  Alert,
+  AlertDescription,
+  AlertTitle,
+} from "@repo/ui/components/shadcn-ui/alert";
 import { Button } from "@repo/ui/components/shadcn-ui/button";
 import {
   CardContent,
@@ -10,38 +14,38 @@ import {
 } from "@repo/ui/components/shadcn-ui/card";
 import { Field, FieldLabel } from "@repo/ui/components/shadcn-ui/field";
 import { Input } from "@repo/ui/components/shadcn-ui/input";
-import { AlertCircleIcon } from "lucide-react";
+import { AlertCircleIcon, InfoIcon } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { useForm } from "react-hook-form";
+import {
+  resetPasswordFormSchema,
+  ResetPasswordValues,
+} from "../schemas/auth-schemas";
+import { zodResolver } from "@hookform/resolvers/zod";
 
 export default function ResetPasswordForm() {
   const router = useRouter();
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
 
-  async function handleResetPassword(event: React.FormEvent<HTMLFormElement>) {
-    event.preventDefault();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<ResetPasswordValues>({
+    resolver: zodResolver(resetPasswordFormSchema),
+    defaultValues: {
+      password: "",
+      confirm: "",
+    },
+  });
+
+  async function handleResetPassword(values: ResetPasswordValues) {
+    setLoading(true);
     setError(null);
 
-    const formData = new FormData(event.currentTarget);
-    const password = String(formData.get("initial-password") ?? "");
-    const confirmPassword = String(formData.get("confirm-password") ?? "");
-
-    if (!password || !confirmPassword) {
-      setError("Please enter and confirm your new password");
-      return;
-    }
-    if (password !== confirmPassword) {
-      setError("Passwords do not match");
-      return;
-    }
-    if (password.length < 6) {
-      setError("Password must be at least 6 characters");
-      return;
-    }
-
-    setLoading(true);
-    const result = await resetPasswordAction(password);
+    const result = await resetPasswordAction(values);
     setLoading(false);
 
     if (result?.error) {
@@ -54,36 +58,50 @@ export default function ResetPasswordForm() {
   }
 
   return (
-    <form onSubmit={handleResetPassword} className="grid gap-4">
+    <form onSubmit={handleSubmit(handleResetPassword)} className="grid gap-4">
       <CardHeader>
         <CardTitle>Reset Password</CardTitle>
       </CardHeader>
-      <CardContent className="grid">
-        <Field>
+      <CardContent className="grid gap-4">
+        <Field data-invalid={!!errors.password}>
           <FieldLabel htmlFor="initial-password">New Password</FieldLabel>
           <Input
-            className="rounded-md"
             id="initial-password"
-            name="initial-password"
+            className="rounded-md"
             placeholder="New password"
             type="password"
-            autoComplete="new-password"
-            required
-            minLength={6}
+            aria-invalid={!!errors.password}
+            {...register("password")}
           />
+          {errors.password && (
+            <Alert
+              variant="destructive"
+              className="bg-destructive/10 border-destructive/20"
+            >
+              <InfoIcon />
+              <AlertTitle>{errors.password.message}</AlertTitle>
+            </Alert>
+          )}
         </Field>
-        <Field>
+        <Field data-invalid={!!errors.confirm}>
           <FieldLabel htmlFor="confirm-password">Confirm Password</FieldLabel>
           <Input
-            className="rounded-md"
             id="confirm-password"
-            name="confirm-password"
+            className="rounded-md"
             placeholder="Confirm password"
             type="password"
-            autoComplete="new-password"
-            required
-            minLength={6}
+            aria-invalid={!!errors.confirm}
+            {...register("confirm")}
           />
+          {errors.confirm && (
+            <Alert
+              variant="destructive"
+              className="bg-destructive/10 border-destructive/20"
+            >
+              <InfoIcon />
+              <AlertTitle>{errors.confirm.message}</AlertTitle>
+            </Alert>
+          )}
         </Field>
         {error ? (
           <Alert
