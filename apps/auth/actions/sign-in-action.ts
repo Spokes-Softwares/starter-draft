@@ -18,7 +18,7 @@ export async function signIn(data: LoginFormValues) {
   }
 
   const { email } =  parsed.data;
-  const password = data.password;
+  const { password }  = parsed.data;
   const supabase = await createSupabaseServerClient();
 
   // Sign in using supabase auth helper
