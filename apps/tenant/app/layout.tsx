@@ -7,6 +7,7 @@ import { AppShell } from "@repo/ui/shared/layouts/appShell";
 import React from "react";
 import AppSidebar from "@repo/ui/components/composites-ui/sidebar";
 import { tenantSidebarMenuItems } from "@/components/nav/navConfig";
+import getCurrentUserProfile from "@repo/db/queries/user/get-current-user-profile";
 
 const kanit = Kanit({
   weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
@@ -21,11 +22,13 @@ export const metadata: Metadata = {
   description: "Tenant-facing portal for Spokes",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const user = await getCurrentUserProfile();
+
   return (
     <html
       lang="en"
@@ -37,6 +40,7 @@ export default function RootLayout({
           <AppSidebar
             appHeading={"Tenant Dashboard"}
             sidebarMenuItems={tenantSidebarMenuItems}
+            user={user}
           />
           <AppShell>{children}</AppShell>
         </SidebarProvider>

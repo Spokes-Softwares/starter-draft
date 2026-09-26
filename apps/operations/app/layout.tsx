@@ -6,6 +6,7 @@ import { Metadata } from "next/dist/types";
 import { SidebarProvider } from "@repo/ui/components/shadcn-ui/sidebar";
 import AppSidebar from "@repo/ui/components/composites-ui/sidebar";
 import { operationsSidebarMenuItems } from "../components/nav/navConfig";
+import getCurrentUserProfile from "@repo/db/queries/user/get-current-user-profile";
 
 const kanit = Kanit({
   weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
@@ -20,11 +21,13 @@ export const metadata: Metadata = {
   description: "Tenant-facing portal for Spokes",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const user = await getCurrentUserProfile();
+
   return (
     <html
       lang="en"
@@ -36,6 +39,7 @@ export default function RootLayout({
           <AppSidebar
             appHeading="Operations dashboard"
             sidebarMenuItems={operationsSidebarMenuItems}
+            user={user}
           />
           <AppShell>{children}</AppShell>
         </SidebarProvider>

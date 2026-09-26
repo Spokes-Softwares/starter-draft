@@ -6,6 +6,7 @@ import { AppShell } from "@repo/ui/shared/layouts/appShell";
 import { SidebarProvider } from "@repo/ui/components/shadcn-ui/sidebar";
 import AppSidebar from "@repo/ui/components/composites-ui/sidebar";
 import { hubsSidebarMenuItems } from "./components/nav/navConfig";
+import getCurrentUserProfile from "@repo/db/queries/user/get-current-user-profile";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
 
@@ -24,11 +25,13 @@ export const metadata: Metadata = {
   description: "Tenant-facing portal for Spokes",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const user = await getCurrentUserProfile();
+
   return (
     <html
       lang="en"
@@ -46,6 +49,7 @@ export default function RootLayout({
           <AppSidebar
             appHeading="Hubs dashboard"
             sidebarMenuItems={hubsSidebarMenuItems}
+            user={user}
           />
           <AppShell>{children}</AppShell>
         </SidebarProvider>
