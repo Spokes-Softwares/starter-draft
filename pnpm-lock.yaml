@@ -446,24 +446,39 @@ importers:
 
   apps/operations:
     dependencies:
+      '@hookform/resolvers':
+        specifier: 'catalog:'
+        version: 5.9.1(@standard-schema/spec@1.1.0)(ajv-formats@2.1.1(ajv@8.20.0))(ajv@8.20.0)(react-hook-form@7.88.0(react@19.2.4))(zod@4.6.5)
       '@repo/db':
         specifier: workspace:*
         version: link:../../packages/db
       '@repo/ui':
         specifier: workspace:*
         version: link:../../packages/ui
+      lucide-react:
+        specifier: 'catalog:'
+        version: 1.47.0(react@19.2.4)
       next:
         specifier: 'catalog:'
         version: 16.3.0(@babel/core@7.29.7(supports-color@7.2.0))(@playwright/test@1.63.0)(@types/node@22.15.3)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
+      next-themes:
+        specifier: 'catalog:'
+        version: 0.4.6(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
       react:
         specifier: 'catalog:'
         version: 19.2.4
       react-dom:
         specifier: 'catalog:'
         version: 19.2.4(react@19.2.4)
+      react-hook-form:
+        specifier: 'catalog:'
+        version: 7.88.0(react@19.2.4)
       vitest:
         specifier: 'catalog:'
         version: 3.2.7(@types/node@22.15.3)(jiti@2.7.0)(lightningcss@1.32.0)(supports-color@7.2.0)
+      zod:
+        specifier: 'catalog:'
+        version: 4.6.5
     devDependencies:
       '@repo/eslint-config':
         specifier: workspace:*

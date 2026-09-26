@@ -66,10 +66,7 @@ export default function ForgotPasswordForm() {
           <div className="grid gap-2">
             <div className="flex">
               <FieldLabel htmlFor="email-address">Email Address</FieldLabel>
-              <Link
-                href={`/auth/login`}
-                className="ml-auto underline text-xs"
-              >
+              <Link href={`/auth/login`} className="ml-auto underline text-xs">
                 Back to login
               </Link>
             </div>

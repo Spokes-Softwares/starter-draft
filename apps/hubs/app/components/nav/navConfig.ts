@@ -1,10 +1,5 @@
 import { SidebarMenuItemType } from "@repo/ui/components/composites-ui/sidebar";
-import {
-  Bot,
-  ChevronDown,
-  House,
-  LucideBlocks,
-} from "lucide-react";
+import { Bot, ChevronDown, House, LucideBlocks } from "lucide-react";
 
 export const hubsSidebarMenuItems: {
   title: string;

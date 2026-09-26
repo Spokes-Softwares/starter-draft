@@ -6,7 +6,8 @@
 -- Tenants
 create table public.tenants (
   id uuid primary key default gen_random_uuid(),
-  display_name text not null,
+  display_name text,
+  company_name text not null,
   created_at timestamptz default now() not null
 );
 
@@ -258,9 +259,9 @@ create policy "Operators and tenants can delete hub users"
   );
 
 
--- Signed-in users need table SELECT before row-level policies can apply.
--- Without these grants, login membership lookups fail with 42501.
-
+-- Only authenticated users can use the below grants
+grant select, insert, update, delete on public.tenants to authenticated;
+grant select, insert, update, delete on public.tenant_users to authenticated;
+grant select, insert, update, delete on public.tenant_hubs to authenticated;
+grant select, insert, update, delete on public.hub_users to authenticated;
 grant select on public.profiles to authenticated;
-grant select on public.tenant_users to authenticated;
-grant select on public.hub_users to authenticated;

@@ -275,10 +275,10 @@ where id in (
 );
 
 -- Tenants (companies)
-insert into public.tenants (id, display_name)
+insert into public.tenants (id, display_name, company_name)
 values
-  ('44444444-4444-4444-8444-444444444441'::uuid, 'Tenant One'),
-  ('44444444-4444-4444-8444-444444444442'::uuid, 'Tenant Two');
+  ('44444444-4444-4444-8444-444444444441'::uuid, 'Tenant One', 'Tenant one'),
+  ('44444444-4444-4444-8444-444444444442'::uuid, 'Tenant Two', 'Tenant two');
 
 -- Tenant admins
 insert into public.tenant_users (tenant_id, user_id)
