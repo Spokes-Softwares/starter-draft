@@ -17,7 +17,7 @@ export async function signIn(data: LoginFormValues) {
     return { error: parsed.error.issues[0]?.message ?? "Invalid input" };
   }
 
-  const email = data.email;
+  const { email } =  parsed.data;
   const password = data.password;
   const supabase = await createSupabaseServerClient();
 
