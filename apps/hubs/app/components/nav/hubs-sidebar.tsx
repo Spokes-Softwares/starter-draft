@@ -2,10 +2,11 @@
 
 import { usePathname } from "next/navigation";
 import AppSidebar from "@repo/ui/components/composites-ui/sidebar";
-import type { ProfileFooterUser } from "@repo/ui/components/composites-ui/profile-footer";
+import type { UserProfileFooter } from "@repo/ui/components/composites-ui/profile-footer";
 import { hubsSidebarMenuItems } from "./navConfig";
+import { hubstUserConfigItems } from "./userNavConfig";
 
-export function HubsSidebar({ user }: { user: ProfileFooterUser }) {
+export function HubsSidebar({ user }: { user: UserProfileFooter }) {
   const pathname = usePathname();
 
   return (
@@ -14,6 +15,7 @@ export function HubsSidebar({ user }: { user: ProfileFooterUser }) {
       sidebarMenuItems={hubsSidebarMenuItems}
       pathname={pathname}
       user={user}
+      userProfileItems={hubstUserConfigItems}
     />
   );
 }

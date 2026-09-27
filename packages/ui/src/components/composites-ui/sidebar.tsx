@@ -5,7 +5,6 @@ import { ChevronDown, LucideIcon } from "lucide-react";
 import {
   Sidebar,
   SidebarContent,
-  SidebarFooter,
   SidebarGroup,
   SidebarGroupContent,
   SidebarGroupLabel,
@@ -24,7 +23,11 @@ import {
   CollapsibleContent,
   CollapsibleTrigger,
 } from "../shadcn-ui/collapsible";
-import { ProfileFooter, ProfileFooterUser } from "./profile-footer";
+import {
+  UserProfileFooter,
+  UserProfileFooterType,
+  UserProfileGroup,
+} from "./profile-footer";
 import { cn } from "../../lib/utils";
 
 export type SidebarMenuItemType = {
@@ -104,12 +107,14 @@ function NavCollapsibleItem({
 export default function AppSidebar({
   appHeading,
   sidebarMenuItems,
+  userProfileItems,
   user,
   pathname,
 }: {
   appHeading: string;
   sidebarMenuItems: SidebarMenuGroup[];
-  user: ProfileFooterUser;
+  userProfileItems: UserProfileGroup[];
+  user: UserProfileFooterType;
   pathname: string;
 }) {
   return (
@@ -153,8 +158,7 @@ export default function AppSidebar({
           </SidebarGroup>
         ))}
       </SidebarContent>
-      <ProfileFooter user={user} />
-      <SidebarFooter />
+      <UserProfileFooter user={user} userProfileItems={userProfileItems} />
     </Sidebar>
   );
 }
