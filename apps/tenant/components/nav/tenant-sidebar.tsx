@@ -2,13 +2,11 @@
 
 import { usePathname } from "next/navigation";
 import AppSidebar from "@repo/ui/components/composites-ui/sidebar";
+import type { ProfileFooterUser } from "@repo/ui/components/composites-ui/profile-footer";
 import { tenantSidebarMenuItems } from "./navConfig";
-import getCurrentUserProfile from "@repo/db/queries/user/get-current-user-profile";
 
-export async function TenantSidebar() {
+export function TenantSidebar({ user }: { user: ProfileFooterUser }) {
   const pathname = usePathname();
-  const user = await getCurrentUserProfile();
-
 
   return (
     <AppSidebar

@@ -105,7 +105,7 @@ export default function AppSidebar({
   appHeading,
   sidebarMenuItems,
   user,
-  pathname
+  pathname,
 }: {
   appHeading: string;
   sidebarMenuItems: SidebarMenuGroup[];
@@ -140,9 +140,7 @@ export default function AppSidebar({
                         isActive={
                           !!item.href && isActivePath(pathname, item.href)
                         }
-                        render={
-                          item.href ? <a href={item.href} /> : undefined
-                        }
+                        render={item.href ? <a href={item.href} /> : undefined}
                       >
                         <item.icon />
                         <span>{item.label}</span>

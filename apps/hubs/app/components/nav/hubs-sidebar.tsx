@@ -2,20 +2,18 @@
 
 import { usePathname } from "next/navigation";
 import AppSidebar from "@repo/ui/components/composites-ui/sidebar";
+import type { ProfileFooterUser } from "@repo/ui/components/composites-ui/profile-footer";
 import { hubsSidebarMenuItems } from "./navConfig";
-import getCurrentUserProfile from "@repo/db/queries/user/get-current-user-profile";
 
-export async function HubsSidebar() {
+export function HubsSidebar({ user }: { user: ProfileFooterUser }) {
   const pathname = usePathname();
-  const user = await getCurrentUserProfile();
-
 
   return (
     <AppSidebar
       appHeading="Hubs dashboard"
       sidebarMenuItems={hubsSidebarMenuItems}
-      user={user}
       pathname={pathname}
+      user={user}
     />
   );
 }

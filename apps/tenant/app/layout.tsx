@@ -6,6 +6,7 @@ import { SidebarProvider } from "@repo/ui/components/shadcn-ui/sidebar";
 import { AppShell } from "@repo/ui/shared/layouts/appShell";
 import React from "react";
 import { TenantSidebar } from "@/components/nav/tenant-sidebar";
+import getCurrentUserProfile from "@repo/db/queries/user/get-current-user-profile";
 
 const kanit = Kanit({
   weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
@@ -25,6 +26,7 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const user = await getCurrentUserProfile();
 
   return (
     <html
@@ -34,7 +36,7 @@ export default async function RootLayout({
     >
       <body className="min-h-full flex flex-col bg-linear-to-l from-primary to-background">
         <SidebarProvider>
-          <TenantSidebar />
+          <TenantSidebar user={user} />
           <AppShell>{children}</AppShell>
         </SidebarProvider>
       </body>

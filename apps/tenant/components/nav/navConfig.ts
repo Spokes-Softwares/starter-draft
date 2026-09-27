@@ -1,5 +1,5 @@
 import { SidebarMenuItemType } from "@repo/ui/components/composites-ui/sidebar";
-import { Book, ChevronRight, Map, MenuIcon, PieChart } from "lucide-react";
+import { Bot, ChartColumn, Map, PieChart } from "lucide-react";
 
 export const tenantSidebarMenuItems: {
   title: string;
@@ -8,18 +8,17 @@ export const tenantSidebarMenuItems: {
   {
     title: "Overview",
     items: [
-      { icon: PieChart, label: "Dashboard" },
-      { icon: Book, label: "Reports" },
-      { icon: MenuIcon, label: "Stock" },
-      { icon: Map, label: "Regions", chevron: ChevronRight },
+      { icon: PieChart, label: "Dashboard", href: "/dashboard" },
+      { icon: Map, label: "Hubs", href: "/hubs" },
+      { icon: Bot, label: "Asssets", href: "/assets" },
     ],
   },
   {
     title: "Reports",
     items: [
-      { icon: Map, label: "Weekly Report", chevron: ChevronRight },
-      { icon: Map, label: "Monthly Report", chevron: ChevronRight },
-      { icon: Map, label: "Annual Report", chevron: ChevronRight },
+      { icon: ChartColumn, label: "Weekly Report", href: "/reports/weekly" },
+      { icon: ChartColumn, label: "Monthly Report", href: "/reports/monthly" },
+      { icon: ChartColumn, label: "Annual Report", href: "/reports/annual" },
     ],
   },
 ];
