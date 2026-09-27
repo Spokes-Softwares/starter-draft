@@ -6,7 +6,11 @@ import type { ProfileFooterUser } from "@repo/ui/components/composites-ui/profil
 import { tenantSidebarMenuItems } from "./navConfig";
 import { tenantUserConfigItems } from "./userNavConfig";
 
-export function TenantSidebar({ user }: { user: ProfileFooterUser }) {
+export function TenantSidebar({
+  user,
+}: {
+  user: ProfileFooterUser;
+}) {
   const pathname = usePathname();
 
   return (

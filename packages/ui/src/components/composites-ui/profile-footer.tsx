@@ -38,7 +38,6 @@ export const ProfileFooter = ({
   user: ProfileFooterUser;
   userProfileItems: UserProfileGroup[];
 }) => {
-
   return (
     <SidebarFooter>
       <DropdownMenu>
@@ -49,7 +48,9 @@ export const ProfileFooter = ({
             </Button>
           }
         />
-        <UserProfileDropdownContent userProfileItems={userProfileItems} />
+        <UserProfileDropdownContent
+          userProfileItems={userProfileItems}
+        />
       </DropdownMenu>
     </SidebarFooter>
   );

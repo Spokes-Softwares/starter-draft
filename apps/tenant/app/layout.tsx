@@ -7,7 +7,6 @@ import { AppShell } from "@repo/ui/shared/layouts/appShell";
 import React from "react";
 import { TenantSidebar } from "@/components/nav/tenant-sidebar";
 import getCurrentUserProfile from "@repo/db/queries/user/get-current-user-profile";
-import { tenantUserConfigItems } from "@/components/nav/userNavConfig";
 
 const kanit = Kanit({
   weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
