@@ -1,8 +1,12 @@
+"use client";
+
+import { useEffect, useState } from "react";
 import { ChevronDown, LucideIcon } from "lucide-react";
 import {
   Sidebar,
   SidebarContent,
   SidebarGroup,
+  SidebarGroupContent,
   SidebarGroupLabel,
   SidebarHeader,
   SidebarMenu,
@@ -19,18 +23,16 @@ import {
   CollapsibleContent,
   CollapsibleTrigger,
 } from "../shadcn-ui/collapsible";
-import {
-  ProfileFooter,
-  ProfileFooterUser,
-  UserProfileGroup,
-} from "./profile-footer";
+import { ProfileFooter, ProfileFooterUser, UserProfileGroup } from "./profile-footer";
+import { cn } from "../../lib/utils";
 
 export type SidebarMenuItemType = {
   label: string;
   icon: LucideIcon;
-  chevron?: LucideIcon;
+  href?: string;
   dropDownItems?: {
     label: string;
+    href: string;
   }[];
 };
 
@@ -39,16 +41,77 @@ type SidebarMenuGroup = {
   items: SidebarMenuItemType[];
 };
 
+function isActivePath(pathname: string, href: string) {
+  return pathname === href;
+}
+
+function NavCollapsibleItem({
+  item,
+  pathname,
+}: {
+  item: SidebarMenuItemType;
+  pathname: string;
+}) {
+  const dropDownItems = item.dropDownItems ?? [];
+  const hasActiveChild = dropDownItems.some((sub) =>
+    isActivePath(pathname, sub.href),
+  );
+  const [open, setOpen] = useState(hasActiveChild);
+
+  useEffect(() => {
+    if (hasActiveChild) setOpen(true);
+  }, [hasActiveChild]);
+
+  return (
+    <Collapsible
+      className="group/collapsible"
+      open={open}
+      onOpenChange={setOpen}
+      render={<SidebarMenuItem />}
+    >
+      <CollapsibleTrigger
+        className={cn(
+          "peer/menu-button flex h-9 w-full cursor-pointer items-center gap-2 overflow-hidden rounded-lg px-3 py-2 text-left text-sm outline-hidden",
+          "hover:bg-primary/20",
+          "[&_svg]:size-4 [&_svg]:shrink-0 [&>span:last-child]:truncate",
+          hasActiveChild && "bg-primary/20 font-medium",
+        )}
+      >
+        <item.icon />
+        <span>{item.label}</span>
+        <ChevronDown className="ml-auto transition-transform group-data-open/collapsible:rotate-180" />
+      </CollapsibleTrigger>
+      <CollapsibleContent>
+        <SidebarMenuSub>
+          {dropDownItems.map((sub) => (
+            <SidebarMenuSubItem key={sub.label}>
+              <SidebarMenuSubButton
+                className="hover:bg-primary/20 rounded-lg"
+                isActive={isActivePath(pathname, sub.href)}
+                render={<a href={sub.href} />}
+              >
+                <span>{sub.label}</span>
+              </SidebarMenuSubButton>
+            </SidebarMenuSubItem>
+          ))}
+        </SidebarMenuSub>
+      </CollapsibleContent>
+    </Collapsible>
+  );
+}
+
 export default function AppSidebar({
   appHeading,
   sidebarMenuItems,
   userProfileItems,
   user,
+  pathname,
 }: {
   appHeading: string;
   sidebarMenuItems: SidebarMenuGroup[];
   userProfileItems: UserProfileGroup[];
   user: ProfileFooterUser;
+  pathname: string;
 }) {
   return (
     <Sidebar>
@@ -59,57 +122,39 @@ export default function AppSidebar({
       </SidebarHeader>
       <Separator className="bg-border" />
       <SidebarContent>
-        <SidebarGroup className="gap-5">
-          {sidebarMenuItems.map((menuItems, index) => (
-            <SidebarMenu key={index}>
-              <SidebarGroupLabel>{menuItems.title}</SidebarGroupLabel>
-              {menuItems.items.map((item, index) => (
-                <AppSidebarItem key={index} item={item} />
-              ))}
-              <Separator className="bg-border mt-5" />
-            </SidebarMenu>
-          ))}
-        </SidebarGroup>
+        {sidebarMenuItems.map((group) => (
+          <SidebarGroup key={group.title}>
+            <SidebarGroupLabel>{group.title}</SidebarGroupLabel>
+            <SidebarGroupContent>
+              <SidebarMenu>
+                {group.items.map((item) =>
+                  item.dropDownItems?.length ? (
+                    <NavCollapsibleItem
+                      key={item.label}
+                      item={item}
+                      pathname={pathname}
+                    />
+                  ) : (
+                    <SidebarMenuItem key={item.label}>
+                      <SidebarMenuButton
+                        className="hover:bg-primary/20 rounded-lg"
+                        isActive={
+                          !!item.href && isActivePath(pathname, item.href)
+                        }
+                        render={item.href ? <a href={item.href} /> : undefined}
+                      >
+                        <item.icon />
+                        <span>{item.label}</span>
+                      </SidebarMenuButton>
+                    </SidebarMenuItem>
+                  ),
+                )}
+              </SidebarMenu>
+            </SidebarGroupContent>
+          </SidebarGroup>
+        ))}
       </SidebarContent>
       <ProfileFooter user={user} userProfileItems={userProfileItems} />
     </Sidebar>
-  );
-}
-
-function AppSidebarItem({ item }: { item: SidebarMenuItemType }) {
-  if (!item.dropDownItems?.length) {
-    return (
-      <SidebarMenuItem>
-        <SidebarMenuButton className="hover:bg-primary/20 rounded-lg">
-          <item.icon />
-          <span>{item.label}</span>
-          {item.chevron && <item.chevron className="ml-auto" />}
-        </SidebarMenuButton>
-      </SidebarMenuItem>
-    );
-  }
-
-  return (
-    <Collapsible render={<SidebarMenuItem />}>
-      <CollapsibleTrigger
-        render={<SidebarMenuButton />}
-        className="hover:bg-primary/20 rounded-lg"
-      >
-        <item.icon />
-        <span>{item.label}</span>
-        <ChevronDown className="ml-auto" />
-      </CollapsibleTrigger>
-      <CollapsibleContent>
-        <SidebarMenuSub>
-          {item.dropDownItems.map((sub) => (
-            <SidebarMenuSubItem key={sub.label}>
-              <SidebarMenuSubButton className="hover:bg-primary/20 rounded-lg">
-                <span>{sub.label}</span>
-              </SidebarMenuSubButton>
-            </SidebarMenuSubItem>
-          ))}
-        </SidebarMenuSub>
-      </CollapsibleContent>
-    </Collapsible>
   );
 }

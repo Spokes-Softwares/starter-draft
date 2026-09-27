@@ -4,8 +4,7 @@ import { cn } from "@repo/ui/lib/utils";
 import { AppShell } from "@repo/ui/shared/layouts/appShell";
 import { Metadata } from "next/dist/types";
 import { SidebarProvider } from "@repo/ui/components/shadcn-ui/sidebar";
-import AppSidebar from "@repo/ui/components/composites-ui/sidebar";
-import { operationsSidebarMenuItems } from "../components/nav/navConfig";
+import { OperationsSidebar } from "../components/nav/operations-sidebar";
 import getCurrentUserProfile from "@repo/db/queries/user/get-current-user-profile";
 import { operationsUserConfigItems } from "../components/nav/userNavConfig";
 
@@ -37,12 +36,7 @@ export default async function RootLayout({
     >
       <body className="min-h-full flex flex-col bg-linear-to-l from-primary to-background">
         <SidebarProvider>
-          <AppSidebar
-            appHeading="Operations dashboard"
-            sidebarMenuItems={operationsSidebarMenuItems}
-            user={user}
-            userProfileItems={operationsUserConfigItems}
-          />
+          <OperationsSidebar user={user} />
           <AppShell>{children}</AppShell>
         </SidebarProvider>
       </body>
