@@ -2,11 +2,15 @@
 
 import { usePathname } from "next/navigation";
 import AppSidebar from "@repo/ui/components/composites-ui/sidebar";
-import type { ProfileFooterUser } from "@repo/ui/components/composites-ui/profile-footer";
+import {
+  UserProfileFooter,
+  type UserProfileFooterType,
+} from "@repo/ui/components/composites-ui/profile-footer";
 import { operationsSidebarMenuItems } from "./navConfig";
 import { operationsUserConfigItems } from "./userNavConfig";
+import signOutAction from "@repo/db/actions/sign-out-action";
 
-export function OperationsSidebar({ user }: { user: ProfileFooterUser }) {
+export function OperationsSidebar({ user }: { user: UserProfileFooterType }) {
   const pathname = usePathname();
 
   return (
@@ -14,8 +18,13 @@ export function OperationsSidebar({ user }: { user: ProfileFooterUser }) {
       appHeading="Operations dashboard"
       sidebarMenuItems={operationsSidebarMenuItems}
       pathname={pathname}
-      user={user}
-      userProfileItems={operationsUserConfigItems}
+      footer={
+        <UserProfileFooter
+          user={user}
+          userProfileItems={operationsUserConfigItems}
+          onSignOut={signOutAction}
+        />
+      }
     />
   );
 }

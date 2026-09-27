@@ -96,23 +96,23 @@ const UserProfileDropdownContent = ({
                 {item.label}
               </DropdownMenuItem>
             ))}
-            <DropdownMenuItem
-              className="mt-2"
-              render={
-                <Button
-                  onClick={() => {
-                    void onSignOut();
-                  }}
-                  variant="outline"
-                  className="w-full [background:linear-gradient(var(--sidebar),var(--sidebar))_padding-box,linear-gradient(to_right,transparent,var(--primary),transparent)_border-box]"
-                >
-                  Sign Out
-                </Button>
-              }
-            />
           </DropdownMenuGroup>
         </Fragment>
       ))}
+      <DropdownMenuItem
+        className="mt-2"
+        render={
+          <Button
+            onClick={() => {
+              void onSignOut();
+            }}
+            variant="outline"
+            className="w-full [background:linear-gradient(var(--sidebar),var(--sidebar))_padding-box,linear-gradient(to_right,transparent,var(--primary),transparent)_border-box]"
+          >
+            Sign Out
+          </Button>
+        }
+      />
     </DropdownMenuContent>
   );
 };
