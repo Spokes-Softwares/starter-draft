@@ -15,7 +15,7 @@ import {
 import { Button } from "../shadcn-ui/button";
 import { Fragment } from "react";
 
-export type ProfileFooterUser = {
+export type UserProfileFooterType = {
   name: string;
   email: string;
   avatarUrl?: string;
@@ -31,11 +31,11 @@ export type UserProfileGroup = {
   items: UserProfileItemType[];
 };
 
-export const ProfileFooter = ({
+export const UserProfileFooter = ({
   user,
   userProfileItems,
 }: {
-  user: ProfileFooterUser;
+  user: UserProfileFooterType;
   userProfileItems: UserProfileGroup[];
 }) => {
   return (
@@ -56,7 +56,7 @@ export const ProfileFooter = ({
   );
 };
 
-const UserProfile = ({ user }: { user: ProfileFooterUser }) => {
+const UserProfile = ({ user }: { user: UserProfileFooterType }) => {
   const initials = user.name.slice(0, 2).toUpperCase();
 
   return (

@@ -24,8 +24,8 @@ import {
   CollapsibleTrigger,
 } from "../shadcn-ui/collapsible";
 import {
-  ProfileFooter,
-  ProfileFooterUser,
+  UserProfileFooter,
+  UserProfileFooterType,
   UserProfileGroup,
 } from "./profile-footer";
 import { cn } from "../../lib/utils";
@@ -114,7 +114,7 @@ export default function AppSidebar({
   appHeading: string;
   sidebarMenuItems: SidebarMenuGroup[];
   userProfileItems: UserProfileGroup[];
-  user: ProfileFooterUser;
+  user: UserProfileFooterType;
   pathname: string;
 }) {
   return (
@@ -158,10 +158,7 @@ export default function AppSidebar({
           </SidebarGroup>
         ))}
       </SidebarContent>
-      <ProfileFooter
-        user={user}
-        userProfileItems={userProfileItems}
-      />
+      <UserProfileFooter user={user} userProfileItems={userProfileItems} />
     </Sidebar>
   );
 }
