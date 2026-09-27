@@ -1,11 +1,5 @@
 import { SidebarMenuItemType } from "@repo/ui/components/composites-ui/sidebar";
-import {
-  Bot,
-  BuildingComplex,
-  ChevronDown,
-  House,
-  LucideBlocks,
-} from "lucide-react";
+import { Bot, BuildingComplex, House, LucideBlocks } from "lucide-react";
 
 export const operationsSidebarMenuItems: {
   title: string;
@@ -14,45 +8,30 @@ export const operationsSidebarMenuItems: {
   {
     title: "Overviews",
     items: [
-      { icon: LucideBlocks, label: "Dashboard" },
+      { icon: LucideBlocks, label: "Dashboard", href: "/dashboard" },
       {
         icon: BuildingComplex,
         label: "Tenants",
         dropDownItems: [
-          {
-            label: "Overview",
-          },
-          {
-            label: "Invite",
-          },
+          { label: "Overview", href: "/tenants/overview" },
+          { label: "Onboard", href: "/tenants/new" },
         ],
-        chevron: ChevronDown,
       },
       {
         icon: House,
         label: "Hubs",
         dropDownItems: [
-          {
-            label: "Overview",
-          },
-          {
-            label: "Invite",
-          },
+          { label: "Overview", href: "/hubs/overview" },
+          { label: "Onboard", href: "/hubs/new" },
         ],
-        chevron: ChevronDown,
       },
       {
         icon: Bot,
         label: "Assets",
         dropDownItems: [
-          {
-            label: "Overview",
-          },
-          {
-            label: "Invite",
-          },
+          { label: "Overview", href: "/assets" },
+          { label: "Onboard", href: "/assets/new" },
         ],
-        chevron: ChevronDown,
       },
     ],
   },
