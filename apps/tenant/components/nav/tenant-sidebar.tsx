@@ -2,9 +2,13 @@
 
 import { usePathname } from "next/navigation";
 import AppSidebar from "@repo/ui/components/composites-ui/sidebar";
-import type { UserProfileFooterType } from "@repo/ui/components/composites-ui/profile-footer";
+import {
+  UserProfileFooter,
+  type UserProfileFooterType,
+} from "@repo/ui/components/composites-ui/profile-footer";
 import { tenantSidebarMenuItems } from "./navConfig";
 import { tenantUserConfigItems } from "./userNavConfig";
+import signOutAction from "@repo/db/actions/sign-out-action";
 
 export function TenantSidebar({ user }: { user: UserProfileFooterType }) {
   const pathname = usePathname();
@@ -14,8 +18,13 @@ export function TenantSidebar({ user }: { user: UserProfileFooterType }) {
       appHeading="Tenant Dashboard"
       sidebarMenuItems={tenantSidebarMenuItems}
       pathname={pathname}
-      user={user}
-      userProfileItems={tenantUserConfigItems}
+      footer={
+        <UserProfileFooter
+          user={user}
+          userProfileItems={tenantUserConfigItems}
+          onSignOut={signOutAction}
+        />
+      }
     />
   );
 }

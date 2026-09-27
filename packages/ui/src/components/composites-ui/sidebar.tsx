@@ -23,11 +23,7 @@ import {
   CollapsibleContent,
   CollapsibleTrigger,
 } from "../shadcn-ui/collapsible";
-import {
-  UserProfileFooter,
-  UserProfileFooterType,
-  UserProfileGroup,
-} from "./profile-footer";
+import { UserProfileFooterType, UserProfileGroup } from "./profile-footer";
 import { cn } from "../../lib/utils";
 
 export type SidebarMenuItemType = {
@@ -107,15 +103,13 @@ function NavCollapsibleItem({
 export default function AppSidebar({
   appHeading,
   sidebarMenuItems,
-  userProfileItems,
-  user,
   pathname,
+  footer,
 }: {
   appHeading: string;
   sidebarMenuItems: SidebarMenuGroup[];
-  userProfileItems: UserProfileGroup[];
-  user: UserProfileFooterType;
   pathname: string;
+  footer?: React.ReactNode;
 }) {
   return (
     <Sidebar>
@@ -124,7 +118,7 @@ export default function AppSidebar({
           {appHeading}
         </Heading>
       </SidebarHeader>
-      <Separator className="bg-border" />
+      <Separator className="bg-transparent bg-linear-to-r from-transparent via-primary to-transparent" />
       <SidebarContent>
         {sidebarMenuItems.map((group) => (
           <SidebarGroup key={group.title}>
@@ -158,7 +152,7 @@ export default function AppSidebar({
           </SidebarGroup>
         ))}
       </SidebarContent>
-      <UserProfileFooter user={user} userProfileItems={userProfileItems} />
+      {footer}
     </Sidebar>
   );
 }
