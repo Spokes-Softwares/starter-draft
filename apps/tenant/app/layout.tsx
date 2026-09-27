@@ -5,8 +5,7 @@ import { cn } from "@repo/ui/lib/utils";
 import { SidebarProvider } from "@repo/ui/components/shadcn-ui/sidebar";
 import { AppShell } from "@repo/ui/shared/layouts/appShell";
 import React from "react";
-import AppSidebar from "@repo/ui/components/composites-ui/sidebar";
-import { tenantSidebarMenuItems } from "@/components/nav/navConfig";
+import { TenantSidebar } from "@/components/nav/tenant-sidebar";
 
 const kanit = Kanit({
   weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
@@ -34,10 +33,7 @@ export default function RootLayout({
     >
       <body className="min-h-full flex flex-col bg-linear-to-l from-primary to-background">
         <SidebarProvider>
-          <AppSidebar
-            appHeading={"Tenant Dashboard"}
-            sidebarMenuItems={tenantSidebarMenuItems}
-          />
+          <TenantSidebar />
           <AppShell>{children}</AppShell>
         </SidebarProvider>
       </body>

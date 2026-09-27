@@ -1,5 +1,5 @@
 import { SidebarMenuItemType } from "@repo/ui/components/composites-ui/sidebar";
-import { Bot, ChevronDown, House, LucideBlocks } from "lucide-react";
+import { Bot, House, LucideBlocks } from "lucide-react";
 
 export const hubsSidebarMenuItems: {
   title: string;
@@ -8,32 +8,22 @@ export const hubsSidebarMenuItems: {
   {
     title: "Overviews",
     items: [
-      { icon: LucideBlocks, label: "Dashboard" },
+      { icon: LucideBlocks, label: "Dashboard", href: "/dashboard" },
       {
         icon: House,
         label: "Hubs",
         dropDownItems: [
-          {
-            label: "Overview",
-          },
-          {
-            label: "Invite",
-          },
+          { label: "Overview", href: "/hubs/overview" },
+          { label: "Invite", href: "/hubs/invite" },
         ],
-        chevron: ChevronDown,
       },
       {
         icon: Bot,
         label: "Assets",
         dropDownItems: [
-          {
-            label: "Overview",
-          },
-          {
-            label: "Invite",
-          },
+          { label: "Overview", href: "/assets" },
+          { label: "Invite", href: "/assets/invite" },
         ],
-        chevron: ChevronDown,
       },
     ],
   },
