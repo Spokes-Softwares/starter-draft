@@ -2,7 +2,6 @@ import { ChevronDown, LucideIcon } from "lucide-react";
 import {
   Sidebar,
   SidebarContent,
-  SidebarFooter,
   SidebarGroup,
   SidebarGroupLabel,
   SidebarHeader,
@@ -20,7 +19,11 @@ import {
   CollapsibleContent,
   CollapsibleTrigger,
 } from "../shadcn-ui/collapsible";
-import { ProfileFooter, ProfileFooterUser } from "./profile-footer";
+import {
+  ProfileFooter,
+  ProfileFooterUser,
+  UserProfileGroup,
+} from "./profile-footer";
 
 export type SidebarMenuItemType = {
   label: string;
@@ -39,10 +42,12 @@ type SidebarMenuGroup = {
 export default function AppSidebar({
   appHeading,
   sidebarMenuItems,
+  userProfileItems,
   user,
 }: {
   appHeading: string;
   sidebarMenuItems: SidebarMenuGroup[];
+  userProfileItems: UserProfileGroup[];
   user: ProfileFooterUser;
 }) {
   return (
@@ -66,8 +71,7 @@ export default function AppSidebar({
           ))}
         </SidebarGroup>
       </SidebarContent>
-      <ProfileFooter user={user} />
-      <SidebarFooter />
+      <ProfileFooter user={user} userProfileItems={userProfileItems} />
     </Sidebar>
   );
 }

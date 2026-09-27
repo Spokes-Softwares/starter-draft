@@ -8,6 +8,7 @@ import React from "react";
 import AppSidebar from "@repo/ui/components/composites-ui/sidebar";
 import { tenantSidebarMenuItems } from "@/components/nav/navConfig";
 import getCurrentUserProfile from "@repo/db/queries/user/get-current-user-profile";
+import { tenantUserConfigItems } from "@/components/nav/userNavConfig";
 
 const kanit = Kanit({
   weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
@@ -41,6 +42,7 @@ export default async function RootLayout({
             appHeading={"Tenant Dashboard"}
             sidebarMenuItems={tenantSidebarMenuItems}
             user={user}
+            userProfileItems={tenantUserConfigItems}
           />
           <AppShell>{children}</AppShell>
         </SidebarProvider>

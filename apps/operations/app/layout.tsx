@@ -7,6 +7,7 @@ import { SidebarProvider } from "@repo/ui/components/shadcn-ui/sidebar";
 import AppSidebar from "@repo/ui/components/composites-ui/sidebar";
 import { operationsSidebarMenuItems } from "../components/nav/navConfig";
 import getCurrentUserProfile from "@repo/db/queries/user/get-current-user-profile";
+import { operationsUserConfigItems } from "../components/nav/userNavConfig";
 
 const kanit = Kanit({
   weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
@@ -40,6 +41,7 @@ export default async function RootLayout({
             appHeading="Operations dashboard"
             sidebarMenuItems={operationsSidebarMenuItems}
             user={user}
+            userProfileItems={operationsUserConfigItems}
           />
           <AppShell>{children}</AppShell>
         </SidebarProvider>
