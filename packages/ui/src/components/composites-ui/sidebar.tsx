@@ -20,6 +20,7 @@ import {
   CollapsibleContent,
   CollapsibleTrigger,
 } from "../shadcn-ui/collapsible";
+import { ProfileFooter, ProfileFooterUser } from "./profile-footer";
 
 export type SidebarMenuItemType = {
   label: string;
@@ -38,9 +39,11 @@ type SidebarMenuGroup = {
 export default function AppSidebar({
   appHeading,
   sidebarMenuItems,
+  user,
 }: {
   appHeading: string;
   sidebarMenuItems: SidebarMenuGroup[];
+  user: ProfileFooterUser;
 }) {
   return (
     <Sidebar>
@@ -63,6 +66,7 @@ export default function AppSidebar({
           ))}
         </SidebarGroup>
       </SidebarContent>
+      <ProfileFooter user={user} />
       <SidebarFooter />
     </Sidebar>
   );
