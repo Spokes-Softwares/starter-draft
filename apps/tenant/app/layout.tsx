@@ -5,7 +5,6 @@ import { cn } from "@repo/ui/lib/utils";
 import { SidebarProvider } from "@repo/ui/components/shadcn-ui/sidebar";
 import { AppShell } from "@repo/ui/shared/layouts/appShell";
 import React from "react";
-import getCurrentUserProfile from "@repo/db/queries/user/get-current-user-profile";
 import { TenantSidebar } from "@/components/nav/tenant-sidebar";
 
 const kanit = Kanit({
@@ -26,7 +25,6 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const user = await getCurrentUserProfile();
 
   return (
     <html
