@@ -35,10 +35,12 @@
   },
   "dependencies": {
     "@hookform/resolvers": "catalog:",
+    "@tanstack/react-table": "catalog:",
+    "eslint": "catalog:",
     "lucide-react": "catalog:",
     "next-themes": "catalog:",
     "react-hook-form": "catalog:",
     "zod": "catalog:"
   },
-  "packageManager": "pnpm@12.3.4"
+  "packageManager": "pnpm@12.6.0"
 }

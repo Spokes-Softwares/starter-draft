@@ -1,6 +1,9 @@
 import { Button } from "@repo/ui/components/shadcn-ui/button";
 import { Heading } from "@repo/ui/components/shadcn-ui/heading";
 import { Bot } from "lucide-react";
+import DataTable from "./_components/data-table/table";
+import { columns } from "./_components/data-table/columns";
+import { ExampleData } from "./_components/data-table/data";
 
 export default function KitchenSinkPage() {
   return (
@@ -221,6 +224,9 @@ export default function KitchenSinkPage() {
             Bot icon <Bot />
           </Button>
         </div>
+      </section>
+      <section>
+        <DataTable columns={columns} data={ExampleData}  />
       </section>
     </div>
   );

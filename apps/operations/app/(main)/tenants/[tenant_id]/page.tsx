@@ -1,8 +1,8 @@
 export default async function TenantOverviewPage({
   params,
 }: {
-  params: Promise<{ tenantId: string }>;
+  params: Promise<{ tenant_id: string }>;
 }) {
-  const { tenantId } = await params;
-  return <div>This is the overview page for tenant {tenantId}</div>;
+  const { tenant_id } = await params;
+  return <div>This is the overview page for tenant {tenant_id}</div>;
 }
