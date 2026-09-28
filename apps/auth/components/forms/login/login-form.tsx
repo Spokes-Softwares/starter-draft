@@ -49,8 +49,10 @@ export default function LoginForm() {
     if (result?.error) setError(result.error);
   }
 
+  const signInText = loading ? "Signing in..." : "Sign in";
+
   return (
-    <form onSubmit={handleSubmit(handleLogin)} className="grid gap-4">
+    <form onSubmit={handleSubmit(handleLogin)} className="flex flex-col gap-4">
       <CardHeader>
         <CardTitle>Sign in here</CardTitle>
         <CardDescription>Access your Spokes portal.</CardDescription>
@@ -113,8 +115,8 @@ export default function LoginForm() {
           </Alert>
         ) : null}
 
-        <Button type="submit" disabled={loading} className="w-full">
-          {loading ? "Signing in..." : "Sign in"}
+        <Button type="submit" disabled={loading} className="w-full bg-black">
+          <span className="text-card">{signInText}</span>
         </Button>
       </CardContent>
     </form>
