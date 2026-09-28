@@ -34,22 +34,25 @@ export type UserProfileGroup = {
 export const UserProfileFooter = ({
   user,
   userProfileItems,
+  onSignOut,
 }: {
   user: UserProfileFooterType;
   userProfileItems: UserProfileGroup[];
+  onSignOut: () => void | Promise<void>;
 }) => {
   return (
     <SidebarFooter>
       <DropdownMenu>
         <DropdownMenuTrigger
           render={
-            <Button variant="ghost" className="h-auto w-full p-2">
+            <Button variant="outline" className="h-auto w-full p-2">
               <UserProfile user={user} />
             </Button>
           }
         />
         <UserProfileDropdownContent
           userProfileItems={userProfileItems}
+          onSignOut={onSignOut}
         />
       </DropdownMenu>
     </SidebarFooter>
@@ -76,8 +79,10 @@ const UserProfile = ({ user }: { user: UserProfileFooterType }) => {
 
 const UserProfileDropdownContent = ({
   userProfileItems,
+  onSignOut,
 }: {
   userProfileItems: UserProfileGroup[];
+  onSignOut: () => void | Promise<void>;
 }) => {
   return (
     <DropdownMenuContent side="top">
@@ -91,12 +96,23 @@ const UserProfileDropdownContent = ({
                 {item.label}
               </DropdownMenuItem>
             ))}
-            <DropdownMenuItem>
-              <Button>Sign out</Button>
-            </DropdownMenuItem>
           </DropdownMenuGroup>
         </Fragment>
       ))}
+      <DropdownMenuItem
+        className="mt-2"
+        render={
+          <Button
+            onClick={() => {
+              void onSignOut();
+            }}
+            variant="outline"
+            className="w-full [background:linear-gradient(var(--sidebar),var(--sidebar))_padding-box,linear-gradient(to_right,transparent,var(--primary),transparent)_border-box]"
+          >
+            Sign Out
+          </Button>
+        }
+      />
     </DropdownMenuContent>
   );
 };

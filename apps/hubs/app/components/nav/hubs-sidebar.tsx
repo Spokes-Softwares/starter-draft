@@ -2,11 +2,15 @@
 
 import { usePathname } from "next/navigation";
 import AppSidebar from "@repo/ui/components/composites-ui/sidebar";
-import type { UserProfileFooter } from "@repo/ui/components/composites-ui/profile-footer";
+import {
+  UserProfileFooter,
+  type UserProfileFooterType,
+} from "@repo/ui/components/composites-ui/profile-footer";
 import { hubsSidebarMenuItems } from "./navConfig";
 import { hubstUserConfigItems } from "./userNavConfig";
+import signOutAction from "@repo/db/actions/sign-out-action";
 
-export function HubsSidebar({ user }: { user: UserProfileFooter }) {
+export function HubsSidebar({ user }: { user: UserProfileFooterType }) {
   const pathname = usePathname();
 
   return (
@@ -14,8 +18,13 @@ export function HubsSidebar({ user }: { user: UserProfileFooter }) {
       appHeading="Hubs dashboard"
       sidebarMenuItems={hubsSidebarMenuItems}
       pathname={pathname}
-      user={user}
-      userProfileItems={hubstUserConfigItems}
+      footer={
+        <UserProfileFooter
+          user={user}
+          userProfileItems={hubstUserConfigItems}
+          onSignOut={signOutAction}
+        />
+      }
     />
   );
 }
