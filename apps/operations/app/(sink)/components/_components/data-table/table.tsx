@@ -1,7 +1,14 @@
 "use client";
-
+/* This will be the main DataTable component - this will be used throughout all of the apps.
+This will need to be as versatile as possible. We will try and keep it clean and have as little logic in here as possible.
+All logic should be passed to it, instead of doing any logic in here. */
 import Link from "next/link";
-import { ColumnDef, useTable } from "@tanstack/react-table";
+import {
+  ColumnDef,
+  useTable,
+  type ColumnFiltersState,
+  type SortingState,
+} from "@tanstack/react-table";
 import { ExampleDataShape } from "./data";
 import { DataTableFeatures, features } from "./features";
 import {
@@ -12,13 +19,11 @@ import {
   TableHeader,
   TableRow,
 } from "@repo/ui/components/shadcn-ui/table";
-import {
-  Pagination,
-  PaginationContent,
-  PaginationItem,
-  PaginationLink,
-} from "@repo/ui/components/shadcn-ui/pagination";
+import { useState } from "react";
+import DataTablePagination from "./pagination";
+import DataTableFiltering from "./filtering";
 
+//Row actions are optional. This is the drop down that is on each row.
 interface DataTableProps {
   columns: ColumnDef<DataTableFeatures, ExampleDataShape>[];
   data: ExampleDataShape[];
@@ -26,15 +31,28 @@ interface DataTableProps {
 }
 
 export default function DataTable({ data, columns }: DataTableProps) {
+  const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
+  const [sorting, setSorting] = useState<SortingState>([]);
+
   const table = useTable({
     features,
     data,
     columns,
+    onSortingChange: setSorting,
+    onColumnFiltersChange: setColumnFilters,
+    state: {
+      sorting,
+      columnFilters,
+    },
   });
 
+  const totalRows = data.length;
+  const showingRows = table.getRowModel().rows.length;
+
   return (
-    <div>
-      <div className="overflow-hidden rounded-md border border-secondary-foreground/50 dark:border-border max-w-250">
+    <div className="max-w-250 grid gap-4">
+      <DataTableFiltering table={table} />
+      <div className="overflow-hidden rounded-md border border-secondary-foreground/50 dark:border-border">
         <Table>
           <TableHeader className="bg-secondary-foreground/50 dark:bg-secondary [&_th]:text-background dark:[&_th]:text-foreground border-b-secondary-foreground/50">
             {table.getHeaderGroups().map((headerGroup) => (
@@ -90,13 +108,11 @@ export default function DataTable({ data, columns }: DataTableProps) {
           </TableBody>
         </Table>
       </div>
-      <Pagination>
-        <PaginationContent>
-          <PaginationItem>
-            <PaginationLink href="#">1</PaginationLink>
-          </PaginationItem>
-        </PaginationContent>
-      </Pagination>
+      <DataTablePagination
+        totalRows={totalRows}
+        showingRows={showingRows}
+        table={table}
+      />
     </div>
   );
 }

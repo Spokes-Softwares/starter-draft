@@ -226,7 +226,7 @@ export default function KitchenSinkPage() {
         </div>
       </section>
       <section>
-        <DataTable columns={columns} data={ExampleData}  />
+        <DataTable columns={columns} data={ExampleData} />
       </section>
     </div>
   );

@@ -1,5 +1,7 @@
 "use client";
-
+/* This is the main control centre of the columns of the table. 
+How the data will look in the table, how it is structured etc.
+Sorting is also controlled here - i.e. which columns are sortable etc. */
 import { createColumnHelper } from "@tanstack/react-table";
 import { ExampleDataShape } from "./data";
 import { DataTableFeatures } from "./features";
@@ -13,6 +15,7 @@ import {
   DropdownMenuLabel,
   DropdownMenuTrigger,
 } from "@repo/ui/components/shadcn-ui/dropdown-menu";
+import DataTableRowActions from "./row-actions";
 
 const columnHelper = createColumnHelper<DataTableFeatures, ExampleDataShape>();
 
@@ -37,23 +40,7 @@ export const columns = columnHelper.columns([
   columnHelper.display({
     id: "rowActions",
     cell: ({ row }) => {
-      return (
-        <div className="relative z-20">
-          <DropdownMenu>
-            <DropdownMenuTrigger
-              render={<Button variant="ghost" className="w-8 h-8" />}
-            >
-              <MoreHorizontal size={4} />
-            </DropdownMenuTrigger>
-            <DropdownMenuContent>
-              <DropdownMenuGroup>
-                <DropdownMenuLabel>Actions</DropdownMenuLabel>
-                <DropdownMenuItem>View Tenant</DropdownMenuItem>
-              </DropdownMenuGroup>
-            </DropdownMenuContent>
-          </DropdownMenu>
-        </div>
-      );
+      return <DataTableRowActions row={row} />;
     },
   }),
 ]);
