@@ -18,7 +18,8 @@
     "migration:push": "supabase db push",
     "lint": "eslint . --max-warnings 0",
     "check-types": "tsc --noEmit",
-    "gen-types": "supabase gen types typescript --local > src/types.ts"
+    "gen-types": "supabase gen types typescript --local > src/types.ts",
+    "seed:assets:generate": "tsx supabase/seed/generate-assets-seed.ts"
   },
   "dependencies": {
     "@supabase/ssr": "catalog:",
@@ -31,6 +32,8 @@
     "@repo/typescript-config": "workspace:*",
     "@types/node": "catalog:",
     "eslint": "catalog:",
-    "typescript": "catalog:"
+    "typescript": "catalog:",
+    "@faker-js/faker": "catalog:",
+    "tsx": "catalog:"
   }
 }

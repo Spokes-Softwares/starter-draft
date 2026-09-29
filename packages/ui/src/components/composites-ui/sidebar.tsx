@@ -23,7 +23,6 @@ import {
   CollapsibleContent,
   CollapsibleTrigger,
 } from "../shadcn-ui/collapsible";
-import { UserProfileFooterType, UserProfileGroup } from "./profile-footer";
 import { cn } from "../../lib/utils";
 
 export type SidebarMenuItemType = {
