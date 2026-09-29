@@ -33,6 +33,7 @@ create table public.hub_users (
   id uuid primary key default gen_random_uuid(),
   user_id uuid not null references public.profiles (id) on delete cascade,
   hub_id uuid not null references public.tenant_hubs (id) on delete cascade,
+  user_role text not null check (user_role in ('admin', 'user')),
   created_at timestamptz default now() not null,
   unique (hub_id, user_id)
 );
@@ -260,8 +261,8 @@ create policy "Operators and tenants can delete hub users"
 
 
 -- Only authenticated users can use the below grants
-grant select, insert, update, delete on public.tenants to authenticated;
-grant select, insert, update, delete on public.tenant_users to authenticated;
-grant select, insert, update, delete on public.tenant_hubs to authenticated;
-grant select, insert, update, delete on public.hub_users to authenticated;
-grant select on public.profiles to authenticated;
+grant select, insert, update, delete on public.tenants to authenticated, service_role;
+grant select, insert, update, delete on public.tenant_users to authenticated, service_role;
+grant select, insert, update, delete on public.tenant_hubs to authenticated, service_role;
+grant select, insert, update, delete on public.hub_users to authenticated, service_role;
+grant select on public.profiles to authenticated, service_role;

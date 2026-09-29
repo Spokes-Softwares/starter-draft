@@ -5,14 +5,16 @@
 --
 -- All accounts use password: securepassword
 --
--- Seed: 2 operators, 2 tenants, 4 hubs = 8 auth accounts
+-- Seed: 2 operators, 2 tenants, 4 hubs (admin + user each) = 12 auth accounts
 --   operator1@spokes.test / operator2@spokes.test
 --   tenant1@spokes.test / tenant2@spokes.test
---   hub1@spokes.test / hub2@spokes.test / hub3@spokes.test / hub4@spokes.test
+--   hub1@spokes.test / hub2@spokes.test / hub3@spokes.test / hub4@spokes.test (admins)
+--   hub1-user@spokes.test / hub2-user@spokes.test / hub3-user@spokes.test / hub4-user@spokes.test
 --
 -- Layout:
 --   Tenant One  -> hub1, hub2
 --   Tenant Two  -> hub3, hub4
+--   Each hub has one admin and one user
 --
 -- Profiles are created automatically by public.handle_new_user()
 -- (trigger on_auth_user_created) when rows are inserted into auth.users.
@@ -172,6 +174,74 @@ VALUES
     '',
     '',
     ''
+  ),
+  (
+    '00000000-0000-0000-0000-000000000000',
+    '33333333-3333-4333-8333-333333333335'::uuid,
+    'authenticated',
+    'authenticated',
+    'hub1-user@spokes.test',
+    crypt('securepassword', gen_salt('bf')),
+    now(),
+    '{"provider":"email","providers":["email"]}'::jsonb,
+    '{"first_name":"Hub","last_name":"One User","account_type":"hub"}'::jsonb,
+    now(),
+    now(),
+    '',
+    '',
+    '',
+    ''
+  ),
+  (
+    '00000000-0000-0000-0000-000000000000',
+    '33333333-3333-4333-8333-333333333336'::uuid,
+    'authenticated',
+    'authenticated',
+    'hub2-user@spokes.test',
+    crypt('securepassword', gen_salt('bf')),
+    now(),
+    '{"provider":"email","providers":["email"]}'::jsonb,
+    '{"first_name":"Hub","last_name":"Two User","account_type":"hub"}'::jsonb,
+    now(),
+    now(),
+    '',
+    '',
+    '',
+    ''
+  ),
+  (
+    '00000000-0000-0000-0000-000000000000',
+    '33333333-3333-4333-8333-333333333337'::uuid,
+    'authenticated',
+    'authenticated',
+    'hub3-user@spokes.test',
+    crypt('securepassword', gen_salt('bf')),
+    now(),
+    '{"provider":"email","providers":["email"]}'::jsonb,
+    '{"first_name":"Hub","last_name":"Three User","account_type":"hub"}'::jsonb,
+    now(),
+    now(),
+    '',
+    '',
+    '',
+    ''
+  ),
+  (
+    '00000000-0000-0000-0000-000000000000',
+    '33333333-3333-4333-8333-333333333338'::uuid,
+    'authenticated',
+    'authenticated',
+    'hub4-user@spokes.test',
+    crypt('securepassword', gen_salt('bf')),
+    now(),
+    '{"provider":"email","providers":["email"]}'::jsonb,
+    '{"first_name":"Hub","last_name":"Four User","account_type":"hub"}'::jsonb,
+    now(),
+    now(),
+    '',
+    '',
+    '',
+    ''
   );
 
 INSERT INTO auth.identities (
@@ -264,6 +334,46 @@ VALUES
     now(),
     now(),
     now()
+  ),
+  (
+    'aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaa9'::uuid,
+    '33333333-3333-4333-8333-333333333335'::uuid,
+    '{"sub":"33333333-3333-4333-8333-333333333335","email":"hub1-user@spokes.test","email_verified":true}'::jsonb,
+    'email',
+    '33333333-3333-4333-8333-333333333335',
+    now(),
+    now(),
+    now()
+  ),
+  (
+    'aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaa10'::uuid,
+    '33333333-3333-4333-8333-333333333336'::uuid,
+    '{"sub":"33333333-3333-4333-8333-333333333336","email":"hub2-user@spokes.test","email_verified":true}'::jsonb,
+    'email',
+    '33333333-3333-4333-8333-333333333336',
+    now(),
+    now(),
+    now()
+  ),
+  (
+    'aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaa11'::uuid,
+    '33333333-3333-4333-8333-333333333337'::uuid,
+    '{"sub":"33333333-3333-4333-8333-333333333337","email":"hub3-user@spokes.test","email_verified":true}'::jsonb,
+    'email',
+    '33333333-3333-4333-8333-333333333337',
+    now(),
+    now(),
+    now()
+  ),
+  (
+    'aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaa12'::uuid,
+    '33333333-3333-4333-8333-333333333338'::uuid,
+    '{"sub":"33333333-3333-4333-8333-333333333338","email":"hub4-user@spokes.test","email_verified":true}'::jsonb,
+    'email',
+    '33333333-3333-4333-8333-333333333338',
+    now(),
+    now(),
+    now()
   );
 
 -- Mark operators on profiles (handle_new_user does not set is_operator)
@@ -316,22 +426,46 @@ values
     '44444444-4444-4444-8444-444444444442'::uuid
   );
 
--- Hub users (one user per hub)
-insert into public.hub_users (hub_id, user_id)
+-- Hub users (one admin and one user per hub)
+insert into public.hub_users (hub_id, user_id, user_role)
 values
   (
     '55555555-5555-4555-8555-555555555551'::uuid,
-    '33333333-3333-4333-8333-333333333331'::uuid
+    '33333333-3333-4333-8333-333333333331'::uuid,
+    'admin'
+  ),
+  (
+    '55555555-5555-4555-8555-555555555551'::uuid,
+    '33333333-3333-4333-8333-333333333335'::uuid,
+    'user'
   ),
   (
     '55555555-5555-4555-8555-555555555552'::uuid,
-    '33333333-3333-4333-8333-333333333332'::uuid
+    '33333333-3333-4333-8333-333333333332'::uuid,
+    'admin'
+  ),
+  (
+    '55555555-5555-4555-8555-555555555552'::uuid,
+    '33333333-3333-4333-8333-333333333336'::uuid,
+    'user'
   ),
   (
     '55555555-5555-4555-8555-555555555553'::uuid,
-    '33333333-3333-4333-8333-333333333333'::uuid
+    '33333333-3333-4333-8333-333333333333'::uuid,
+    'admin'
+  ),
+  (
+    '55555555-5555-4555-8555-555555555553'::uuid,
+    '33333333-3333-4333-8333-333333333337'::uuid,
+    'user'
   ),
   (
     '55555555-5555-4555-8555-555555555554'::uuid,
-    '33333333-3333-4333-8333-333333333334'::uuid
+    '33333333-3333-4333-8333-333333333334'::uuid,
+    'admin'
+  ),
+  (
+    '55555555-5555-4555-8555-555555555554'::uuid,
+    '33333333-3333-4333-8333-333333333338'::uuid,
+    'user'
   );

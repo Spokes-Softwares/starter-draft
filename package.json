@@ -9,7 +9,7 @@
     "db:gen-types": "supabase gen types --local --workdir packages/db > packages/db/src/types.ts",
     "db:migration:new": "pnpm --filter @repo/db migration:new",
     "db:migration:push": "pnpm --filter @repo/db migration:push",
-    "db:reset": "supabase db reset --workdir packages/db",
+    "db:reset": "pnpm --filter @repo/db seed:assets:generate && supabase db reset --workdir packages/db",
     "pr:check": "pnpm lint && pnpm format && pnpm check-types",
     "lint": "turbo run lint",
     "format": "prettier --write \"**/*.{ts,tsx,md,json,css,mjs}\"",
@@ -34,6 +34,7 @@
     "node": ">=20"
   },
   "dependencies": {
+    "@faker-js/faker": "catalog:",
     "@hookform/resolvers": "catalog:",
     "lucide-react": "catalog:",
     "next-themes": "catalog:",
