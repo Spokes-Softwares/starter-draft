@@ -13,15 +13,10 @@ import {
 import { Input } from "@repo/ui/components/shadcn-ui/input";
 import { Field, FieldLabel } from "@repo/ui/components/shadcn-ui/field";
 import Link from "next/link";
-import {
-  Alert,
-  AlertDescription,
-  AlertTitle,
-} from "@repo/ui/components/shadcn-ui/alert";
-import { InfoIcon } from "lucide-react";
 import { loginFormSchema, LoginFormValues } from "../schemas/auth-schemas";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { ErrorHandling } from "@/components/errors/error";
 
 export default function LoginForm() {
   const [error, setError] = useState<string | null>(null);
@@ -68,13 +63,7 @@ export default function LoginForm() {
             {...register("email")}
           />
           {errors.email && (
-            <Alert
-              variant="destructive"
-              className="bg-destructive/10 border-destructive/20"
-            >
-              <InfoIcon />
-              <AlertDescription>{errors.email.message}</AlertDescription>
-            </Alert>
+            <ErrorHandling errorDescription={errors.email.message} />
           )}
         </Field>
         <Field data-invalid={!!errors.password} className="grid gap-2">
@@ -94,26 +83,16 @@ export default function LoginForm() {
             {...register("password")}
           />
           {errors.password && (
-            <Alert
-              variant="destructive"
-              className="bg-destructive/10 border-destructive/20"
-            >
-              <InfoIcon />
-              <AlertTitle>{errors.password.message}</AlertTitle>
-            </Alert>
+            <ErrorHandling errorDescription={errors.password.message} />
           )}
         </Field>
 
-        {error ? (
-          <Alert
-            variant="destructive"
-            className="bg-destructive/10 border-destructive/20"
-          >
-            <InfoIcon />
-            <AlertTitle>An error occurred</AlertTitle>
-            <AlertDescription>{error}</AlertDescription>
-          </Alert>
-        ) : null}
+        {error && (
+          <ErrorHandling
+            errorTitle="An error occurred"
+            errorDescription={error}
+          />
+        )}
 
         <Button type="submit" disabled={loading} className="w-full bg-primary">
           <span className="text-card text-white">{signInText}</span>
