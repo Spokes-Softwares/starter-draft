@@ -115,8 +115,8 @@ export default function LoginForm() {
           </Alert>
         ) : null}
 
-        <Button type="submit" disabled={loading} className="w-full bg-black">
-          <span className="text-card">{signInText}</span>
+        <Button type="submit" disabled={loading} className="w-full bg-primary">
+          <span className="text-card text-white">{signInText}</span>
         </Button>
       </CardContent>
     </form>
