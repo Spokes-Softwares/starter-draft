@@ -1,3 +1,22 @@
+import getCurrentUserProfile from "@repo/db/queries/user/get-current-user-profile";
+import UserProfileForm from "../../../components/forms/user-profile-form";
+import {
+  Card,
+  CardContent,
+  CardHeader,
+} from "@repo/ui/components/shadcn-ui/card";
+import { Heading } from "@repo/ui/components/shadcn-ui/heading";
+
 export default async function UserProfilePage() {
-  return <div>This is where the logged in user can change their settings</div>;
+  const user = await getCurrentUserProfile();
+  return (
+    <Card className="max-w-200 ml-6 mt-6">
+      <CardHeader>
+        <Heading variant="h2">Profile</Heading>
+      </CardHeader>
+      <CardContent>
+        <UserProfileForm user={user} />
+      </CardContent>
+    </Card>
+  );
 }

@@ -33,7 +33,6 @@
     "@types/node": "catalog:",
     "eslint": "catalog:",
     "typescript": "catalog:",
-    "@faker-js/faker": "catalog:",
     "tsx": "catalog:"
   }
 }

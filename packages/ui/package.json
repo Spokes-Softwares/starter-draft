@@ -29,7 +29,8 @@
     "@types/react-dom": "catalog:",
     "eslint": "catalog:",
     "tailwindcss": "catalog:",
-    "typescript": "catalog:"
+    "typescript": "catalog:",
+    "@faker-js/faker":"catalog:"
   },
   "dependencies": {
     "@base-ui/react": "catalog:",
