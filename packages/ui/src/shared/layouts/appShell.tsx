@@ -5,7 +5,7 @@ import ModeToggle from "@repo/ui/components/composites-ui/mode-toggle";
 
 export function AppShell({ children }: { children: React.ReactNode }) {
   return (
-    <ThemeProvider attribute="class" defaultTheme="light" enableSystem={true}>
+    <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={true}>
       <div className="relative min-h-screen w-full flex-1">
         <div className="absolute right-4 top-4 z-50">
           <ModeToggle />
