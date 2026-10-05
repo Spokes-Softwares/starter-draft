@@ -5,7 +5,12 @@ export const documentationSidebarMenuItems: {
   items: SidebarMenuItemType[];
 }[] = [
   {
-    title: "Docs",
-    items: [{ label: "App overview", href: "/overview" }],
+    title: "Areas",
+    items: [
+      { label: "Application overview", href: "/overview" },
+      { label: "Operations Portal", href: "/operations-portal" },
+      { label: "Tenant Portal", href: "/tenant-portal" },
+      { label: "Hubs Portal", href: "/hubs-portal" },
+    ],
   },
 ];
