@@ -8,7 +8,7 @@ export default function ProjectOverview() {
       </Heading>
       <p>
         Spokes is a piece of software which will hopefully fill a gap in the
-        market for companies with a large amounts of assets which have ongoing
+        market for companies with large amounts of assets which have ongoing
         maintenance requirements.
         <br />
         <br />
