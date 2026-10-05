@@ -2,8 +2,9 @@ import path from "node:path";
 import { loadEnv } from "vite";
 import { defineConfig } from "vitest/config";
 
+const appIntegrationDirs = ["auth", "operations", "tenant", "hubs"] as const;
+
 export default defineConfig(({ mode }) => {
-  // Empty prefix so NEXT_PUBLIC_* / SUPABASE_* from .env.local land on process.env
   const env = loadEnv(mode, process.cwd(), "");
 
   return {
@@ -17,8 +18,29 @@ export default defineConfig(({ mode }) => {
     },
     test: {
       env,
-      include: ["**/*.{test,spec}.{ts,tsx}"],
-      exclude: ["**/node_modules/**", "**/.next/**", "**/e2e/**"],
+      projects: [
+        ...appIntegrationDirs.map((app) => ({
+          extends: true as const,
+          test: {
+            name: app,
+            include: [`packages/db/src/integration-tests/${app}/**/*.test.ts`],
+          },
+        })),
+        {
+          extends: true,
+          test: {
+            name: "default",
+            include: ["**/*.test.{ts,tsx}"],
+            exclude: [
+              "**/node_modules/**",
+              "**/.next/**",
+              "**/e2e/**",
+              "apps/**",
+              "packages/db/src/integration-tests/**",
+            ],
+          },
+        },
+      ],
     },
   };
 });

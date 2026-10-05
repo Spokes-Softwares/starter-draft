@@ -30,7 +30,7 @@
     "eslint": "catalog:",
     "tailwindcss": "catalog:",
     "typescript": "catalog:",
-    "@faker-js/faker":"catalog:"
+    "@faker-js/faker": "catalog:"
   },
   "dependencies": {
     "@base-ui/react": "catalog:",

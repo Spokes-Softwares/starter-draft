@@ -22,8 +22,8 @@ export default function DataTablePagination({
   showingRows,
   table,
 }: {
-  totalRows: Number;
-  showingRows: Number;
+  totalRows: number;
+  showingRows: number;
   table: ReactTable<DataTableFeatures, ExampleDataShape>;
 }) {
   return (
