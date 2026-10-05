@@ -1,6 +1,8 @@
 import { Heading } from "@repo/ui/components/shadcn-ui/heading";
-import { OverviewCardContentData, PhaseCards } from "../../app/(app)/overview/page";
-import { CardTitle } from "@repo/ui/components/shadcn-ui/card";
+import {
+  OverviewCardContentData,
+  PhaseCards,
+} from "../../app/(app)/overview/page";
 
 const techCardsContent = [
   {
@@ -32,11 +34,10 @@ const techCardsContent = [
     cardContent: (
       <>
         As part of our testing suite - Vitest will play a vital role in
-        Integration and Unit testing. For integration testing, we make calls to the DB and verify
-        the data returning is accurate using Vitest. 
-
-        Unit testing is slightly more complex as it involves mocking the Supabase functions.
-        This is an ongoing spike in itself. 
+        Integration and Unit testing. For integration testing, we make calls to
+        the DB and verify the data returning is accurate using Vitest. Unit
+        testing is slightly more complex as it involves mocking the Supabase
+        functions. This is an ongoing spike in itself.
       </>
     ),
   },

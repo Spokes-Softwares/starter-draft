@@ -5,7 +5,10 @@ import {
   AccordionTrigger,
 } from "@repo/ui/components/shadcn-ui/accordion";
 import { Heading } from "@repo/ui/components/shadcn-ui/heading";
-import { OverviewCardContentData, PhaseCards } from "../../app/(app)/overview/page";
+import {
+  OverviewCardContentData,
+  PhaseCards,
+} from "../../app/(app)/overview/page";
 
 const phaseOneCardContent = [
   {
@@ -131,7 +134,7 @@ export default function DevelopmentOverview() {
       </Accordion>
       <p>
         It is currently being developed as a multi-tenant platform where each
-        tenant is a "Company". Each company can have 'Hubs". These can be a
+        tenant is a "Company". Each company can have "Hubs". These can be a
         branch of a company as an example.
         <br />
       </p>
