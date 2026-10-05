@@ -135,7 +135,7 @@ describe("auth portal", () => {
         .update({ is_operator: true })
         .eq("id", TENANT_USER_ID);
 
-      expect(error).not.toBeNull();
+      expect(error?.message).toBe("permission denied for table profiles");
 
       const { data } = await supabase
         .from("profiles")
