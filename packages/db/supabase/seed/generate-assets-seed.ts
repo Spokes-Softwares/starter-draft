@@ -38,5 +38,5 @@ const outputPath = resolve(process.cwd(), "supabase/assets-seed.sql");
 
 writeFileSync(outputPath, sql, "utf8");
 console.log(
-  `Wrote ${values.length} assets (${ASSETS_PER_HUB} per hub × ${HUB_IDS.length} hubs) to ${outputPath}`,
+  `\x1b[33mSeeding ${values.length} assets (${ASSETS_PER_HUB} per hub × ${HUB_IDS.length} hubs) to ${outputPath}\x1b[0m`,
 );
