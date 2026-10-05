@@ -10,7 +10,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
         <div className="absolute right-4 top-4 z-50">
           <ModeToggle />
         </div>
-        <div className="min-h-screen">{children}</div>
+        <div className="min-h-screen p-6">{children}</div>
       </div>
     </ThemeProvider>
   );
