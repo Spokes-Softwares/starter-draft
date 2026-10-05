@@ -6,6 +6,8 @@ create table public.assets (
     created_at timestamptz default now() not null
 );
 
+alter table public.assets enable row level security;
+
 -- Hubs, tenants and operators can view assets
 create policy "Hubs, tenants and operators can view assets" on public.assets for
 select
