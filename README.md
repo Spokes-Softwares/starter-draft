@@ -69,19 +69,23 @@ pnpm --filter docs dev
 
 ## Scripts
 
-| Script                  | Description                                   |
-| ----------------------- | --------------------------------------------- |
-| `pnpm dev`              | Start all apps in development mode            |
-| `pnpm build`            | Build all apps and packages                   |
-| `pnpm lint`             | Lint all packages                             |
-| `pnpm check-types`      | Type-check all packages                       |
-| `pnpm test`             | Run unit tests                                |
-| `pnpm format`           | Format code with Prettier                     |
-| `pnpm db:start`         | Start local Supabase                          |
-| `pnpm db:stop`          | Stop local Supabase                           |
-| `pnpm db:reset`         | Reset local database and apply migrations     |
-| `pnpm db:gen-types`     | Regenerate TypeScript types from local schema |
-| `pnpm db:migration:new` | Create a new database migration               |
+| Script                  | Description                                                           |
+| ----------------------- | --------------------------------------------------------------------- |
+| `pnpm dev`              | Start all apps in development mode                                    |
+| `pnpm build`            | Build all apps and packages                                           |
+| `pnpm lint`             | Lint all packages                                                     |
+| `pnpm check-types`      | Type-check all packages                                               |
+| `pnpm test`             | Run all tests (requires local Supabase for portal integration suites) |
+| `pnpm test:auth`        | Auth portal integration tests                                         |
+| `pnpm test:operations`  | Operations portal integration tests                                   |
+| `pnpm test:tenant`      | Tenant portal integration tests                                       |
+| `pnpm test:hubs`        | Hubs portal integration tests                                         |
+| `pnpm format`           | Format code with Prettier                                             |
+| `pnpm db:start`         | Start local Supabase                                                  |
+| `pnpm db:stop`          | Stop local Supabase                                                   |
+| `pnpm db:reset`         | Reset local database and apply migrations                             |
+| `pnpm db:gen-types`     | Regenerate TypeScript types from local schema                         |
+| `pnpm db:migration:new` | Create a new database migration                                       |
 
 ## Project structure
 

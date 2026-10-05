@@ -5,5 +5,5 @@ export default function UserProfileForm({
 }: {
   user: CurrentUserProfile;
 }) {
-  return <div> user profile form here</div>;
+  return <div> user profile form here {user.name}</div>;
 }
