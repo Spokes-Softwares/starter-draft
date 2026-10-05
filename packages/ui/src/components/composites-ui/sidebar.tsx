@@ -27,7 +27,7 @@ import { cn } from "../../lib/utils";
 
 export type SidebarMenuItemType = {
   label: string;
-  icon: LucideIcon;
+  icon?: LucideIcon;
   href?: string;
   dropDownItems?: {
     label: string;
@@ -76,7 +76,7 @@ function NavCollapsibleItem({
           hasActiveChild && "bg-primary/20 font-medium",
         )}
       >
-        <item.icon />
+        {item.icon ? <item.icon /> : null}
         <span>{item.label}</span>
         <ChevronDown className="ml-auto transition-transform group-data-open/collapsible:rotate-180" />
       </CollapsibleTrigger>
@@ -140,7 +140,7 @@ export default function AppSidebar({
                         }
                         render={item.href ? <a href={item.href} /> : undefined}
                       >
-                        <item.icon />
+                        {item.icon ? <item.icon /> : null}
                         <span>{item.label}</span>
                       </SidebarMenuButton>
                     </SidebarMenuItem>

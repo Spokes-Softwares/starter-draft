@@ -1,15 +1,17 @@
-import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Kanit } from "next/font/google";
 import "./globals.css";
+import { cn } from "@repo/ui/lib/utils";
+import { AppShell } from "@repo/ui/shared/layouts/appShell";
+import type { Metadata } from "next";
+import { SidebarProvider } from "@repo/ui/components/shadcn-ui/sidebar";
+import DocumentationSidebar from "../components/nav/docs-sidebar";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const kanit = Kanit({
+  weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
+  style: ["normal", "italic"],
   subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
+  variable: "--font-kanit",
+  display: "swap",
 });
 
 export const metadata: Metadata = {
@@ -23,9 +25,16 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable}`}>
-        {children}
+    <html
+      lang="en"
+      suppressHydrationWarning
+      className={cn("h-full antialiased", kanit.variable)}
+    >
+      <body className="min-h-full flex flex-col bg-linear-to-l from-primary to-background">
+        <SidebarProvider>
+          <DocumentationSidebar />
+          <AppShell>{children}</AppShell>
+        </SidebarProvider>
       </body>
     </html>
   );

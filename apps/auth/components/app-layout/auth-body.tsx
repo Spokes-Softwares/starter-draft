@@ -6,9 +6,7 @@ export default function AuthBody({ children }: { children: React.ReactNode }) {
   return (
     <div className="flex flex-col items-center px-4">
       <Header image={spokesLogo.src} />
-      <Card className="w-full max-w-96 grid items-center">
-        {children}
-      </Card>
+      <Card className="w-full max-w-96 grid items-center">{children}</Card>
     </div>
   );
 }
