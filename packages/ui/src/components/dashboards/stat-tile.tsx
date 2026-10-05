@@ -7,7 +7,6 @@ export type StatTileProps = {
 };
 
 export default function StatTile({ title, data }: StatTileProps) {
-
   return (
     <Card>
       <CardHeader>

@@ -100,7 +100,7 @@ const UserProfileDropdownContent = ({
         </Fragment>
       ))}
       <DropdownMenuItem
-        nativeButton  
+        nativeButton
         className="mt-2"
         render={
           <Button

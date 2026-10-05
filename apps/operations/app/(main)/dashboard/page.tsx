@@ -6,9 +6,8 @@ import StatTile from "@repo/ui/components/dashboards/stat-tile";
 import { Heading } from "@repo/ui/components/shadcn-ui/heading";
 
 async function OperationsDashboardContent({ data }: { data: DashboardStats }) {
-
   const { numberOfAssets, numberOfHubs, numberOfTenants } = data;
-  
+
   const TILES = [
     {
       title: " Tenants",
