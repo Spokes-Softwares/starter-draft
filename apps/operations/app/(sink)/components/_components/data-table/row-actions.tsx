@@ -19,6 +19,7 @@ export default function DataTableRowActions({
 }) {
   return (
     <div className="relative z-20">
+      {row.id}
       <DropdownMenu>
         <DropdownMenuTrigger
           render={<Button variant="ghost" className="w-8 h-8" />}

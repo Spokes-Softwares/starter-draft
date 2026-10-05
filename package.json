@@ -10,12 +10,16 @@
     "db:migration:new": "pnpm --filter @repo/db migration:new",
     "db:migration:push": "pnpm --filter @repo/db migration:push",
     "db:reset": "pnpm --filter @repo/db seed:assets:generate && supabase db reset --workdir packages/db",
-    "pr:check": "pnpm lint && pnpm format && pnpm check-types",
+    "pr:check": "pnpm test && pnpm format && pnpm check-types && pnpm lint",
     "lint": "turbo run lint",
     "format": "prettier --write \"**/*.{ts,tsx,md,json,css,mjs}\"",
     "check-types": "turbo run check-types",
     "test": "vitest run",
     "test:watch": "vitest",
+    "test:auth": "vitest run --project auth",
+    "test:operations": "vitest run --project operations",
+    "test:tenant": "vitest run --project tenant",
+    "test:hubs": "vitest run --project hubs",
     "test:e2e": "playwright test --ui"
   },
   "dependancies": {

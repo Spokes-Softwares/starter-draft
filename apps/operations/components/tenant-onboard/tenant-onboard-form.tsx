@@ -32,7 +32,7 @@ import {
 
 export default function TenantOnboardForm() {
   const [error, setError] = useState<string | null>(null);
-  const [success, setSuccess] = useState<Boolean>(false);
+  const [success, setSuccess] = useState<boolean>(false);
   const [resultSuccess, setResultSuccess] = useState<string | undefined | null>(
     null,
   );

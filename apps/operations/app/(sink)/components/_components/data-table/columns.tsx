@@ -6,15 +6,8 @@ import { createColumnHelper } from "@tanstack/react-table";
 import { ExampleDataShape } from "./data";
 import { DataTableFeatures } from "./features";
 import { Button } from "@repo/ui/components/shadcn-ui/button";
-import { ArrowUpDown, MoreHorizontal } from "lucide-react";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuGroup,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuTrigger,
-} from "@repo/ui/components/shadcn-ui/dropdown-menu";
+import { ArrowUpDown } from "lucide-react";
+
 import DataTableRowActions from "./row-actions";
 
 const columnHelper = createColumnHelper<DataTableFeatures, ExampleDataShape>();
