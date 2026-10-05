@@ -12,15 +12,15 @@ alter table public.assets enable row level security;
 create policy "Hubs, tenants and operators can view assets" on public.assets for
 select
     using (
-        public.is_hub_user(id)
-        OR public.is_tenant(id)
+        public.is_hub_user(hub_id)
+        OR public.is_hub_tenant(hub_id)
         OR public.is_operator()
     );
 
 -- Hubs, tenants and operators can delete assets
 create policy "Hubs, tenants and operators can delete assets" on public.assets for delete using (
-    public.is_hub_user(id)
-    OR public.is_tenant(id)
+    public.is_hub_user(hub_id)
+    OR public.is_hub_tenant(hub_id)
     OR public.is_operator()
 );
 
@@ -28,12 +28,12 @@ create policy "Hubs, tenants and operators can delete assets" on public.assets f
 create policy "Hubs, tenants and operators can update assets" on public.assets for
 update
     using (
-        public.is_hub_user(id)
-        OR public.is_tenant(id)
+        public.is_hub_user(hub_id)
+        OR public.is_hub_tenant(hub_id)
         OR public.is_operator()
     ) with check (
-        public.is_hub_user(id)
-        OR public.is_tenant(id)
+        public.is_hub_user(hub_id)
+        OR public.is_hub_tenant(hub_id)
         OR public.is_operator()
     );
 
@@ -41,8 +41,8 @@ update
 create policy "Hubs, tenants and operators can insert new assets" on public.assets for
 insert
     with check (
-        public.is_hub_user(id)
-        OR public.is_tenant(id)
+        public.is_hub_user(hub_id)
+        OR public.is_hub_tenant(hub_id)
         OR public.is_operator()
     );
 
