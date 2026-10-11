@@ -1,22 +1,17 @@
 import getCurrentUserProfile from "@repo/db/queries/user/get-current-user-profile";
 import UserProfileForm from "../../../components/forms/user-profile-form";
-import {
-  Card,
-  CardContent,
-  CardHeader,
-} from "@repo/ui/components/shadcn-ui/card";
-import { Heading } from "@repo/ui/components/shadcn-ui/heading";
+import PageHeader from "@node_modules/@repo/ui/src/shared/page-layouts/pageHeader";
+import PageShell from "@node_modules/@repo/ui/src/shared/page-layouts/pageShell";
 
 export default async function UserProfilePage() {
   const user = await getCurrentUserProfile();
   return (
-    <Card className="max-w-200 ml-6 mt-6">
-      <CardHeader>
-        <Heading variant="h2">Profile</Heading>
-      </CardHeader>
-      <CardContent>
-        <UserProfileForm user={user} />
-      </CardContent>
-    </Card>
+    <PageShell>
+      <PageHeader
+        title="Profile settings"
+        description="Manage your personal details and keep your account secure."
+      />
+      <UserProfileForm user={user} />
+    </PageShell>
   );
 }

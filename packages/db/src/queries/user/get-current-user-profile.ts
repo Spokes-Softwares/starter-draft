@@ -2,7 +2,8 @@ import { createSupabaseServerClient } from "../../server";
 import { redirect } from "next/navigation";
 
 export type CurrentUserProfile = {
-  name: string;
+  firstName: string;
+  lastName: string;
   email: string;
   avatarUrl?: string;
   phone?: string;
@@ -22,7 +23,8 @@ export default async function getCurrentUserProfile(): Promise<CurrentUserProfil
   }
 
   return {
-    name: user.user_metadata?.first_name ?? user?.email ?? "User",
+    firstName: user.user_metadata?.first_name ?? user?.email ?? "User",
+    lastName: user.user_metadata?.last_name ?? user?.email ?? "User",
     email: user.email ?? "",
     avatarUrl: user.user_metadata?.avatar_url,
     phone: user.phone ?? "",

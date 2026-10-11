@@ -16,9 +16,12 @@ import { Button } from "../shadcn-ui/button";
 import { Fragment } from "react";
 
 export type UserProfileFooterType = {
-  name: string;
+  firstName: string;
+  lastName: string;
   email: string;
   avatarUrl?: string;
+  phone?: string;
+  displayName?: string;
 };
 
 export type UserProfileItemType = {
@@ -60,7 +63,7 @@ export const UserProfileFooter = ({
 };
 
 const UserProfile = ({ user }: { user: UserProfileFooterType }) => {
-  const initials = user.name.slice(0, 2).toUpperCase();
+  const initials = user.firstName.slice(0, 2).toUpperCase();
 
   return (
     <div className="flex w-full items-center gap-2">
@@ -69,7 +72,7 @@ const UserProfile = ({ user }: { user: UserProfileFooterType }) => {
         <AvatarFallback>{initials}</AvatarFallback>
       </Avatar>
       <div className="flex flex-col items-start">
-        <span>{user.name}</span>
+        <span>{user.firstName}</span>
         <span>{user.email}</span>
       </div>
       <ChevronsUpDown className="ml-auto" />
