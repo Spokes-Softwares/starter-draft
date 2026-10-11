@@ -34,6 +34,35 @@ export type Database = {
   };
   public: {
     Tables: {
+      assets: {
+        Row: {
+          created_at: string;
+          display_name: string | null;
+          hub_id: string;
+          id: string;
+        };
+        Insert: {
+          created_at?: string;
+          display_name?: string | null;
+          hub_id: string;
+          id?: string;
+        };
+        Update: {
+          created_at?: string;
+          display_name?: string | null;
+          hub_id?: string;
+          id?: string;
+        };
+        Relationships: [
+          {
+            foreignKeyName: "assets_hub_id_fkey";
+            columns: ["hub_id"];
+            isOneToOne: false;
+            referencedRelation: "tenant_hubs";
+            referencedColumns: ["id"];
+          },
+        ];
+      };
       hub_users: {
         Row: {
           created_at: string;

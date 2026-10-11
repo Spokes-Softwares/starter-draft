@@ -17,6 +17,8 @@ export default defineConfig(({ mode }) => {
       },
     },
     test: {
+      fileParallelism: false,
+      maxWorkers: 1,
       env,
       projects: [
         ...appIntegrationDirs.map((app) => ({
