@@ -13,7 +13,7 @@ export const operationsSidebarMenuItems: {
         icon: BuildingComplex,
         label: "Tenants",
         dropDownItems: [
-          { label: "Overview", href: "/tenants/overview" },
+          { label: "Overview", href: "/tenants" },
           { label: "Onboard", href: "/tenants/new" },
         ],
       },
@@ -21,7 +21,7 @@ export const operationsSidebarMenuItems: {
         icon: House,
         label: "Hubs",
         dropDownItems: [
-          { label: "Overview", href: "/hubs/overview" },
+          { label: "Overview", href: "/hubs" },
           { label: "Onboard", href: "/hubs/new" },
         ],
       },

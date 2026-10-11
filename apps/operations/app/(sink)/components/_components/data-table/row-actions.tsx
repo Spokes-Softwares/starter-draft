@@ -8,7 +8,7 @@ import {
   DropdownMenuTrigger,
 } from "@repo/ui/components/shadcn-ui/dropdown-menu";
 import { MoreHorizontal } from "lucide-react";
-import { DataTableFeatures } from "./features";
+import { DataTableFeatures } from "@repo/ui/components/data-table/features";
 import { Row } from "@tanstack/react-table";
 import { ExampleDataShape } from "./data";
 

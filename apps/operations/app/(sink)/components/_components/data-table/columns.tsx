@@ -1,10 +1,10 @@
 "use client";
-/* This is the main control centre of the columns of the table. 
+/* This is the main control centre of the columns of the table.
 How the data will look in the table, how it is structured etc.
 Sorting is also controlled here - i.e. which columns are sortable etc. */
 import { createColumnHelper } from "@tanstack/react-table";
 import { ExampleDataShape } from "./data";
-import { DataTableFeatures } from "./features";
+import { DataTableFeatures } from "@repo/ui/components/data-table/features";
 import { Button } from "@repo/ui/components/shadcn-ui/button";
 import { ArrowUpDown } from "lucide-react";
 
