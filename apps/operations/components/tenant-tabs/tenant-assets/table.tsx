@@ -9,14 +9,12 @@ export default function TenantAssetsTable({
 }: {
   assets: TenantAssets[];
 }) {
+  const filter = { columnId: "display_name", placeholder: "Filter assets..." };
   return (
     <DataTable
       data={assets}
       columns={columns}
-      filter={{
-        columnId: "display_name",
-        placeholder: "Filter assets...",
-      }}
+      filter={filter}
       getRowHref={(row) => `/assets/${row.id}`}
       getRowAriaLabel={(row) => `View ${row.display_name ?? "asset"}`}
     />

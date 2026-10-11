@@ -17,12 +17,20 @@ export default function TenantTabs({
   hubs: ListHubs[];
   assets: TenantAssets[];
 }) {
+  const tabsTriggerList = [
+    { value: "hubs-table", text: "Hubs" },
+    { value: "tenant-assets", text: "Assets" },
+    { value: "settings", text: "Tenant Settings" },
+  ];
+
   return (
     <Tabs defaultValue="hubs-table">
       <TabsList>
-        <TabsTrigger value="hubs-table">Hubs</TabsTrigger>
-        <TabsTrigger value="tenant-assets">Assets</TabsTrigger>
-        <TabsTrigger value="settings">Tenant Settings</TabsTrigger>
+        {tabsTriggerList.map((tab) => (
+          <TabsTrigger key={tab.value} value={tab.value}>
+            {tab.text}
+          </TabsTrigger>
+        ))}
       </TabsList>
       <TabsContent value="hubs-table">
         <TenantHubsDataTable data={hubs} />

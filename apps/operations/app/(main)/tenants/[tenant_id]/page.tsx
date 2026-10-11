@@ -4,7 +4,7 @@ import {
 } from "@repo/db/queries/get-actions/list-hubs-for-tenant";
 import { getTenant } from "@repo/db/queries/get-actions/get-single-tenant";
 import PageHeader from "@repo/ui/shared/page-layouts/pageHeader";
-import TenantTabs from "../../../../components/tenant-tabs/tenant-tabs";
+import TenantTabs from "@/components/tenant-tabs/tenant-tabs";
 import {
   listAssetsForTenant,
   TenantAssets,
