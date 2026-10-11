@@ -1,10 +1,6 @@
 "use client";
 
-/* This controls the pagination of the table.
-The previous and next buttons only appear when there is a previous or next page to navigate to 
-otherwise they do not show. 
-Part of this page is also how many results are actually shown compared to total results.
- */
+/* Pagination chrome for DataTable. Prev/next only render when available. */
 
 import {
   Pagination,
@@ -12,24 +8,23 @@ import {
   PaginationItem,
   PaginationNext,
   PaginationPrevious,
-} from "@repo/ui/components/shadcn-ui/pagination";
-import { ReactTable } from "@tanstack/react-table";
+} from "../shadcn-ui/pagination";
+import { ReactTable, type RowData } from "@tanstack/react-table";
 import { DataTableFeatures } from "./features";
-import { ExampleDataShape } from "./data";
 
-export default function DataTablePagination({
+export default function DataTablePagination<TData extends RowData>({
   totalRows,
   showingRows,
   table,
 }: {
   totalRows: number;
   showingRows: number;
-  table: ReactTable<DataTableFeatures, ExampleDataShape>;
+  table: ReactTable<DataTableFeatures, TData>;
 }) {
   return (
     <Pagination className="flex justify-end items-center">
       <p className="mr-auto">
-        {`Showing ${showingRows} of ${totalRows} rows.`}
+        Showing {showingRows} of {totalRows} rows.
       </p>
       <PaginationContent>
         {table.getCanPreviousPage() ? (

@@ -29,6 +29,12 @@ import {
   AlertDescription,
   AlertTitle,
 } from "@repo/ui/components/shadcn-ui/alert";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+} from "@repo/ui/components/shadcn-ui/card";
 
 export default function TenantOnboardForm() {
   const [error, setError] = useState<string | null>(null);
@@ -62,66 +68,90 @@ export default function TenantOnboardForm() {
   }
 
   return (
-    <form
-      onSubmit={handleSubmit(handleTenantOnboarding)}
-      className="grid grid-cols-2 gap-6"
-    >
-      <Field data-invalid={!!errors.displayName}>
-        <FieldLabel>Display Name</FieldLabel>
-        <Input
-          id="display-name"
-          type="text"
-          aria-invalid={!!errors.displayName}
-          {...register("displayName")}
-        />
-      </Field>
-      <Field data-invalid={!!errors.companyName}>
-        <FieldLabel>Company Name</FieldLabel>
-        <Input
-          id="company-name"
-          type="text"
-          aria-invalid={!!errors.companyName}
-          {...register("companyName")}
-        />
-      </Field>
-      <Field>
-        <FieldLabel>Email Address</FieldLabel>
-        <Input
-          id="company-email-address"
-          type="email"
-          aria-invalid={!!errors.email}
-          {...register("email")}
-        />
-      </Field>
-      <Field>
-        <FieldLabel>Password</FieldLabel>
-        <Input
-          id="password"
-          type="password"
-          aria-invalid={!!errors.password}
-          {...register("password")}
-        />
-      </Field>
-      <div className="grid col-span-2 gap-6">
-        <Button type="submit" className="w-fit">
-          <Check />
-          Confirm details
-        </Button>
-        {error && (
-          <Alert>
-            <InfoIcon />
-            <AlertTitle>There has been an error:</AlertTitle>
-            <AlertDescription>{error}</AlertDescription>
-          </Alert>
-        )}
-        {success && (
-          <Alert>
-            <InfoIcon />
-            <AlertTitle>The following tenant has been added</AlertTitle>
-            <AlertDescription>{resultSuccess}</AlertDescription>
-          </Alert>
-        )}
-      </div>
-    </form>
+    <Card>
+      <CardHeader>
+        <CardDescription>
+          Set the credentials for the new tenant. Take note of the password as
+          you will not be able to see it again!
+        </CardDescription>
+      </CardHeader>
+      <CardContent>
+        <form
+          onSubmit={handleSubmit(handleTenantOnboarding)}
+          className="grid grid-cols-2 gap-6"
+        >
+          <Field data-invalid={!!errors.displayName}>
+            <FieldLabel>Display Name</FieldLabel>
+            <Input
+              id="display-name"
+              type="text"
+              aria-invalid={!!errors.displayName}
+              {...register("displayName")}
+            />
+          </Field>
+          <Field data-invalid={!!errors.companyName}>
+            <FieldLabel>Company Name</FieldLabel>
+            <Input
+              id="company-name"
+              type="text"
+              aria-invalid={!!errors.companyName}
+              {...register("companyName")}
+            />
+          </Field>
+          <Field>
+            <FieldLabel>Email Address</FieldLabel>
+            <Input
+              id="company-email-address"
+              type="email"
+              aria-invalid={!!errors.email}
+              {...register("email")}
+            />
+          </Field>
+          <Field>
+            <FieldLabel>Password</FieldLabel>
+            <Input
+              id="password"
+              type="password"
+              aria-invalid={!!errors.password}
+              {...register("password")}
+            />
+          </Field>
+          <div className="grid col-span-2 gap-6">
+            <div className="flex gap-4">
+              <a
+                href="https://www.lastpass.com/features/password-generator"
+                rel="noopener noreferrer"
+                target="_blank"
+              >
+                <Button className="hover:cursor-pointer">
+                  Password Generator
+                </Button>
+              </a>
+              <Button
+                type="submit"
+                className="w-fit ml-auto hover:cursor-pointer"
+              >
+                <Check />
+                Confirm details
+              </Button>
+            </div>
+            {error && (
+              <Alert>
+                <InfoIcon />
+                <AlertTitle>There has been an error:</AlertTitle>
+                <AlertDescription>{error}</AlertDescription>
+              </Alert>
+            )}
+            {success && (
+              <Alert>
+                <InfoIcon />
+                <AlertTitle>The following tenant has been added</AlertTitle>
+                <AlertDescription>{resultSuccess}</AlertDescription>
+              </Alert>
+            )}
+          </div>
+        </form>
+      </CardContent>
+    </Card>
   );
 }

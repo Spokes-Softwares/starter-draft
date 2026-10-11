@@ -1,15 +1,16 @@
 "use client";
-/* This will be the main DataTable component - this will be used throughout all of the apps.
-This will need to be as versatile as possible. We will try and keep it clean and have as little logic in here as possible.
-All logic should be passed to it, instead of doing any logic in here. */
-import Link from "next/link";
+
+/* Shared DataTable shell — apps supply columns, data, and optional row hrefs.
+This is the engine for all the data tables in the repo - this will grow and develop as further 
+table features are needed */
+
 import {
   ColumnDef,
   useTable,
   type ColumnFiltersState,
+  type RowData,
   type SortingState,
 } from "@tanstack/react-table";
-import { ExampleDataShape } from "./data";
 import { DataTableFeatures, features } from "./features";
 import {
   Table,
@@ -18,19 +19,29 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from "@repo/ui/components/shadcn-ui/table";
+} from "../shadcn-ui/table";
 import { useState } from "react";
 import DataTablePagination from "./pagination";
 import DataTableFiltering from "./filtering";
 
-//Row actions are optional. This is the drop down that is on each row.
-interface DataTableProps {
-  columns: ColumnDef<DataTableFeatures, ExampleDataShape>[];
-  data: ExampleDataShape[];
-  rowActions?: React.ReactNode;
+export interface DataTableProps<TData extends RowData> {
+  columns: ColumnDef<DataTableFeatures, TData>[];
+  data: TData[];
+  filter?: {
+    columnId: string;
+    placeholder?: string;
+  };
+  getRowHref?: (row: TData) => string;
+  getRowAriaLabel?: (row: TData) => string;
 }
 
-export default function DataTable({ data, columns }: DataTableProps) {
+export default function DataTable<TData extends RowData>({
+  data,
+  columns,
+  filter,
+  getRowHref,
+  getRowAriaLabel,
+}: DataTableProps<TData>) {
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
   const [sorting, setSorting] = useState<SortingState>([]);
 
@@ -50,8 +61,14 @@ export default function DataTable({ data, columns }: DataTableProps) {
   const showingRows = table.getRowModel().rows.length;
 
   return (
-    <div className="max-w-250 grid gap-4">
-      <DataTableFiltering table={table} />
+    <div className="min-w-0 grid gap-4">
+      {filter ? (
+        <DataTableFiltering
+          table={table}
+          columnId={filter.columnId}
+          placeholder={filter.placeholder}
+        />
+      ) : null}
       <div className="overflow-hidden rounded-md border border-secondary-foreground/50 dark:border-border">
         <Table>
           <TableHeader className="bg-secondary-foreground/50 dark:bg-secondary [&_th]:text-background dark:[&_th]:text-foreground border-b-secondary-foreground/50">
@@ -71,30 +88,35 @@ export default function DataTable({ data, columns }: DataTableProps) {
           </TableHeader>
           <TableBody>
             {table.getRowModel().rows?.length ? (
-              table.getRowModel().rows.map((row) => (
-                <TableRow
-                  key={row.id}
-                  data-state={row.getIsSelected() && "selected"}
-                  className="hover:bg-transparent"
-                >
-                  {row.getVisibleCells().map((cell, index) => (
-                    <TableCell key={cell.id} className="relative">
-                      <Link
-                        href={`/tenants/${row.original.id}`}
-                        className="absolute inset-0 z-10"
-                        aria-label={
-                          index === 0
-                            ? `View ${row.original.companyName}`
-                            : undefined
-                        }
-                        aria-hidden={index === 0 ? undefined : true}
-                        tabIndex={index === 0 ? undefined : -1}
-                      />
-                      <table.FlexRender cell={cell} />
-                    </TableCell>
-                  ))}
-                </TableRow>
-              ))
+              table.getRowModel().rows.map((row) => {
+                const href = getRowHref?.(row.original);
+                return (
+                  <TableRow
+                    key={row.id}
+                    data-state={row.getIsSelected() && "selected"}
+                    className="hover:bg-secondary/50"
+                  >
+                    {row.getVisibleCells().map((cell, index) => (
+                      <TableCell key={cell.id} className="relative">
+                        {href ? (
+                          <a
+                            href={href}
+                            className="absolute inset-0 z-10"
+                            aria-label={
+                              index === 0
+                                ? getRowAriaLabel?.(row.original)
+                                : undefined
+                            }
+                            aria-hidden={index === 0 ? undefined : true}
+                            tabIndex={index === 0 ? undefined : -1}
+                          />
+                        ) : null}
+                        <table.FlexRender cell={cell} />
+                      </TableCell>
+                    ))}
+                  </TableRow>
+                );
+              })
             ) : (
               <TableRow>
                 <TableCell

@@ -6,6 +6,9 @@
         "name": "next"
       }
     ],
+    "paths": {
+      "@*":["./*"]
+    },
     "strictNullChecks": true
   },
   "include": [
@@ -13,7 +16,13 @@
     "**/*.tsx",
     "next-env.d.ts",
     "next.config.js",
-    ".next/types/**/*.ts"
+    ".next/types/**/*.ts",
+    "components/tenants-table/columns.tsx",
+    "components/tenants-table/features.ts",
+    "components/tenants-table/filtering.tsx",
+    "components/tenants-table/pagination.tsx",
+    "components/tenants-table/row-actions.tsx",
+    "components/tenants-table/table.tsx",
   ],
   "exclude": ["node_modules"]
 }
