@@ -14,7 +14,9 @@
     "./styles/*": "./src/styles/*.css",
     "./styles/*.css": "./src/styles/*.css",
     "./assets/*": "./src/assets/*",
-    "./shared/layouts/*": "./src/shared/layouts/*.tsx"
+    "./shared/layouts/*": "./src/shared/layouts/*.tsx",
+    "./shared/page-layouts/*": "./src/shared/page-layouts/*.tsx",
+    "./components/data-table/*": "./src/components/data-table/*.tsx"
   },
   "scripts": {
     "lint": "eslint . --max-warnings 0",
@@ -35,6 +37,7 @@
   },
   "dependencies": {
     "@base-ui/react": "catalog:",
+    "@tanstack/react-table": "catalog:",
     "@shadcn/react": "catalog:",
     "class-variance-authority": "catalog:",
     "clsx": "catalog:",

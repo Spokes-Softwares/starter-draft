@@ -1,5 +1,4 @@
-/* This is quite a lot of features of Tanstack - however ones which aren't being used will be dropped
- so they dont take up any space on build. */
+/* Features used by the shared DataTable. Unused ones are tree-shaken. */
 
 import {
   columnFilteringFeature,

@@ -1,7 +1,7 @@
 import { Button } from "@repo/ui/components/shadcn-ui/button";
 import { Heading } from "@repo/ui/components/shadcn-ui/heading";
 import { Bot } from "lucide-react";
-import DataTable from "./_components/data-table/table";
+import DataTable from "@repo/ui/components/data-table/table";
 import { columns } from "./_components/data-table/columns";
 import { ExampleData } from "./_components/data-table/data";
 
@@ -226,7 +226,16 @@ export default function KitchenSinkPage() {
         </div>
       </section>
       <section>
-        <DataTable columns={columns} data={ExampleData} />
+        <DataTable
+          columns={columns}
+          data={ExampleData}
+          filter={{
+            columnId: "companyName",
+            placeholder: "Filter companies...",
+          }}
+          getRowHref={(row) => `/tenants/${row.id}`}
+          getRowAriaLabel={(row) => `View ${row.companyName}`}
+        />
       </section>
     </div>
   );

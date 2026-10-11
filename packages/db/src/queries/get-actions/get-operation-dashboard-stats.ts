@@ -1,3 +1,5 @@
+/* Gets count of all tenants + hubs + assets */
+
 import { createSupabaseServerClient } from "../../server";
 
 export type DashboardStats = {
