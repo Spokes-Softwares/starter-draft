@@ -19,7 +19,7 @@ import {
   AlertDescription,
   AlertTitle,
 } from "@repo/ui/components/shadcn-ui/alert";
-import handleHubOnboardAction from "@/actions/onboarding/hub-onboarding-action";
+import handleHubOnboard from "@/actions/handle-hub-onboard";
 
 const emptyHubFields = {
   hubDisplayName: "",
@@ -52,7 +52,7 @@ export default function HubOnboardForm({ tenantId }: { tenantId: string }) {
     setSuccess(false);
     setCreatedHub(null);
 
-    const result = await handleHubOnboardAction(values);
+    const result = await handleHubOnboard(values);
 
     if (result.error) {
       setError(result.error);

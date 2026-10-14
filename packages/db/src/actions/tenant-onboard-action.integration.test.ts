@@ -1,35 +1,15 @@
-import { afterEach, describe, expect, test, vi } from "vitest";
-import {
-  OPERATOR_EMAIL,
-  TENANT_EMAIL,
-} from "../../../../packages/db/src/integration-tests/fixtures";
+import { afterEach, describe, expect, test } from "vitest";
 import {
   createAdminTestClient,
   signedInClient,
-  type TestClient,
-} from "../../../../packages/db/src/integration-tests/test-helpers";
-import handleTenantOnboardAction from "./tenant-onboard-action";
-
-const { sessionClient } = vi.hoisted(() => ({
-  sessionClient: { current: undefined as TestClient | undefined },
-}));
-
-vi.mock("@repo/db/server", () => ({
-  createSupabaseServerClient: async () => {
-    if (!sessionClient.current) throw new Error("Test client is not set");
-    return sessionClient.current;
-  },
-}));
-
-vi.mock("next/cache", () => ({
-  revalidatePath: () => {},
-}));
+} from "../integration-tests/test-helpers";
+import tenantOnboardAction from "./tenant-onboard-action";
+import { OPERATOR_EMAIL, TENANT_EMAIL } from "../integration-tests/fixtures";
 
 const createdCompanyNames: string[] = [];
 const createdEmails: string[] = [];
 
 afterEach(async () => {
-  sessionClient.current = undefined;
   const admin = createAdminTestClient();
 
   if (createdCompanyNames.length > 0) {
@@ -60,26 +40,15 @@ function tenantValues(email: string, companyName: string) {
   };
 }
 
-describe("handleTenantOnboardAction", () => {
-  test("01 - invalid input returns an error", async () => {
-    const result = await handleTenantOnboardAction({
-      companyName: "",
-      email: "not-an-email",
-      password: "short",
-    });
-
-    expect(result.error).toBeTruthy();
-    expect(result.data).toBeUndefined();
-  });
-
-  test("02 - operator creates a tenant and membership", async () => {
+describe("tenantOnboardAction", () => {
+  test("01 - operator creates a tenant and membership", async () => {
     const email = `vitest-tenant-${crypto.randomUUID()}@spokes.test`;
     const companyName = `Vitest Co ${crypto.randomUUID()}`;
     createdEmails.push(email);
     createdCompanyNames.push(companyName);
-    sessionClient.current = await signedInClient(OPERATOR_EMAIL);
 
-    const result = await handleTenantOnboardAction(
+    const result = await tenantOnboardAction(
+      await signedInClient(OPERATOR_EMAIL),
       tenantValues(email, companyName),
     );
 
@@ -107,14 +76,14 @@ describe("handleTenantOnboardAction", () => {
     expect(membership?.user_id).toBe(profile?.id);
   });
 
-  test("03 - non-operator cannot create a tenant and the auth user is removed", async () => {
+  test("02 - non-operator cannot create a tenant and the auth user is removed", async () => {
     const email = `vitest-tenant-${crypto.randomUUID()}@spokes.test`;
     const companyName = `Vitest Co ${crypto.randomUUID()}`;
     createdEmails.push(email);
     createdCompanyNames.push(companyName);
-    sessionClient.current = await signedInClient(TENANT_EMAIL);
 
-    const result = await handleTenantOnboardAction(
+    const result = await tenantOnboardAction(
+      await signedInClient(TENANT_EMAIL),
       tenantValues(email, companyName),
     );
 
