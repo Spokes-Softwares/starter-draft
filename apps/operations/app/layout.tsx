@@ -6,6 +6,7 @@ import { Metadata } from "next/dist/types";
 import { SidebarProvider } from "@repo/ui/components/shadcn-ui/sidebar";
 import { OperationsSidebar } from "../components/nav/operations-sidebar";
 import getCurrentUserProfile from "@repo/db/queries/user/get-current-user-profile";
+import { createSupabaseServerClient } from "@repo/db/server";
 
 const kanit = Kanit({
   weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
@@ -16,8 +17,8 @@ const kanit = Kanit({
 });
 
 export const metadata: Metadata = {
-  title: "Spokes Tenant Portal",
-  description: "Tenant-facing portal for Spokes",
+  title: " Operations Portal",
+  description: "Operations Portal",
 };
 
 export default async function RootLayout({
@@ -25,7 +26,8 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const user = await getCurrentUserProfile();
+  const supabase = await createSupabaseServerClient();
+  const user = await getCurrentUserProfile(supabase);
 
   return (
     <html

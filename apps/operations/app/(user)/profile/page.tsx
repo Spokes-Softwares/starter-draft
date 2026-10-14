@@ -1,4 +1,5 @@
 import getCurrentUserProfile from "@repo/db/queries/user/get-current-user-profile";
+import { createSupabaseServerClient } from "@repo/db/server";
 import UserProfileForm from "../../../components/forms/user-profile-form";
 import {
   Card,
@@ -8,7 +9,8 @@ import {
 import { Heading } from "@repo/ui/components/shadcn-ui/heading";
 
 export default async function UserProfilePage() {
-  const user = await getCurrentUserProfile();
+  const supabase = await createSupabaseServerClient();
+  const user = await getCurrentUserProfile(supabase);
   return (
     <Card className="max-w-200 ml-6 mt-6">
       <CardHeader>

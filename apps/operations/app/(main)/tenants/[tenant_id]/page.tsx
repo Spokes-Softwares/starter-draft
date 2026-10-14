@@ -9,15 +9,24 @@ import {
   listAssetsForTenant,
   TenantAssets,
 } from "@repo/db/queries/get-actions/list-tenant-assets";
+import { createSupabaseServerClient } from "@repo/db/server";
+import HubOnboarding from "@/components/hub-onboard/hub-onboard";
 
 async function TenantOverviewPageContent({
   hubs,
   assets,
+  tenantId,
 }: {
   hubs: ListHubs[];
   assets: TenantAssets[];
+  tenantId: string;
 }) {
-  return <TenantTabs hubs={hubs} assets={assets} />;
+  return (
+    <div className="grid gap-10">
+      <TenantTabs hubs={hubs} assets={assets} />
+      <HubOnboarding tenantId={tenantId} />
+    </div>
+  );
 }
 
 export default async function TenantOverviewPage({
@@ -26,10 +35,11 @@ export default async function TenantOverviewPage({
   params: Promise<{ tenant_id: string }>;
 }) {
   const { tenant_id } = await params;
+  const supabase = await createSupabaseServerClient();
   const [listHubs, tenant, assets] = await Promise.all([
-    listHubsForTenant(tenant_id),
-    getTenant(tenant_id),
-    listAssetsForTenant(tenant_id),
+    listHubsForTenant(supabase, tenant_id),
+    getTenant(supabase, tenant_id),
+    listAssetsForTenant(supabase, tenant_id),
   ]);
 
   return (
@@ -38,7 +48,11 @@ export default async function TenantOverviewPage({
         title={`${tenant.display_name}`}
         description={`You are viewing the details of: ${tenant.display_name}`}
       />
-      <TenantOverviewPageContent hubs={listHubs} assets={assets} />
+      <TenantOverviewPageContent
+        hubs={listHubs}
+        assets={assets}
+        tenantId={tenant_id}
+      />
     </div>
   );
 }

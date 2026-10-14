@@ -19,7 +19,6 @@ export default function PageHeader({
   description,
   link,
 }: PageHeaderProps) {
-  
   return (
     <div className="grid gap-10">
       <div className="grid gap-2">

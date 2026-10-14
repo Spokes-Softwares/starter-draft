@@ -19,10 +19,12 @@ export const HUB_ADMIN_EMAIL = "hub1@spokes.test";
 export const HUB_USER_ID = "33333333-3333-4333-8333-333333333335";
 export const HUB_USER_EMAIL = "hub1-user@spokes.test";
 
-// Own graph (Tenant One → Hub One)
+// Own graph (Tenant One → Hub One, Hub Two)
 export const TENANT_ONE_ID = "44444444-4444-4444-8444-444444444441";
 export const HUB_ONE_ID = "55555555-5555-4555-8555-555555555551";
+export const HUB_TWO_ID = "55555555-5555-4555-8555-555555555552";
 
-// Denial targets (Tenant Two → Hub Three) — IDs only, no sign-in
+// Denial targets (Tenant Two → Hub Three, Hub Four) — IDs only, no sign-in
 export const TENANT_TWO_ID = "44444444-4444-4444-8444-444444444442";
 export const HUB_THREE_ID = "55555555-5555-4555-8555-555555555553";
+export const HUB_FOUR_ID = "55555555-5555-4555-8555-555555555554";
