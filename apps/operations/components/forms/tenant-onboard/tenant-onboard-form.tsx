@@ -22,7 +22,7 @@ import { Field, FieldLabel } from "@repo/ui/components/shadcn-ui/field";
 import { Input } from "@repo/ui/components/shadcn-ui/input";
 import { Button } from "@repo/ui/components/shadcn-ui/button";
 import { Check, InfoIcon } from "lucide-react";
-import handleTenantOnboardAction from "../../actions/onboarding/tenant-onboard-action";
+import handleTenantOnboardAction from "@/actions/onboarding/tenant-onboard-action";
 import { useState } from "react";
 import {
   Alert,

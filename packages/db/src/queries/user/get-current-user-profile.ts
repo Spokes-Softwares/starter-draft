@@ -1,5 +1,6 @@
-import { createSupabaseServerClient } from "../../server";
+import type { SupabaseClient } from "@supabase/supabase-js";
 import { redirect } from "next/navigation";
+import type { Database } from "../../types";
 
 export type CurrentUserProfile = {
   name: string;
@@ -9,11 +10,12 @@ export type CurrentUserProfile = {
   displayName?: string;
 };
 
-export default async function getCurrentUserProfile(): Promise<CurrentUserProfile> {
-  const supabase = await createSupabaseServerClient();
+export default async function getCurrentUserProfile(
+  client: SupabaseClient<Database>,
+): Promise<CurrentUserProfile> {
   const {
     data: { user },
-  } = await supabase.auth.getUser();
+  } = await client.auth.getUser();
 
   if (!user) {
     const authUrl = process.env.AUTH_URL;

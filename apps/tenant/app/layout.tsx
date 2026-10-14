@@ -7,6 +7,7 @@ import { AppShell } from "@repo/ui/shared/layouts/appShell";
 import React from "react";
 import { TenantSidebar } from "@/components/nav/tenant-sidebar";
 import getCurrentUserProfile from "@repo/db/queries/user/get-current-user-profile";
+import { createSupabaseServerClient } from "@repo/db/server";
 
 const kanit = Kanit({
   weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
@@ -26,7 +27,8 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const user = await getCurrentUserProfile();
+  const supabase = await createSupabaseServerClient();
+  const user = await getCurrentUserProfile(supabase);
 
   return (
     <html

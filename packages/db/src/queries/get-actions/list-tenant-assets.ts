@@ -1,4 +1,5 @@
-import { createSupabaseServerClient } from "../../server";
+import type { SupabaseClient } from "@supabase/supabase-js";
+import type { Database } from "../../types";
 
 export type TenantAssets = {
   created_at: string;
@@ -12,11 +13,10 @@ export type TenantAssets = {
 };
 
 export async function listAssetsForTenant(
+  client: SupabaseClient<Database>,
   tenantId: string,
 ): Promise<TenantAssets[]> {
-  const supabase = await createSupabaseServerClient();
-
-  const { data } = await supabase
+  const { data } = await client
     .from("assets")
     .select(
       "id, display_name, hub_id, created_at, tenant_hubs!inner(tenant_id, display_name)",
