@@ -22,7 +22,6 @@ export const operationsSidebarMenuItems: {
         label: "Hubs",
         dropDownItems: [
           { label: "Overview", href: "/hubs" },
-          { label: "Onboard", href: "/hubs/new" },
         ],
       },
       {
