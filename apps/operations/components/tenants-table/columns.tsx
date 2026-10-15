@@ -14,7 +14,7 @@ export const columns = columnHelper.columns([
     header: ({ column }) => {
       return (
         <Button
-        className="p-0"
+          className="p-0"
           variant="ghost"
           onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
         >

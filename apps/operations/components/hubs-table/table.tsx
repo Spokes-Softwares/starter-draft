@@ -1,4 +1,4 @@
-'use client'
+"use client";
 
 import { Hub } from "@repo/db/queries/get-actions/list-all-hubs";
 import DataTable from "@repo/ui/components/data-table/table";

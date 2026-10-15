@@ -1,7 +1,7 @@
 /* Returns all data from the tenant_hubs table */
 
 import { SupabaseClient } from "@supabase/supabase-js";
-import { Database, Tables } from "../../types";
+import { Database } from "../../types";
 
 export type Hub = {
   id: string;
