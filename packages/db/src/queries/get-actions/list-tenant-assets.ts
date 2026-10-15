@@ -23,7 +23,6 @@ export async function listAssetsForTenant(
     )
     .eq("tenant_hubs.tenant_id", tenantId)
     .order("created_at", { ascending: false })
-    .order("id", { ascending: false })
     .throwOnError();
 
   return data;
