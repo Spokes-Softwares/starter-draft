@@ -22,10 +22,7 @@ async function TenantOverviewPageContent({
   tenantId: string;
 }) {
   return (
-    <div className="grid gap-10">
-      <TenantTabs hubs={hubs} assets={assets} />
-      <HubOnboarding tenantId={tenantId} />
-    </div>
+      <TenantTabs hubs={hubs} assets={assets} tenantId={tenantId}/>
   );
 }
 
