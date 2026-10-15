@@ -11,7 +11,11 @@ export const columns = columnHelper.columns([
   columnHelper.accessor("display_name", {
     header: ({ column }) => {
       return (
-        <Button className="p-0"variant="ghost" onClick={() => column.getIsSorted() === "asc"}>
+        <Button
+          className="p-0"
+          variant="ghost"
+          onClick={() => column.getIsSorted() === "asc"}
+        >
           Display Name
           <ArrowUpDown />
         </Button>

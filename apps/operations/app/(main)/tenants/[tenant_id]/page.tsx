@@ -21,9 +21,7 @@ async function TenantOverviewPageContent({
   assets: TenantAssets[];
   tenantId: string;
 }) {
-  return (
-      <TenantTabs hubs={hubs} assets={assets} tenantId={tenantId}/>
-  );
+  return <TenantTabs hubs={hubs} assets={assets} tenantId={tenantId} />;
 }
 
 export default async function TenantOverviewPage({
