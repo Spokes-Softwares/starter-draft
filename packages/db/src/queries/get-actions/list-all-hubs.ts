@@ -2,18 +2,8 @@
 
 import { SupabaseClient } from "@supabase/supabase-js";
 import { Database } from "../../types";
+import { Hub } from "./types";
 
-export type Hub = {
-  id: string;
-  display_name: string;
-  tenant_id: string;
-  created_at: string;
-  tenants: {
-    company_name: string;
-    display_name: string | null;
-  };
-  assets: { count: number }[];
-};
 
 export async function listAllHubs(
   client: SupabaseClient<Database>,

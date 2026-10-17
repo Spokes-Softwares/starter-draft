@@ -1,10 +1,10 @@
 "use client";
 
-import { Assets } from "@repo/db/queries/get-actions/list-assets-for-hub";
+import { Asset } from "@repo/db/queries/get-actions/types";
 import DataTable from "@repo/ui/components/data-table/table";
 import { columns } from "./columns";
 
-export default function AssetsDataTable({ data }: { data: Assets[] }) {
+export default function AssetsDataTable({ data }: { data: Asset[] }) {
   const tableFilter = {
     columnId: "display_name",
     placeHolder: "Filter Assets",

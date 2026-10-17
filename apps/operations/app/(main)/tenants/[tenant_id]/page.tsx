@@ -1,5 +1,4 @@
 import {
-  ListHubs,
   listHubsForTenant,
 } from "@repo/db/queries/get-actions/list-hubs-for-tenant";
 import { getTenant } from "@repo/db/queries/get-actions/get-single-tenant";
@@ -7,18 +6,17 @@ import PageHeader from "@repo/ui/shared/page-layouts/pageHeader";
 import TenantTabs from "@/components/tenant-tabs/tenant-tabs";
 import {
   listAssetsForTenant,
-  TenantAssets,
 } from "@repo/db/queries/get-actions/list-tenant-assets";
 import { createSupabaseServerClient } from "@repo/db/server";
-import HubOnboarding from "@/components/hub-onboard/hub-onboard";
+import { Asset, Hub } from "@repo/db/queries/get-actions/types";
 
 async function TenantOverviewPageContent({
   hubs,
   assets,
   tenantId,
 }: {
-  hubs: ListHubs[];
-  assets: TenantAssets[];
+  hubs: Hub[];
+  assets: Asset[];
   tenantId: string;
 }) {
   return <TenantTabs hubs={hubs} assets={assets} tenantId={tenantId} />;
