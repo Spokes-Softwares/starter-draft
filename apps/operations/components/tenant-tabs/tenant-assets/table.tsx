@@ -1,13 +1,13 @@
 "use client";
 
-import { TenantAssets } from "@repo/db/queries/get-actions/list-tenant-assets";
 import DataTable from "@repo/ui/components/data-table/table";
 import { columns } from "./columns";
+import { Asset } from "@repo/db/queries/get-actions/types";
 
 export default function TenantAssetsTable({
   assets,
 }: {
-  assets: TenantAssets[];
+  assets: Asset[];
 }) {
   const filter = { columnId: "display_name", placeholder: "Filter assets..." };
   return (

@@ -1,9 +1,9 @@
 /* Returns all data for a single tenant */
 
 import type { SupabaseClient } from "@supabase/supabase-js";
-import type { Database, Tables } from "../../types";
+import type { Database } from "../../types";
+import { Tenant } from "./types";
 
-export type Tenant = Tables<"tenants">;
 
 export async function getTenant(
   client: SupabaseClient<Database>,
