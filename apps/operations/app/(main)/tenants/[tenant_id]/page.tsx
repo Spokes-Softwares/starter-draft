@@ -1,14 +1,10 @@
-import {
-  listHubsForTenant,
-} from "@repo/db/queries/get-actions/list-hubs-for-tenant";
+import { listHubsForTenant } from "@repo/db/queries/get-actions/list-hubs-for-tenant";
 import { getTenant } from "@repo/db/queries/get-actions/get-single-tenant";
 import PageHeader from "@repo/ui/shared/page-layouts/pageHeader";
 import TenantTabs from "@/components/tenant-tabs/tenant-tabs";
-import {
-  listAssetsForTenant,
-} from "@repo/db/queries/get-actions/list-tenant-assets";
+import { listAssetsForTenant } from "@repo/db/queries/get-actions/list-tenant-assets";
 import { createSupabaseServerClient } from "@repo/db/server";
-import { Asset, Hub, tenantHub } from "@repo/db/queries/get-actions/types";
+import type { Asset, tenantHub } from "@repo/db/queries/get-actions/types";
 
 async function TenantOverviewPageContent({
   hubs,

@@ -1,6 +1,6 @@
-import { SupabaseClient } from "@supabase/supabase-js";
-import { Database } from "../../types";
-import { tenantHub } from "./types";
+import type { SupabaseClient } from "@supabase/supabase-js";
+import type { Database } from "../../types";
+import type { tenantHub } from "./types";
 
 export async function getSingleHubDetails(
   client: SupabaseClient<Database>,

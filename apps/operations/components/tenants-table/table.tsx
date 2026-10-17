@@ -2,7 +2,7 @@
 
 import DataTable from "@repo/ui/components/data-table/table";
 import { columns } from "./columns";
-import { Tenant } from "@repo/db/queries/get-actions/list-all-tenants";
+import type { Tenant } from "@repo/db/queries/get-actions/types";
 
 export default function TenantDataTable({ data }: { data: Tenant[] }) {
   const tableFilter = {

@@ -1,9 +1,9 @@
-import { Tables } from "../../types";
+import type { Tables } from "../../types";
 
 export type DashboardStats = {
-    numberOfAssets: number;
-    numberOfTenants: number;
-    numberOfHubs: number;
+  numberOfAssets: number;
+  numberOfTenants: number;
+  numberOfHubs: number;
 };
 
 export type Tenant = Tables<"tenants">;

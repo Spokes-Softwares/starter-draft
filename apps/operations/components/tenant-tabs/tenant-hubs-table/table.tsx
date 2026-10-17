@@ -1,10 +1,10 @@
 "use client";
 
-import { ListHubs } from "@repo/db/queries/get-actions/list-hubs-for-tenant";
+import type { tenantHub } from "@repo/db/queries/get-actions/types";
 import DataTable from "@repo/ui/components/data-table/table";
 import { columns } from "./columns";
 
-export default function TenantHubsDataTable({ data }: { data: ListHubs[] }) {
+export default function TenantHubsDataTable({ data }: { data: tenantHub[] }) {
   const tableFilter = {
     columnId: "display_name",
     placeholder: "Filter Hubs...",

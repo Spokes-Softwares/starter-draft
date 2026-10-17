@@ -1,9 +1,7 @@
 import HubTabs from "@/components/hub-tabs/hub-tabs";
 import { getSingleHubDetails } from "@repo/db/queries/get-actions/get-single-hub";
-import {
-  ListAssetsForHub,
-} from "@repo/db/queries/get-actions/list-assets-for-hub";
-import { Asset } from "@repo/db/queries/get-actions/types";
+import { ListAssetsForHub } from "@repo/db/queries/get-actions/list-assets-for-hub";
+import type { Asset } from "@repo/db/queries/get-actions/types";
 import { createSupabaseServerClient } from "@repo/db/server";
 import PageHeader from "@repo/ui/shared/page-layouts/pageHeader";
 import PageShell from "@repo/ui/shared/page-layouts/pageShell";

@@ -8,7 +8,7 @@ import TenantHubsDataTable from "./tenant-hubs-table/table";
 import TenantAssetsTabContent from "./tenant-assets/tenant-assets-tab-content";
 import TenantSettingsTab from "./tenant-settings/tenant-settings";
 import HubOnboarding from "../hub-onboard/hub-onboard";
-import { Hub, Asset, tenantHub } from "@repo/db/queries/get-actions/types";
+import type { Asset, tenantHub } from "@repo/db/queries/get-actions/types";
 
 export default function TenantTabs({
   hubs,
