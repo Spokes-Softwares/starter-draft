@@ -8,14 +8,14 @@ import {
   listAssetsForTenant,
 } from "@repo/db/queries/get-actions/list-tenant-assets";
 import { createSupabaseServerClient } from "@repo/db/server";
-import { Asset, Hub } from "@repo/db/queries/get-actions/types";
+import { Asset, Hub, tenantHub } from "@repo/db/queries/get-actions/types";
 
 async function TenantOverviewPageContent({
   hubs,
   assets,
   tenantId,
 }: {
-  hubs: Hub[];
+  hubs: tenantHub[];
   assets: Asset[];
   tenantId: string;
 }) {
