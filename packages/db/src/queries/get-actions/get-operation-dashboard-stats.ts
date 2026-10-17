@@ -2,8 +2,7 @@
 
 import type { SupabaseClient } from "@supabase/supabase-js";
 import type { Database } from "../../types";
-import { DashboardStats } from "./types";
-
+import type { DashboardStats } from "./types";
 
 export async function getOperationDashboardStats(
   client: SupabaseClient<Database>,

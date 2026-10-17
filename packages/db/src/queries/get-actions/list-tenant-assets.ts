@@ -1,12 +1,11 @@
 import type { SupabaseClient } from "@supabase/supabase-js";
 import type { Database } from "../../types";
-import { Asset } from "./types";
+import type { Asset } from "./types";
 
 export async function listAssetsForTenant(
   client: SupabaseClient<Database>,
   tenantId: string,
-): Promise<Asset[]> 
-{
+): Promise<Asset[]> {
   const { data } = await client
     .from("assets")
     .select(

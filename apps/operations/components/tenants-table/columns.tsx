@@ -4,7 +4,7 @@ import { createColumnHelper } from "@tanstack/react-table";
 import { DataTableFeatures } from "@repo/ui/components/data-table/features";
 import { Button } from "@repo/ui/components/shadcn-ui/button";
 import { ArrowUpDown } from "lucide-react";
-import { Tenant } from "@repo/db/queries/get-actions/list-all-tenants";
+import type { Tenant } from "@repo/db/queries/get-actions/types";
 import DataTableRowActions from "@repo/ui/components/data-table/row-actions";
 
 const columnHelper = createColumnHelper<DataTableFeatures, Tenant>();

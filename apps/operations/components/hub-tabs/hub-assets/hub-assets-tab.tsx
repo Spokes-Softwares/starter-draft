@@ -1,11 +1,10 @@
 import AssetsDataTable from "@/components/assets-table/table";
-import { Asset } from "@repo/db/queries/get-actions/types";
+import type { Asset } from "@repo/db/queries/get-actions/types";
 import StatTile, {
-  StatTileProps,
+  type StatTileProps,
 } from "@repo/ui/components/dashboards/stat-tile";
 
 export default function HubAssetsTab({ assets }: { assets: Asset[] }) {
-
   const statTileData = [
     { title: "Total Number of assets", data: assets.length },
     { title: "Assets in use", data: "Phase 2" },

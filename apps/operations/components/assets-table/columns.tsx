@@ -1,6 +1,6 @@
 "use client ";
 
-import { Asset } from "@repo/db/queries/get-actions/types";
+import type { Asset } from "@repo/db/queries/get-actions/types";
 import { DataTableFeatures } from "@repo/ui/components/data-table/features";
 import DataTableRowActions from "@repo/ui/components/data-table/row-actions";
 import { Button } from "@repo/ui/components/shadcn-ui/button";

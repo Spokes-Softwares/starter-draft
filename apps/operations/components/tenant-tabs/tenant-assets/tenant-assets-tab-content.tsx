@@ -1,4 +1,4 @@
-import { Asset } from "@repo/db/queries/get-actions/types";
+import type { Asset } from "@repo/db/queries/get-actions/types";
 import TenantAssetsTable from "./table";
 import StatTile from "@repo/ui/components/dashboards/stat-tile";
 

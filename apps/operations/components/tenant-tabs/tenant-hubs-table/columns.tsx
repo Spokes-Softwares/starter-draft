@@ -1,13 +1,13 @@
 "use client";
 
-import { ListHubs } from "@repo/db/queries/get-actions/list-hubs-for-tenant";
+import type { tenantHub } from "@repo/db/queries/get-actions/types";
 import { DataTableFeatures } from "@repo/ui/components/data-table/features";
 import { Button } from "@repo/ui/components/shadcn-ui/button/button";
 import { createColumnHelper } from "@tanstack/react-table";
 import { ArrowUpDown } from "lucide-react";
 import DataTableRowActions from "./row-actions";
 
-const columnHelper = createColumnHelper<DataTableFeatures, ListHubs>();
+const columnHelper = createColumnHelper<DataTableFeatures, tenantHub>();
 
 export const columns = columnHelper.columns([
   columnHelper.accessor("display_name", {

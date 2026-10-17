@@ -1,5 +1,6 @@
 import HubsDataTable from "@/components/hubs-table/table";
-import { Hub, listAllHubs } from "@repo/db/queries/get-actions/list-all-hubs";
+import { listAllHubs } from "@repo/db/queries/get-actions/list-all-hubs";
+import type { Hub } from "@repo/db/queries/get-actions/types";
 import { createSupabaseServerClient } from "@repo/db/server";
 import PageHeader from "@repo/ui/shared/page-layouts/pageHeader";
 import PageShell from "@repo/ui/shared/page-layouts/pageShell";

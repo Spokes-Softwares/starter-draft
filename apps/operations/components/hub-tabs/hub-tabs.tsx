@@ -5,11 +5,10 @@ import {
   TabsTrigger,
 } from "@repo/ui/components/shadcn-ui/tabs";
 import HubSettingsTab from "./hub-settings/hub-settings";
-import { Asset } from "@repo/db/queries/get-actions/types";
+import type { Asset } from "@repo/db/queries/get-actions/types";
 import HubAssetsTab from "./hub-assets/hub-assets-tab";
 
 export default function HubTabs({ assets }: { assets: Asset[] }) {
-
   const tabsTriggerList = [
     { value: "asset-overview", text: "Assets" },
     { value: "settings", text: "Hub Settings" },
@@ -25,7 +24,7 @@ export default function HubTabs({ assets }: { assets: Asset[] }) {
         ))}
       </TabsList>
       <TabsContent value="asset-overview">
-        <HubAssetsTab assets={assets}/>
+        <HubAssetsTab assets={assets} />
       </TabsContent>
       <TabsContent value="settings">
         <HubSettingsTab />
