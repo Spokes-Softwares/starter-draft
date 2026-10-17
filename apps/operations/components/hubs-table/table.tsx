@@ -1,6 +1,6 @@
 "use client";
 
-import { Hub } from "@repo/db/queries/get-actions/list-all-hubs";
+import type { Hub } from "@repo/db/queries/get-actions/types";
 import DataTable from "@repo/ui/components/data-table/table";
 import { columns } from "./columns";
 

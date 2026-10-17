@@ -2,8 +2,7 @@
 
 import type { SupabaseClient } from "@supabase/supabase-js";
 import type { Database } from "../../types";
-import { Hub, tenantHub } from "./types";
-
+import type { tenantHub } from "./types";
 
 export async function listHubsForTenant(
   client: SupabaseClient<Database>,

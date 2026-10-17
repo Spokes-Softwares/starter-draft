@@ -1,7 +1,5 @@
-import {
-  listAllTenants,
-  Tenant,
-} from "@repo/db/queries/get-actions/list-all-tenants";
+import { listAllTenants } from "@repo/db/queries/get-actions/list-all-tenants";
+import type { Tenant } from "@repo/db/queries/get-actions/types";
 import { createSupabaseServerClient } from "@repo/db/server";
 import TenantDataTable from "@/components/tenants-table/table";
 import { PlusIcon } from "lucide-react";

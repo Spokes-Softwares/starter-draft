@@ -1,4 +1,4 @@
-import { Hub } from "@repo/db/queries/get-actions/list-all-hubs";
+import type { Hub } from "@repo/db/queries/get-actions/types";
 import { DataTableFeatures } from "@repo/ui/components/data-table/features";
 import DataTableRowActions from "@repo/ui/components/data-table/row-actions";
 import { Button } from "@repo/ui/components/shadcn-ui/button";

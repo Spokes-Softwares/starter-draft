@@ -2,8 +2,7 @@
 
 import type { SupabaseClient } from "@supabase/supabase-js";
 import type { Database } from "../../types";
-import { Tenant } from "./types";
-
+import type { Tenant } from "./types";
 
 export async function listAllTenants(
   client: SupabaseClient<Database>,
