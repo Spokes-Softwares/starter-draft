@@ -2,12 +2,8 @@
 
 import type { SupabaseClient } from "@supabase/supabase-js";
 import type { Database } from "../../types";
+import { DashboardStats } from "./types";
 
-export type DashboardStats = {
-  numberOfAssets: number;
-  numberOfTenants: number;
-  numberOfHubs: number;
-};
 
 export async function getOperationDashboardStats(
   client: SupabaseClient<Database>,

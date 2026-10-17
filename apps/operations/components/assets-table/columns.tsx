@@ -1,13 +1,13 @@
 "use client ";
 
-import { Assets } from "@repo/db/queries/get-actions/list-assets-for-hub";
+import { Asset } from "@repo/db/queries/get-actions/types";
 import { DataTableFeatures } from "@repo/ui/components/data-table/features";
 import DataTableRowActions from "@repo/ui/components/data-table/row-actions";
 import { Button } from "@repo/ui/components/shadcn-ui/button";
 import { createColumnHelper } from "@tanstack/react-table";
 import { ArrowUpDown } from "lucide-react";
 
-const columnHelper = createColumnHelper<DataTableFeatures, Assets>();
+const columnHelper = createColumnHelper<DataTableFeatures, Asset>();
 
 export const columns = columnHelper.columns([
   columnHelper.accessor("display_name", {
