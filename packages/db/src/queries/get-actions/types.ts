@@ -8,6 +8,13 @@ export type DashboardStats = {
 
 export type Tenant = Tables<"tenants">;
 
+export type tenantHub = {
+  id: string;
+  display_name: string;
+  tenant_id: string;
+  created_at: string;
+};
+
 export type Hub = {
   id: string;
   display_name: string;

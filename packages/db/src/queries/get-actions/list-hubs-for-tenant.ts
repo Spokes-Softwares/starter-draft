@@ -2,17 +2,16 @@
 
 import type { SupabaseClient } from "@supabase/supabase-js";
 import type { Database } from "../../types";
-import { Hub } from "./types";
-
+import { Hub, tenantHub } from "./types";
 
 
 export async function listHubsForTenant(
   client: SupabaseClient<Database>,
   tenantId: string,
-): Promise<Hub[]> {
+): Promise<tenantHub[]> {
   const { data: listHubs } = await client
     .from("tenant_hubs")
-    .select("id, display_name, tenant_id, created_at, tenants!inner(company_name, display_name), assets(count)")
+    .select("id, display_name, tenant_id, created_at")
     .eq("tenant_id", tenantId)
     .throwOnError();
 
