@@ -5,6 +5,7 @@ import TenantTabs from "@/components/tenant-tabs/tenant-tabs";
 import { listAssetsForTenant } from "@repo/db/queries/get-actions/list-tenant-assets";
 import { createSupabaseServerClient } from "@repo/db/server";
 import type { Asset, tenantHub } from "@repo/db/queries/get-actions/types";
+import PageShell from "@repo/ui/shared/page-layouts/pageShell";
 
 async function TenantOverviewPageContent({
   hubs,
@@ -32,7 +33,7 @@ export default async function TenantOverviewPage({
   ]);
 
   return (
-    <div className="grid gap-10">
+    <PageShell>
       <PageHeader
         title={`${tenant.display_name}`}
         description={`You are viewing the details of: ${tenant.display_name}`}
@@ -42,6 +43,6 @@ export default async function TenantOverviewPage({
         assets={assets}
         tenantId={tenant_id}
       />
-    </div>
+    </PageShell>
   );
 }
