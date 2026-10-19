@@ -10,7 +10,7 @@ export async function getOperationDashboardStats(
   const [numberOfAssets, numberOfTenants, numberOfHubs] = await Promise.all([
     client.from("assets").select("*", { count: "exact", head: true }),
     client.from("tenants").select("*", { count: "exact", head: true }),
-    client.from("hub_users").select("*", { count: "exact", head: true }),
+    client.from("tenant_hubs").select("*", { count: "exact", head: true }),
   ]);
 
   return {
