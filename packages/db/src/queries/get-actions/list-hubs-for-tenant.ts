@@ -10,7 +10,7 @@ export async function listHubsForTenant(
 ): Promise<tenantHub[]> {
   const { data: listHubs } = await client
     .from("tenant_hubs")
-    .select("id, display_name, tenant_id, created_at")
+    .select("id, display_name, tenant_id, created_at, assets(count)")
     .eq("tenant_id", tenantId)
     .throwOnError();
 

@@ -1,5 +1,9 @@
 import { afterAll, beforeAll, describe, expect, test, vi } from "vitest";
-import { OPERATOR_EMAIL } from "../../integration-tests/fixtures";
+import {
+  OPERATOR_EMAIL,
+  TENANT_EMAIL,
+  TENANT_ONE_ID,
+} from "../../integration-tests/fixtures";
 import {
   createTestClient,
   signedInClient,
@@ -38,7 +42,16 @@ describe("getCurrentUserProfile", () => {
       avatarUrl: undefined,
       phone: "",
       displayName: "",
+      tenantId: null,
     });
+  });
+
+  test("03 - signed-in tenant user returns their tenant id", async () => {
+    const client = await signedInClient(TENANT_EMAIL);
+    const profile = await getCurrentUserProfile(client);
+
+    expect(profile.tenantId).toBe(TENANT_ONE_ID);
+    expect(profile.email).toBe(TENANT_EMAIL);
   });
 
   test("02 - unsigned client redirects to AUTH_URL", async () => {

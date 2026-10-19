@@ -13,6 +13,7 @@ export type tenantHub = {
   display_name: string;
   tenant_id: string;
   created_at: string;
+  assets: { count: number }[];
 };
 
 export type Hub = {

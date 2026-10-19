@@ -1,3 +1,3 @@
 export default function AssetsPage() {
-  return <div>This is where the assets live for each tenant</div>;
+  return <div>Phase 2</div>;
 }
