@@ -20,10 +20,7 @@ export const operationsSidebarMenuItems: {
       {
         icon: House,
         label: "Hubs",
-        dropDownItems: [
-          { label: "Overview", href: "/hubs" },
-          { label: "Onboard", href: "/hubs/new" },
-        ],
+        dropDownItems: [{ label: "Overview", href: "/hubs" }],
       },
       {
         icon: Bot,

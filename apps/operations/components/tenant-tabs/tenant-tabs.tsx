@@ -7,15 +7,17 @@ import {
 import TenantHubsDataTable from "./tenant-hubs-table/table";
 import TenantAssetsTabContent from "./tenant-assets/tenant-assets-tab-content";
 import TenantSettingsTab from "./tenant-settings/tenant-settings";
-import { ListHubs } from "@repo/db/queries/get-actions/list-hubs-for-tenant";
-import { TenantAssets } from "@repo/db/queries/get-actions/list-tenant-assets";
+import HubOnboarding from "../hub-onboard/hub-onboard";
+import type { Asset, tenantHub } from "@repo/db/queries/get-actions/types";
 
 export default function TenantTabs({
   hubs,
   assets,
+  tenantId,
 }: {
-  hubs: ListHubs[];
-  assets: TenantAssets[];
+  hubs: tenantHub[];
+  assets: Asset[];
+  tenantId: string;
 }) {
   const tabsTriggerList = [
     { value: "hubs-table", text: "Hubs" },
@@ -33,7 +35,10 @@ export default function TenantTabs({
         ))}
       </TabsList>
       <TabsContent value="hubs-table">
-        <TenantHubsDataTable data={hubs} />
+        <div className="grid gap-6">
+          <TenantHubsDataTable data={hubs} />
+          <HubOnboarding tenantId={tenantId} />
+        </div>
       </TabsContent>
       <TabsContent value="tenant-assets">
         <TenantAssetsTabContent assets={assets} />

@@ -22,7 +22,6 @@ import { Field, FieldLabel } from "@repo/ui/components/shadcn-ui/field";
 import { Input } from "@repo/ui/components/shadcn-ui/input";
 import { Button } from "@repo/ui/components/shadcn-ui/button";
 import { Check, InfoIcon } from "lucide-react";
-import handleTenantOnboardAction from "../../actions/onboarding/tenant-onboard-action";
 import { useState } from "react";
 import {
   Alert,
@@ -35,6 +34,7 @@ import {
   CardDescription,
   CardHeader,
 } from "@repo/ui/components/shadcn-ui/card";
+import handleTenantOnboard from "@/actions/handle-tenant-onboard";
 
 export default function TenantOnboardForm() {
   const [error, setError] = useState<string | null>(null);
@@ -57,7 +57,7 @@ export default function TenantOnboardForm() {
   });
 
   async function handleTenantOnboarding(values: TenantOnboardValues) {
-    const result = await handleTenantOnboardAction(values);
+    const result = await handleTenantOnboard(values);
 
     if (result.error) {
       setError(result.error);

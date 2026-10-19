@@ -18,8 +18,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Spokes Tenant Portal",
-  description: "Tenant-facing portal for Spokes",
+  title: "Log in Portal",
+  description: "Log in here",
 };
 
 export default function RootLayout({

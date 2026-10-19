@@ -1,7 +1,6 @@
-import {
-  listAllTenants,
-  Tenant,
-} from "@repo/db/queries/get-actions/list-all-tenants";
+import { listAllTenants } from "@repo/db/queries/get-actions/list-all-tenants";
+import type { Tenant } from "@repo/db/queries/get-actions/types";
+import { createSupabaseServerClient } from "@repo/db/server";
 import TenantDataTable from "@/components/tenants-table/table";
 import { PlusIcon } from "lucide-react";
 import PageHeader from "@repo/ui/shared/page-layouts/pageHeader";
@@ -16,7 +15,8 @@ async function TenantsPageContent({
 }
 
 export default async function TenantsPage() {
-  const listOfTenants = await listAllTenants();
+  const supabase = await createSupabaseServerClient();
+  const listOfTenants = await listAllTenants(supabase);
   const headerLink = {
     href: "/tenants/new",
     text: "New Tenant",

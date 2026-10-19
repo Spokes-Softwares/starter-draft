@@ -10,15 +10,20 @@ import {
   DropdownMenuTrigger,
 } from "@repo/ui/components/shadcn-ui/dropdown-menu";
 import { MoreHorizontal } from "lucide-react";
-import { DataTableFeatures } from "@repo/ui/components/data-table/features";
-import { Row } from "@tanstack/react-table";
-import Link from "next/link";
-import { Tenant } from "@repo/db/queries/get-actions/list-all-tenants";
+import { Row, type RowData } from "@tanstack/react-table";
+import { DataTableFeatures } from "./features";
 
-export default function DataTableRowActions({
+type MenuItem<TData> = {
+  text: string;
+  href: (row: TData) => string;
+};
+
+export default function DataTableRowActions<TData extends RowData>({
   row,
+  menuItems,
 }: {
-  row: Row<DataTableFeatures, Tenant>;
+  row: Row<DataTableFeatures, TData>;
+  menuItems: MenuItem<TData>[];
 }) {
   return (
     <div className="relative z-20">
@@ -31,11 +36,12 @@ export default function DataTableRowActions({
         <DropdownMenuContent>
           <DropdownMenuGroup>
             <DropdownMenuLabel>Actions</DropdownMenuLabel>
-            <DropdownMenuItem
-              render={
-                <Link href={`/tenants/${row.original.id}`}>View Tenant </Link>
-              }
-            />
+            {menuItems.map((item) => (
+              <DropdownMenuItem
+                key={item.text}
+                render={<a href={item.href(row.original)}>{item.text}</a>}
+              />
+            ))}
           </DropdownMenuGroup>
         </DropdownMenuContent>
       </DropdownMenu>
