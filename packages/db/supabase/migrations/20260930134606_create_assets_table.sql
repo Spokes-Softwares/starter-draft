@@ -3,6 +3,7 @@ create table public.assets (
     id uuid primary key default gen_random_uuid(),
     hub_id uuid not null references public.tenant_hubs (id) on delete cascade,
     display_name text,
+    service_status text,
     created_at timestamptz default now() not null
 );
 
