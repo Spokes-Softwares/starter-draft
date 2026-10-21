@@ -2,6 +2,7 @@ import {
   DashboardStats,
   getOperationDashboardStats,
 } from "@repo/db/queries/get-actions/get-operation-dashboard-stats";
+import { createSupabaseServerClient } from "@repo/db/server";
 import StatTile from "@repo/ui/components/dashboards/stat-tile";
 import { Heading } from "@repo/ui/components/shadcn-ui/heading";
 
@@ -37,7 +38,8 @@ async function OperationsDashboardContent({ data }: { data: DashboardStats }) {
 }
 
 export default async function OperationsPage() {
-  const data = await getOperationDashboardStats();
+  const supabase = await createSupabaseServerClient();
+  const data = await getOperationDashboardStats(supabase);
 
   return <OperationsDashboardContent data={data} />;
 }

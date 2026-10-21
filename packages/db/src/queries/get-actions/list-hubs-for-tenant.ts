@@ -1,14 +1,15 @@
 /* Lists all hubs from a specific tenant when passed the tenant_id */
 
-import { createSupabaseServerClient } from "../../server";
-import { Tables } from "../../types";
+import type { SupabaseClient } from "@supabase/supabase-js";
+import type { Database, Tables } from "../../types";
 
 export type ListHubs = Tables<"tenant_hubs">;
 
-export async function listHubsForTenant(tenantId: string): Promise<ListHubs[]> {
-  const supabase = await createSupabaseServerClient();
-
-  const { data: listHubs } = await supabase
+export async function listHubsForTenant(
+  client: SupabaseClient<Database>,
+  tenantId: string,
+): Promise<ListHubs[]> {
+  const { data: listHubs } = await client
     .from("tenant_hubs")
     .select("*")
     .eq("tenant_id", tenantId)

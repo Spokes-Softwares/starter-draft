@@ -1,7 +1,6 @@
 import type { TenantAssets } from "@repo/db/queries/get-actions/list-tenant-assets";
 import TenantAssetsTable from "./table";
 import StatTile from "@repo/ui/components/dashboards/stat-tile";
-import { Heading } from "@repo/ui/components/shadcn-ui/heading";
 
 export default function TenantAssetsTabContent({
   assets,

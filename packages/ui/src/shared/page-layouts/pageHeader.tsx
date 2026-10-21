@@ -19,9 +19,7 @@ export default function PageHeader({
   description,
   link,
 }: PageHeaderProps) {
-  
   return (
-    <div className="grid gap-10">
       <div className="grid gap-2">
         <div className="flex items-center">
           <Heading variant="h2">{title}</Heading>
@@ -36,6 +34,5 @@ export default function PageHeader({
         </div>
         {description ? <CardDescription>{description}</CardDescription> : null}
       </div>
-    </div>
   );
 }
