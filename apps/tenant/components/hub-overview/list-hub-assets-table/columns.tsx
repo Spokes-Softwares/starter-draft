@@ -10,7 +10,7 @@ import { ArrowUpDown } from "lucide-react";
 const columnHelper = createColumnHelper<DataTableFeatures, Asset>();
 
 export const columns = columnHelper.columns([
-  columnHelper.accessor("display_name", {
+  columnHelper.accessor("reference_tag", {
     header: ({ column }) => {
       return (
         <Button

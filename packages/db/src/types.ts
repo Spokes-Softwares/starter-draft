@@ -34,26 +34,75 @@ export type Database = {
   };
   public: {
     Tables: {
-      assets: {
+      asset_types: {
         Row: {
+          asset_type: string;
           created_at: string;
-          display_name: string | null;
-          hub_id: string;
           id: string;
+          tenant_id: string;
         };
         Insert: {
+          asset_type: string;
           created_at?: string;
-          display_name?: string | null;
-          hub_id: string;
           id?: string;
+          tenant_id: string;
         };
         Update: {
+          asset_type?: string;
           created_at?: string;
-          display_name?: string | null;
-          hub_id?: string;
           id?: string;
+          tenant_id?: string;
         };
         Relationships: [
+          {
+            foreignKeyName: "asset_types_tenant_id_fkey";
+            columns: ["tenant_id"];
+            isOneToOne: false;
+            referencedRelation: "tenant_asset_service_counts";
+            referencedColumns: ["tenant_id"];
+          },
+          {
+            foreignKeyName: "asset_types_tenant_id_fkey";
+            columns: ["tenant_id"];
+            isOneToOne: false;
+            referencedRelation: "tenants";
+            referencedColumns: ["id"];
+          },
+        ];
+      };
+      assets: {
+        Row: {
+          asset_type: string;
+          created_at: string;
+          hub_id: string;
+          id: string;
+          reference_tag: string | null;
+          service_status: string;
+        };
+        Insert: {
+          asset_type: string;
+          created_at?: string;
+          hub_id: string;
+          id?: string;
+          reference_tag?: string | null;
+          service_status: string;
+        };
+        Update: {
+          asset_type?: string;
+          created_at?: string;
+          hub_id?: string;
+          id?: string;
+          reference_tag?: string | null;
+          service_status?: string;
+        };
+        Relationships: [
+          {
+            foreignKeyName: "assets_asset_type_fkey";
+            columns: ["asset_type"];
+            isOneToOne: false;
+            referencedRelation: "asset_types";
+            referencedColumns: ["id"];
+          },
           {
             foreignKeyName: "assets_hub_id_fkey";
             columns: ["hub_id"];
@@ -102,6 +151,100 @@ export type Database = {
           },
         ];
       };
+      maintenance_records: {
+        Row: {
+          asset_id: string;
+          created_at: string;
+          created_by: string;
+          id: string;
+          metadata: Json | null;
+          parts: string[] | null;
+          service_type: string;
+        };
+        Insert: {
+          asset_id: string;
+          created_at?: string;
+          created_by: string;
+          id?: string;
+          metadata?: Json | null;
+          parts?: string[] | null;
+          service_type: string;
+        };
+        Update: {
+          asset_id?: string;
+          created_at?: string;
+          created_by?: string;
+          id?: string;
+          metadata?: Json | null;
+          parts?: string[] | null;
+          service_type?: string;
+        };
+        Relationships: [
+          {
+            foreignKeyName: "maintenance_records_asset_id_fkey";
+            columns: ["asset_id"];
+            isOneToOne: false;
+            referencedRelation: "assets";
+            referencedColumns: ["id"];
+          },
+          {
+            foreignKeyName: "maintenance_records_created_by_fkey";
+            columns: ["created_by"];
+            isOneToOne: false;
+            referencedRelation: "hub_users";
+            referencedColumns: ["id"];
+          },
+          {
+            foreignKeyName: "maintenance_records_service_type_fkey";
+            columns: ["service_type"];
+            isOneToOne: false;
+            referencedRelation: "service_types";
+            referencedColumns: ["id"];
+          },
+        ];
+      };
+      parts: {
+        Row: {
+          id: string;
+          name: string;
+          price: number | null;
+          stock_count: number | null;
+          tenant_id: string;
+          unique_key: string | null;
+        };
+        Insert: {
+          id?: string;
+          name: string;
+          price?: number | null;
+          stock_count?: number | null;
+          tenant_id: string;
+          unique_key?: string | null;
+        };
+        Update: {
+          id?: string;
+          name?: string;
+          price?: number | null;
+          stock_count?: number | null;
+          tenant_id?: string;
+          unique_key?: string | null;
+        };
+        Relationships: [
+          {
+            foreignKeyName: "parts_tenant_id_fkey";
+            columns: ["tenant_id"];
+            isOneToOne: false;
+            referencedRelation: "tenant_asset_service_counts";
+            referencedColumns: ["tenant_id"];
+          },
+          {
+            foreignKeyName: "parts_tenant_id_fkey";
+            columns: ["tenant_id"];
+            isOneToOne: false;
+            referencedRelation: "tenants";
+            referencedColumns: ["id"];
+          },
+        ];
+      };
       profiles: {
         Row: {
           created_at: string;
@@ -132,6 +275,42 @@ export type Database = {
         };
         Relationships: [];
       };
+      service_types: {
+        Row: {
+          created_at: string;
+          id: string;
+          tenant_id: string;
+          type_name: string;
+        };
+        Insert: {
+          created_at?: string;
+          id?: string;
+          tenant_id: string;
+          type_name: string;
+        };
+        Update: {
+          created_at?: string;
+          id?: string;
+          tenant_id?: string;
+          type_name?: string;
+        };
+        Relationships: [
+          {
+            foreignKeyName: "service_types_tenant_id_fkey";
+            columns: ["tenant_id"];
+            isOneToOne: false;
+            referencedRelation: "tenant_asset_service_counts";
+            referencedColumns: ["tenant_id"];
+          },
+          {
+            foreignKeyName: "service_types_tenant_id_fkey";
+            columns: ["tenant_id"];
+            isOneToOne: false;
+            referencedRelation: "tenants";
+            referencedColumns: ["id"];
+          },
+        ];
+      };
       tenant_hubs: {
         Row: {
           created_at: string;
@@ -152,6 +331,13 @@ export type Database = {
           tenant_id?: string;
         };
         Relationships: [
+          {
+            foreignKeyName: "tenant_hubs_tenant_id_fkey";
+            columns: ["tenant_id"];
+            isOneToOne: false;
+            referencedRelation: "tenant_asset_service_counts";
+            referencedColumns: ["tenant_id"];
+          },
           {
             foreignKeyName: "tenant_hubs_tenant_id_fkey";
             columns: ["tenant_id"];
@@ -181,6 +367,13 @@ export type Database = {
           user_id?: string;
         };
         Relationships: [
+          {
+            foreignKeyName: "tenant_users_tenant_id_fkey";
+            columns: ["tenant_id"];
+            isOneToOne: false;
+            referencedRelation: "tenant_asset_service_counts";
+            referencedColumns: ["tenant_id"];
+          },
           {
             foreignKeyName: "tenant_users_tenant_id_fkey";
             columns: ["tenant_id"];
@@ -220,9 +413,19 @@ export type Database = {
       };
     };
     Views: {
-      [_ in never]: never;
+      tenant_asset_service_counts: {
+        Row: {
+          asset_count: number | null;
+          company_name: string | null;
+          display_name: string | null;
+          service_status: string | null;
+          tenant_id: string | null;
+        };
+        Relationships: [];
+      };
     };
     Functions: {
+      is_hub_admin: { Args: { p_hub_id: string }; Returns: boolean };
       is_hub_tenant: { Args: { p_hub_id: string }; Returns: boolean };
       is_hub_user: { Args: { p_hub_id: string }; Returns: boolean };
       is_operator: { Args: never; Returns: boolean };

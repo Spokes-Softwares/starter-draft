@@ -16,7 +16,7 @@ export default function AssetsDataTable({ data }: { data: Asset[] }) {
       columns={columns}
       filter={tableFilter}
       getRowHref={(row) => `/assets/${row.id}`}
-      getRowAriaLabel={(row) => `View ${row.display_name}`}
+      getRowAriaLabel={(row) => `View ${row.reference_tag}`}
     />
   );
 }

@@ -8,16 +8,25 @@ import TenantHubsDataTable from "./tenant-hubs-table/table";
 import TenantAssetsTabContent from "./tenant-assets/tenant-assets-tab-content";
 import TenantSettingsTab from "./tenant-settings/tenant-settings";
 import HubOnboarding from "../hub-onboard/hub-onboard";
-import type { Asset, tenantHub } from "@repo/db/queries/get-actions/types";
+import type {
+  Asset,
+  Tenant,
+  tenantHub,
+} from "@repo/db/queries/get-actions/types";
+import type { TenantAssetServiceCount } from "@repo/db/queries/get-actions/list-tenant-asset-service-counts";
 
 export default function TenantTabs({
   hubs,
   assets,
   tenantId,
+  tenant,
+  serviceCounts,
 }: {
   hubs: tenantHub[];
   assets: Asset[];
   tenantId: string;
+  tenant: Tenant;
+  serviceCounts: TenantAssetServiceCount[];
 }) {
   const tabsTriggerList = [
     { value: "hubs-table", text: "Hubs" },
@@ -41,7 +50,12 @@ export default function TenantTabs({
         </div>
       </TabsContent>
       <TabsContent value="tenant-assets">
-        <TenantAssetsTabContent assets={assets} />
+        <TenantAssetsTabContent
+          assets={assets}
+          serviceCounts={serviceCounts}
+          tenantName={tenant.display_name ?? tenant.company_name}
+          companyName={tenant.company_name}
+        />
       </TabsContent>
       <TabsContent value="settings">
         <TenantSettingsTab />

@@ -16,7 +16,8 @@
     "./assets/*": "./src/assets/*",
     "./shared/layouts/*": "./src/shared/layouts/*.tsx",
     "./shared/page-layouts/*": "./src/shared/page-layouts/*.tsx",
-    "./components/data-table/*": "./src/components/data-table/*.tsx"
+    "./components/data-table/*": "./src/components/data-table/*.tsx",
+    "./components/charts/*": "./src/components/charts/*.tsx"
   },
   "scripts": {
     "lint": "eslint . --max-warnings 0",
