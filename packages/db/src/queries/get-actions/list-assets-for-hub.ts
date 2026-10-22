@@ -9,7 +9,7 @@ export async function ListAssetsForHub(
   const { data } = await client
     .from("assets")
     .select(
-      "id, display_name, hub_id, created_at, tenant_hubs!inner(tenant_id, display_name)",
+      "id, reference_tag, asset_type, hub_id, service_status, created_at, tenant_hubs!inner(tenant_id, display_name)",
     )
     .eq("hub_id", hubId)
     .order("created_at", { ascending: false })

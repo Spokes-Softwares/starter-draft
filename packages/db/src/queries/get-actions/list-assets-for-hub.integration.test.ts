@@ -6,57 +6,57 @@ import {
   HUB_USER_EMAIL,
   OPERATOR_EMAIL,
   TENANT_EMAIL,
+  TENANT_ONE_ID,
+  TENANT_TWO_ID,
 } from "../../integration-tests/fixtures";
 import {
-  createAdminTestClient,
+  deleteTestAssets,
+  insertTestAsset,
   signedInClient,
 } from "../../integration-tests/test-helpers";
 import { ListAssetsForHub } from "./list-assets-for-hub";
 
 const createdAssetIds: string[] = [];
+const createdAssetTypeIds: string[] = [];
 
 afterEach(async () => {
-  if (createdAssetIds.length === 0) return;
-  const admin = createAdminTestClient();
-  await admin.from("assets").delete().in("id", createdAssetIds);
-  createdAssetIds.length = 0;
+  await deleteTestAssets(createdAssetIds, createdAssetTypeIds);
 });
 
 async function insertAsset(
   hubId: string,
-  displayName: string,
+  tenantId: string,
+  referenceTag: string,
   createdAt: string,
 ) {
-  const admin = createAdminTestClient();
-  const { data, error } = await admin
-    .from("assets")
-    .insert({
-      hub_id: hubId,
-      display_name: displayName,
-      created_at: createdAt,
-    })
-    .select("id")
-    .single();
-
-  if (error) throw error;
-  createdAssetIds.push(data.id);
-  return data.id;
+  const { assetId, assetTypeId } = await insertTestAsset({
+    hubId,
+    tenantId,
+    referenceTag,
+    createdAt,
+  });
+  createdAssetIds.push(assetId);
+  createdAssetTypeIds.push(assetTypeId);
+  return assetId;
 }
 
 describe("ListAssetsForHub", () => {
-  test("01 - operator sees Hub One assets newest first and not Hub Three", async () => {
+  test("01 - operator listing Hub One sees its assets newest first and cannot view a Tenant Two asset", async () => {
     const hubThreeAssetId = await insertAsset(
       HUB_THREE_ID,
+      TENANT_TWO_ID,
       "Vitest Hub Three Asset",
       "2099-01-02T00:00:00.000Z",
     );
     const olderHubOneAssetId = await insertAsset(
       HUB_ONE_ID,
+      TENANT_ONE_ID,
       "Vitest Older Hub One Asset",
       "2099-01-01T00:00:00.000Z",
     );
     const newerHubOneAssetId = await insertAsset(
       HUB_ONE_ID,
+      TENANT_ONE_ID,
       "Vitest Newer Hub One Asset",
       "2099-01-03T00:00:00.000Z",
     );
@@ -68,20 +68,22 @@ describe("ListAssetsForHub", () => {
 
     expect(assets[0]).toMatchObject({
       id: newerHubOneAssetId,
-      display_name: "Vitest Newer Hub One Asset",
+      reference_tag: "Vitest Newer Hub One Asset",
     });
     expect(olderIndex).toBeGreaterThan(0);
     expect(ids).not.toContain(hubThreeAssetId);
   });
 
-  test("02 - tenant sees Hub One assets and no Hub Three assets", async () => {
+  test("02 - Tenant One can view Hub One assets and cannot view Tenant Two assets", async () => {
     const hubThreeAssetId = await insertAsset(
       HUB_THREE_ID,
+      TENANT_TWO_ID,
       "Vitest Hub Three Asset",
       "2099-01-02T00:00:00.000Z",
     );
     const hubOneAssetId = await insertAsset(
       HUB_ONE_ID,
+      TENANT_ONE_ID,
       "Vitest Hub One Asset",
       "2099-01-03T00:00:00.000Z",
     );
@@ -96,14 +98,16 @@ describe("ListAssetsForHub", () => {
     expect(ownAssets.map((asset) => asset.id)).not.toContain(hubThreeAssetId);
   });
 
-  test("03 - hub user sees Hub One assets and no Hub Two assets", async () => {
+  test("03 - hub user can view Hub One assets and cannot view Hub Two assets", async () => {
     const hubTwoAssetId = await insertAsset(
       HUB_TWO_ID,
+      TENANT_ONE_ID,
       "Vitest Hub Two Asset",
       "2099-01-02T00:00:00.000Z",
     );
     const hubOneAssetId = await insertAsset(
       HUB_ONE_ID,
+      TENANT_ONE_ID,
       "Vitest Hub One Asset",
       "2099-01-03T00:00:00.000Z",
     );

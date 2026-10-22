@@ -30,8 +30,10 @@ export type Hub = {
 
 export type Asset = {
   created_at: string;
-  display_name: string | null;
+  reference_tag: string | null;
+  asset_type: string;
   hub_id: string;
+  service_status: string;
   id: string;
   tenant_hubs: {
     display_name: string;
