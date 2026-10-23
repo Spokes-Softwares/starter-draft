@@ -1,7 +1,5 @@
-import {
-  DashboardStats,
-  getOperationDashboardStats,
-} from "@repo/db/queries/get-actions/get-operation-dashboard-stats";
+import { getOperationDashboardStats } from "@repo/db/queries/get-actions/get-operation-dashboard-stats";
+import type { DashboardStats } from "@repo/db/queries/get-actions/types";
 import { createSupabaseServerClient } from "@repo/db/server";
 import StatTile from "@repo/ui/components/dashboards/stat-tile";
 import { Heading } from "@repo/ui/components/shadcn-ui/heading";

@@ -1,8 +1,26 @@
-export default function HubsPage() {
+import HubsDataTable from "@/components/hubs-table/table";
+import { listAllHubs } from "@repo/db/queries/get-actions/list-all-hubs";
+import type { Hub } from "@repo/db/queries/get-actions/types";
+import { createSupabaseServerClient } from "@repo/db/server";
+import PageHeader from "@repo/ui/shared/page-layouts/pageHeader";
+import PageShell from "@repo/ui/shared/page-layouts/pageShell";
+
+async function HubsPageContent({ listOfHubs }: { listOfHubs: Hub[] }) {
+  return <HubsDataTable data={listOfHubs} />;
+}
+
+export default async function HubsPage() {
+  const supabase = await createSupabaseServerClient();
+  const listOfHubs = await listAllHubs(supabase);
+
   return (
-    <div>
-      {" "}
-      This is where the list view will be for all the hubs on the platform
-    </div>
+    <PageShell>
+      <PageHeader
+        title="Hub Overviews"
+        description="Click on a hub to view more.
+         To onboard a hub, please go to the relevant tenant"
+      />
+      <HubsPageContent listOfHubs={listOfHubs} />
+    </PageShell>
   );
 }

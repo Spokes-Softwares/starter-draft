@@ -1,11 +1,11 @@
-import type { TenantAssets } from "@repo/db/queries/get-actions/list-tenant-assets";
+import type { Asset } from "@repo/db/queries/get-actions/types";
 import TenantAssetsTable from "./table";
 import StatTile from "@repo/ui/components/dashboards/stat-tile";
 
 export default function TenantAssetsTabContent({
   assets,
 }: {
-  assets: TenantAssets[];
+  assets: Asset[];
 }) {
   const totalAssets = assets.length;
 
