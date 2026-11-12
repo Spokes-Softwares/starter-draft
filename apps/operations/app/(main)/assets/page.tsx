@@ -1,4 +1,4 @@
-import AssetServiceChart from "@/components/charts/asset-service-status-chart";
+import AssetServiceChart from "@/components/charts/service-status/asset-service-status-chart";
 import {
   listTenantAssetServiceCounts,
   type TenantAssetServiceCount,

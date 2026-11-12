@@ -17,25 +17,46 @@ import {
 
 export const description = "A donut chart with text";
 
-export type ServiceStatusCount = {
-  service_status: string | null;
+export type AssetCount = {
+  data: string | null;
   count: number;
 };
 
-const STATUS_KEY = {
-  "out of service": "outOfService",
-  "in service": "inService",
-  "awaiting parts": "awaitingParts",
-  monitor: "monitor",
-} as const;
+const CHART_COLORS = 5;
 
-function serviceStatusSlices(rows: ServiceStatusCount[]) {
+function chartKey(label: string) {
+  return label
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-|-$/g, "");
+}
+
+function chartConfigFromLabels(labels: (string | null)[]): ChartConfig {
+  const unique = [
+    ...new Set(
+      labels.filter(
+        (label): label is string => !!label && chartKey(label).length > 0,
+      ),
+    ),
+  ].sort((a, b) => a.localeCompare(b));
+
+  return Object.fromEntries(
+    unique.map((label, index) => [
+      chartKey(label),
+      {
+        label,
+        color: `var(--chart-${(index % CHART_COLORS) + 1})`,
+      },
+    ]),
+  );
+}
+
+function chartSlices(rows: AssetCount[]) {
   return rows.flatMap((row) => {
-    if (!row.service_status || row.count <= 0) return [];
+    if (!row.data || row.count <= 0) return [];
 
-    const key =
-      STATUS_KEY[row.service_status as keyof typeof STATUS_KEY] ??
-      row.service_status;
+    const key = chartKey(row.data);
+    if (!key) return [];
 
     return [
       {
@@ -50,18 +71,20 @@ function serviceStatusSlices(rows: ServiceStatusCount[]) {
 type ChartCardProps = {
   title: string;
   description: string;
-  chartData: ServiceStatusCount[];
-  chartConfig: ChartConfig;
+  chartData: AssetCount[];
+  innerCount: number;
+  donutText: string;
 };
 
 export function ChartCard({
   title,
   description,
   chartData,
-  chartConfig,
+  innerCount,
+  donutText,
 }: ChartCardProps) {
-  const totalAssets = chartData.reduce((sum, row) => sum + row.count, 0);
-  const slices = serviceStatusSlices(chartData);
+  const chartConfig = chartConfigFromLabels(chartData.map((row) => row.data));
+  const slices = chartSlices(chartData);
 
   return (
     <Card className="flex flex-col">
@@ -101,14 +124,14 @@ export function ChartCard({
                           y={viewBox.cy}
                           className="fill-foreground text-3xl font-bold"
                         >
-                          {totalAssets.toLocaleString()}
+                          {innerCount.toLocaleString()}
                         </tspan>
                         <tspan
                           x={viewBox.cx}
                           y={(viewBox.cy || 0) + 24}
                           className="fill-muted-foreground text-white"
                         >
-                          Assets
+                          {donutText}
                         </tspan>
                       </text>
                     );

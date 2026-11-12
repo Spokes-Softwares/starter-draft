@@ -65,6 +65,13 @@ export type Database = {
             foreignKeyName: "asset_types_tenant_id_fkey";
             columns: ["tenant_id"];
             isOneToOne: false;
+            referencedRelation: "tenant_asset_types";
+            referencedColumns: ["tenant_id"];
+          },
+          {
+            foreignKeyName: "asset_types_tenant_id_fkey";
+            columns: ["tenant_id"];
+            isOneToOne: false;
             referencedRelation: "tenants";
             referencedColumns: ["id"];
           },
@@ -240,6 +247,13 @@ export type Database = {
             foreignKeyName: "parts_tenant_id_fkey";
             columns: ["tenant_id"];
             isOneToOne: false;
+            referencedRelation: "tenant_asset_types";
+            referencedColumns: ["tenant_id"];
+          },
+          {
+            foreignKeyName: "parts_tenant_id_fkey";
+            columns: ["tenant_id"];
+            isOneToOne: false;
             referencedRelation: "tenants";
             referencedColumns: ["id"];
           },
@@ -306,6 +320,13 @@ export type Database = {
             foreignKeyName: "service_types_tenant_id_fkey";
             columns: ["tenant_id"];
             isOneToOne: false;
+            referencedRelation: "tenant_asset_types";
+            referencedColumns: ["tenant_id"];
+          },
+          {
+            foreignKeyName: "service_types_tenant_id_fkey";
+            columns: ["tenant_id"];
+            isOneToOne: false;
             referencedRelation: "tenants";
             referencedColumns: ["id"];
           },
@@ -342,6 +363,13 @@ export type Database = {
             foreignKeyName: "tenant_hubs_tenant_id_fkey";
             columns: ["tenant_id"];
             isOneToOne: false;
+            referencedRelation: "tenant_asset_types";
+            referencedColumns: ["tenant_id"];
+          },
+          {
+            foreignKeyName: "tenant_hubs_tenant_id_fkey";
+            columns: ["tenant_id"];
+            isOneToOne: false;
             referencedRelation: "tenants";
             referencedColumns: ["id"];
           },
@@ -372,6 +400,13 @@ export type Database = {
             columns: ["tenant_id"];
             isOneToOne: false;
             referencedRelation: "tenant_asset_service_counts";
+            referencedColumns: ["tenant_id"];
+          },
+          {
+            foreignKeyName: "tenant_users_tenant_id_fkey";
+            columns: ["tenant_id"];
+            isOneToOne: false;
+            referencedRelation: "tenant_asset_types";
             referencedColumns: ["tenant_id"];
           },
           {
@@ -419,6 +454,16 @@ export type Database = {
           company_name: string | null;
           display_name: string | null;
           service_status: string | null;
+          tenant_id: string | null;
+        };
+        Relationships: [];
+      };
+      tenant_asset_types: {
+        Row: {
+          asset_count: number | null;
+          asset_type: string | null;
+          company_name: string | null;
+          display_name: string | null;
           tenant_id: string | null;
         };
         Relationships: [];
