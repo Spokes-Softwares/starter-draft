@@ -12,6 +12,10 @@ import type {
 } from "@repo/db/queries/get-actions/types";
 import type { TenantAssetServiceCount } from "@repo/db/queries/get-actions/list-tenant-asset-service-counts";
 import PageShell from "@repo/ui/shared/page-layouts/pageShell";
+import {
+  listTenantAssetTypes,
+  TenantAssetTypeCount,
+} from "@repo/db/queries/get-actions/list-tenant-asset-types";
 
 async function TenantOverviewPageContent({
   hubs,
@@ -19,12 +23,14 @@ async function TenantOverviewPageContent({
   tenantId,
   tenant,
   serviceCounts,
+  assetTypes,
 }: {
   hubs: tenantHub[];
   assets: Asset[];
   tenantId: string;
   tenant: Tenant;
   serviceCounts: TenantAssetServiceCount[];
+  assetTypes: TenantAssetTypeCount[];
 }) {
   return (
     <TenantTabs
@@ -33,6 +39,7 @@ async function TenantOverviewPageContent({
       tenantId={tenantId}
       tenant={tenant}
       serviceCounts={serviceCounts}
+      assetTypes={assetTypes}
     />
   );
 }
@@ -44,12 +51,14 @@ export default async function TenantOverviewPage({
 }) {
   const { tenant_id } = await params;
   const supabase = await createSupabaseServerClient();
-  const [listHubs, tenant, assets, serviceCounts] = await Promise.all([
-    listHubsForTenant(supabase, tenant_id),
-    getTenant(supabase, tenant_id),
-    listAssetsForTenant(supabase, tenant_id),
-    listTenantAssetServiceCounts(supabase, tenant_id),
-  ]);
+  const [listHubs, tenant, assets, serviceCounts, assetTypes] =
+    await Promise.all([
+      listHubsForTenant(supabase, tenant_id),
+      getTenant(supabase, tenant_id),
+      listAssetsForTenant(supabase, tenant_id),
+      listTenantAssetServiceCounts(supabase, tenant_id),
+      listTenantAssetTypes(supabase, tenant_id),
+    ]);
 
   return (
     <PageShell>
@@ -63,6 +72,7 @@ export default async function TenantOverviewPage({
         tenantId={tenant_id}
         tenant={tenant}
         serviceCounts={serviceCounts}
+        assetTypes={assetTypes}
       />
     </PageShell>
   );
