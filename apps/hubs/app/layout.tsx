@@ -6,6 +6,7 @@ import { AppShell } from "@repo/ui/shared/layouts/appShell";
 import { SidebarProvider } from "@repo/ui/components/shadcn-ui/sidebar";
 import { HubsSidebar } from "./components/nav/hubs-sidebar";
 import getCurrentUserProfile from "@repo/db/queries/user/get-current-user-profile";
+import { createSupabaseServerClient } from "@repo/db/server";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
 
@@ -20,8 +21,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Spokes Tenant Portal",
-  description: "Tenant-facing portal for Spokes",
+  title: "Spokes Hubs Portal",
+  description: "Hubs-facing portal for Spokes",
 };
 
 export default async function RootLayout({
@@ -29,7 +30,8 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const user = await getCurrentUserProfile();
+  const supabase = await createSupabaseServerClient();
+  const user = await getCurrentUserProfile(supabase);
 
   return (
     <html

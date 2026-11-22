@@ -1,6 +1,6 @@
-import TenantOnboardForm from "../../../../components/tenant-onboard/tenant-onboard-form";
 import PageShell from "@repo/ui/shared/page-layouts/pageShell";
 import PageHeader from "@repo/ui/shared/page-layouts/pageHeader";
+import TenantOnboardForm from "@/components/forms/tenant-onboard/tenant-onboard-form";
 
 async function NewTenantPageContent() {
   return <TenantOnboardForm />;

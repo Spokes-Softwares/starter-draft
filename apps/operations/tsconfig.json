@@ -7,7 +7,7 @@
       }
     ],
     "paths": {
-      "@*":["./*"]
+      "@/*": ["./*"]
     },
     "strictNullChecks": true
   },
@@ -23,6 +23,9 @@
     "components/tenants-table/pagination.tsx",
     "components/tenants-table/row-actions.tsx",
     "components/tenants-table/table.tsx",
+    "../../packages/db/src/actions/hub-onboarding-action.ts",
+    "../../packages/db/src/actions/tenant-onboard-action.integration.test.ts",
+    "../../packages/db/src/actions/tenant-onboard-action.ts"
   ],
   "exclude": ["node_modules"]
 }

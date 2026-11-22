@@ -7,15 +7,29 @@ import {
 import TenantHubsDataTable from "./tenant-hubs-table/table";
 import TenantAssetsTabContent from "./tenant-assets/tenant-assets-tab-content";
 import TenantSettingsTab from "./tenant-settings/tenant-settings";
-import { ListHubs } from "@repo/db/queries/get-actions/list-hubs-for-tenant";
-import { TenantAssets } from "@repo/db/queries/get-actions/list-tenant-assets";
+import HubOnboarding from "../hub-onboard/hub-onboard";
+import type {
+  Asset,
+  Tenant,
+  tenantHub,
+} from "@repo/db/queries/get-actions/types";
+import type { TenantAssetServiceCount } from "@repo/db/queries/get-actions/list-tenant-asset-service-counts";
+import { TenantAssetTypeCount } from "@repo/db/queries/get-actions/list-tenant-asset-types";
 
 export default function TenantTabs({
   hubs,
   assets,
+  tenantId,
+  tenant,
+  serviceCounts,
+  assetTypes,
 }: {
-  hubs: ListHubs[];
-  assets: TenantAssets[];
+  hubs: tenantHub[];
+  assets: Asset[];
+  tenantId: string;
+  tenant: Tenant;
+  serviceCounts: TenantAssetServiceCount[];
+  assetTypes: TenantAssetTypeCount[];
 }) {
   const tabsTriggerList = [
     { value: "hubs-table", text: "Hubs" },
@@ -33,10 +47,19 @@ export default function TenantTabs({
         ))}
       </TabsList>
       <TabsContent value="hubs-table">
-        <TenantHubsDataTable data={hubs} />
+        <div className="grid gap-6">
+          <TenantHubsDataTable data={hubs} />
+          <HubOnboarding tenantId={tenantId} />
+        </div>
       </TabsContent>
       <TabsContent value="tenant-assets">
-        <TenantAssetsTabContent assets={assets} />
+        <TenantAssetsTabContent
+          assets={assets}
+          serviceCounts={serviceCounts}
+          tenantName={tenant.display_name ?? tenant.company_name}
+          companyName={tenant.company_name}
+          assetTypes={assetTypes}
+        />
       </TabsContent>
       <TabsContent value="settings">
         <TenantSettingsTab />

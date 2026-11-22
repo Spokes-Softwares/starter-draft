@@ -9,7 +9,7 @@ export default function KitchenSinkPage() {
   const filter = {
     columnId: "companyName",
     placeholder: "Filter companies...",
-  }
+  };
   return (
     <div className="grid gap-20 ml-20 mb-60">
       <div>

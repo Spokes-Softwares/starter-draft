@@ -57,6 +57,7 @@ catalog:
   vitest: ^3.2.4
   zod: ^4.6.5
   cn: ^0.4.0
+  '@supabase/server': ^1.9.2
 
 catalogMode: prefer
 

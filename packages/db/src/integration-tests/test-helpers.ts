@@ -43,6 +43,62 @@ export async function signedInClient(email: string) {
   return client;
 }
 
+export async function insertTestAsset(input: {
+  hubId: string;
+  tenantId: string;
+  referenceTag: string;
+  createdAt?: string;
+  serviceStatus?: string;
+}) {
+  const admin = createAdminTestClient();
+  const { data: assetType, error: assetTypeError } = await admin
+    .from("asset_types")
+    .insert({
+      tenant_id: input.tenantId,
+      asset_type: input.referenceTag,
+    })
+    .select("id")
+    .single();
+
+  if (assetTypeError) throw assetTypeError;
+
+  const { data, error } = await admin
+    .from("assets")
+    .insert({
+      hub_id: input.hubId,
+      reference_tag: input.referenceTag,
+      asset_type: assetType.id,
+      service_status: input.serviceStatus ?? "in service",
+      ...(input.createdAt ? { created_at: input.createdAt } : {}),
+    })
+    .select("id")
+    .single();
+
+  if (error) {
+    await admin.from("asset_types").delete().eq("id", assetType.id);
+    throw error;
+  }
+
+  return { assetId: data.id, assetTypeId: assetType.id };
+}
+
+export async function deleteTestAssets(
+  assetIds: string[],
+  assetTypeIds: string[],
+) {
+  if (assetIds.length === 0 && assetTypeIds.length === 0) return;
+
+  const admin = createAdminTestClient();
+  if (assetIds.length > 0) {
+    await admin.from("assets").delete().in("id", assetIds);
+    assetIds.length = 0;
+  }
+  if (assetTypeIds.length > 0) {
+    await admin.from("asset_types").delete().in("id", assetTypeIds);
+    assetTypeIds.length = 0;
+  }
+}
+
 export async function rpcIsOperator(client: TestClient) {
   const { data, error } = await client.rpc("is_operator");
   if (error) throw error;

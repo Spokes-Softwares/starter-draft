@@ -13,12 +13,12 @@ import { MoreHorizontal } from "lucide-react";
 import { DataTableFeatures } from "@repo/ui/components/data-table/features";
 import { Row } from "@tanstack/react-table";
 import Link from "next/link";
-import { ListHubs } from "@repo/db/queries/get-actions/list-hubs-for-tenant";
+import type { tenantHub } from "@repo/db/queries/get-actions/types";
 
 export default function DataTableRowActions({
   row,
 }: {
-  row: Row<DataTableFeatures, ListHubs>;
+  row: Row<DataTableFeatures, tenantHub>;
 }) {
   return (
     <div className="relative z-20">

@@ -1,14 +1,14 @@
 /* Returns all data for a single tenant */
 
-import { createSupabaseServerClient } from "../../server";
-import { Tables } from "../../types";
+import type { SupabaseClient } from "@supabase/supabase-js";
+import type { Database } from "../../types";
+import type { Tenant } from "./types";
 
-export type Tenant = Tables<"tenants">;
-
-export async function getTenant(tenant_id: string): Promise<Tenant> {
-  const supabase = await createSupabaseServerClient();
-
-  const { data: tenant } = await supabase
+export async function getTenant(
+  client: SupabaseClient<Database>,
+  tenant_id: string,
+): Promise<Tenant> {
+  const { data: tenant } = await client
     .from("tenants")
     .select("*")
     .eq("id", tenant_id)

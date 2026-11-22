@@ -69,10 +69,7 @@ export default function LoginForm() {
         <Field data-invalid={!!errors.password} className="grid gap-2">
           <div className="flex items-center">
             <FieldLabel htmlFor="password">Password</FieldLabel>
-            <Link
-              className="text-xs ml-auto underline"
-              href={`/auth/forgot-password`}
-            >
+            <Link className="text-xs ml-auto underline" href="/forgot-password">
               Forgot Password
             </Link>
           </div>
