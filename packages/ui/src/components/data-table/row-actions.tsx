@@ -10,6 +10,7 @@ import {
   DropdownMenuTrigger,
 } from "@repo/ui/components/shadcn-ui/dropdown-menu";
 import { MoreHorizontal } from "lucide-react";
+import Link from "next/link";
 import { Row, type RowData } from "@tanstack/react-table";
 import { DataTableFeatures } from "./features";
 
@@ -39,7 +40,7 @@ export default function DataTableRowActions<TData extends RowData>({
             {menuItems.map((item) => (
               <DropdownMenuItem
                 key={item.text}
-                render={<a href={item.href(row.original)}>{item.text}</a>}
+                render={<Link href={item.href(row.original)}>{item.text}</Link>}
               />
             ))}
           </DropdownMenuGroup>

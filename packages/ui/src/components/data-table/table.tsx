@@ -20,6 +20,7 @@ import {
   TableHeader,
   TableRow,
 } from "../shadcn-ui/table";
+import Link from "next/link";
 import { useState } from "react";
 import DataTablePagination from "./pagination";
 import DataTableFiltering from "./filtering";
@@ -99,7 +100,7 @@ export default function DataTable<TData extends RowData>({
                     {row.getVisibleCells().map((cell, index) => (
                       <TableCell key={cell.id} className="relative">
                         {href ? (
-                          <a
+                          <Link
                             href={href}
                             className="absolute inset-0 z-10"
                             aria-label={

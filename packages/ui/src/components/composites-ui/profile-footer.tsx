@@ -13,6 +13,7 @@ import {
   DropdownMenuTrigger,
 } from "../shadcn-ui/dropdown-menu";
 import { Button } from "../shadcn-ui/button";
+import Link from "next/link";
 import { Fragment } from "react";
 
 export type UserProfileFooterType = {
@@ -92,7 +93,17 @@ const UserProfileDropdownContent = ({
           <DropdownMenuGroup>
             <DropdownMenuLabel>{group.title}</DropdownMenuLabel>
             {group.items.map((item) => (
-              <DropdownMenuItem key={item.href} render={<a href={item.href} />}>
+              <DropdownMenuItem
+                key={item.href}
+                render={
+                  item.href.startsWith("http://") ||
+                  item.href.startsWith("https://") ? (
+                    <a href={item.href} />
+                  ) : (
+                    <Link href={item.href} />
+                  )
+                }
+              >
                 {item.label}
               </DropdownMenuItem>
             ))}

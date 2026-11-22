@@ -1,13 +1,20 @@
 "use server";
+import {
+  authLoginUrl,
+  configuredAuthOrigin,
+  originFromHeaders,
+} from "@repo/db/resolve-account";
 import { createSupabaseServerClient } from "@repo/db/server";
+import { headers } from "next/headers";
 import { redirect } from "next/navigation";
 
 export default async function signOutAction() {
   const supabase = await createSupabaseServerClient();
   await supabase.auth.signOut();
 
-  const AUTH_APP_URL = process.env.AUTH_URL;
-  if (!AUTH_APP_URL) throw Error("AUTH_APP_URL not set in env");
+  const authUrl =
+    configuredAuthOrigin() ?? authLoginUrl(originFromHeaders(await headers()));
+  if (!authUrl) throw Error("AUTH_URL not set in env");
 
-  redirect(AUTH_APP_URL);
+  redirect(authUrl);
 }

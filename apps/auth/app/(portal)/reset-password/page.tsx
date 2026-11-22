@@ -9,7 +9,7 @@ export default async function ResetPasswordPage() {
   } = await supabase.auth.getUser();
 
   if (!user) {
-    redirect("/auth/forgot-password");
+    redirect("/forgot-password");
   }
 
   return <ResetPasswordForm />;

@@ -1,5 +1,11 @@
 import type { SupabaseClient } from "@supabase/supabase-js";
+import { headers } from "next/headers";
 import { redirect } from "next/navigation";
+import {
+  authLoginUrl,
+  configuredAuthOrigin,
+  originFromHeaders,
+} from "../../resolve-account";
 import type { Database } from "../../types";
 
 export type CurrentUserProfile = {
@@ -19,7 +25,9 @@ export default async function getCurrentUserProfile(
   } = await client.auth.getUser();
 
   if (!user) {
-    const authUrl = process.env.AUTH_URL;
+    const authUrl =
+      configuredAuthOrigin() ??
+      authLoginUrl(originFromHeaders(await headers()));
     if (!authUrl) throw new Error("AUTH_URL not set in env");
     redirect(authUrl);
   }
