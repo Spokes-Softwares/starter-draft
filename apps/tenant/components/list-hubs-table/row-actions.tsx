@@ -10,31 +10,15 @@ import {
   DropdownMenuTrigger,
 } from "@repo/ui/components/shadcn-ui/dropdown-menu";
 import { MoreHorizontal } from "lucide-react";
-<<<<<<<< HEAD:packages/ui/src/components/data-table/row-actions.tsx
-import { Row, type RowData } from "@tanstack/react-table";
-import { DataTableFeatures } from "./features";
-========
 import { DataTableFeatures } from "@repo/ui/components/data-table/features";
 import { Row } from "@tanstack/react-table";
 import Link from "next/link";
 import type { tenantHub } from "@repo/db/queries/get-actions/types";
->>>>>>>> feat/maintenance-seeding:apps/tenant/components/list-hubs-table/row-actions.tsx
 
-type MenuItem<TData> = {
-  text: string;
-  href: (row: TData) => string;
-};
-
-export default function DataTableRowActions<TData extends RowData>({
+export default function DataTableRowActions({
   row,
-  menuItems,
 }: {
-<<<<<<<< HEAD:packages/ui/src/components/data-table/row-actions.tsx
-  row: Row<DataTableFeatures, TData>;
-  menuItems: MenuItem<TData>[];
-========
   row: Row<DataTableFeatures, tenantHub>;
->>>>>>>> feat/maintenance-seeding:apps/tenant/components/list-hubs-table/row-actions.tsx
 }) {
   return (
     <div className="relative z-20">
@@ -47,12 +31,11 @@ export default function DataTableRowActions<TData extends RowData>({
         <DropdownMenuContent>
           <DropdownMenuGroup>
             <DropdownMenuLabel>Actions</DropdownMenuLabel>
-            {menuItems.map((item) => (
-              <DropdownMenuItem
-                key={item.text}
-                render={<a href={item.href(row.original)}>{item.text}</a>}
-              />
-            ))}
+            <DropdownMenuItem
+              render={
+                <Link href={`/tenants/${row.original.id}`}>View Tenant </Link>
+              }
+            />
           </DropdownMenuGroup>
         </DropdownMenuContent>
       </DropdownMenu>
