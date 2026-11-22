@@ -11,7 +11,7 @@ describe("getOperationDashboardStats", () => {
     const [assets, tenants, hubUsers] = await Promise.all([
       client.from("assets").select("*", { count: "exact", head: true }),
       client.from("tenants").select("*", { count: "exact", head: true }),
-      client.from("hub_users").select("*", { count: "exact", head: true }),
+      client.from("tenant_hubs").select("*", { count: "exact", head: true }),
     ]);
 
     expect(stats).toEqual({

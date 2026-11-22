@@ -13,8 +13,8 @@ export const hubsSidebarMenuItems: {
         icon: House,
         label: "Hubs",
         dropDownItems: [
-          { label: "Overview", href: "/hubs/overview" },
-          { label: "Invite", href: "/hubs/invite" },
+          { label: "Overview", href: "/hub/overview" },
+          { label: "Invite", href: "/hub/invite" },
         ],
       },
       {

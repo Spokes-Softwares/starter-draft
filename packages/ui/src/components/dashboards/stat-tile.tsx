@@ -4,11 +4,12 @@ import { Heading } from "../shadcn-ui/heading";
 export type StatTileProps = {
   title: string;
   data: string | number | undefined;
+  className?: string;
 };
 
-export default function StatTile({ title, data }: StatTileProps) {
+export default function StatTile({ title, data, className }: StatTileProps) {
   return (
-    <Card>
+    <Card className={className}>
       <CardHeader>
         <Heading variant="h4">{title}</Heading>
       </CardHeader>

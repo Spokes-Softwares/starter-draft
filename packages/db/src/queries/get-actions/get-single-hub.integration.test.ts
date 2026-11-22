@@ -37,7 +37,7 @@ describe("getSingleHubDetails", () => {
     });
   });
 
-  test("03 - tenant one can read Hub One", async () => {
+  test("03 - tenant can read Hub One", async () => {
     const client = await signedInClient(TENANT_EMAIL);
     const hub = await getSingleHubDetails(client, HUB_ONE_ID);
 

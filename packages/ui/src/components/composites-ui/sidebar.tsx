@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useEffect, useState } from "react";
 import { ChevronDown, LucideIcon } from "lucide-react";
 import {
@@ -87,7 +88,7 @@ function NavCollapsibleItem({
               <SidebarMenuSubButton
                 className="hover:bg-primary/20 rounded-lg"
                 isActive={isActivePath(pathname, sub.href)}
-                render={<a href={sub.href} />}
+                render={<Link href={sub.href} />}
               >
                 <span>{sub.label}</span>
               </SidebarMenuSubButton>
@@ -138,7 +139,9 @@ export default function AppSidebar({
                         isActive={
                           !!item.href && isActivePath(pathname, item.href)
                         }
-                        render={item.href ? <a href={item.href} /> : undefined}
+                        render={
+                          item.href ? <Link href={item.href} /> : undefined
+                        }
                       >
                         {item.icon ? <item.icon /> : null}
                         <span>{item.label}</span>

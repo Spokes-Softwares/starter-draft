@@ -20,6 +20,7 @@
     "check-types": "tsc --noEmit",
     "gen-types": "supabase gen types typescript --local > src/types.ts",
     "seed:assets:generate": "tsx supabase/seed/generate-assets-seed.ts",
+    "seed:maintenance:generate": "tsx supabase/seed/generate-maintenance-seed.ts",
     "test": "vitest run --config ../../vitest.config.ts",
     "test:auth": "vitest run --config ../../vitest.config.ts --project auth",
     "test:operations": "vitest run --config ../../vitest.config.ts --project operations",
@@ -27,6 +28,7 @@
     "test:hubs": "vitest run --config ../../vitest.config.ts --project hubs"
   },
   "dependencies": {
+    "@supabase/server": "catalog:",
     "@supabase/ssr": "catalog:",
     "@supabase/supabase-js": "catalog:",
     "next": "catalog:",
@@ -37,7 +39,7 @@
     "@repo/typescript-config": "workspace:*",
     "@types/node": "catalog:",
     "eslint": "catalog:",
-    "typescript": "catalog:",
-    "tsx": "catalog:"
+    "tsx": "catalog:",
+    "typescript": "catalog:"
   }
 }
