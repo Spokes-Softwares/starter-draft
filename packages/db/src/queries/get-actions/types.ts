@@ -1,4 +1,4 @@
-import type { Tables } from "../../types";
+import type { Json, Tables } from "../../types";
 
 export type DashboardStats = {
   numberOfAssets: number;
@@ -39,4 +39,28 @@ export type Asset = {
     display_name: string;
     tenant_id: string;
   };
+};
+
+export type LatestMaintenanceRecord = {
+  id: string;
+  created_at: string;
+  created_by: string;
+  metadata: Json | null;
+  parts: string[] | null;
+  service_type: string;
+  service_types: {
+    type_name: string;
+  };
+};
+
+export type AssetDetails = {
+  id: string;
+  created_at: string;
+  service_status: string;
+  reference_tag: string;
+  hub_id: string;
+  asset_types: {
+    asset_type: string;
+  };
+  latest_maintenance_record: LatestMaintenanceRecord | null;
 };

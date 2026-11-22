@@ -42,7 +42,7 @@ export async function updateSession(request: NextRequest) {
 }
 
 /** Prefer Host header so 127.0.0.1 vs localhost match host-only cookies. */
-function requestOrigin(request: NextRequest) {
+export function requestOrigin(request: NextRequest) {
   const host = request.headers.get("host") ?? "localhost:3010";
   const proto = request.headers.get("x-forwarded-proto") ?? "http";
   return `${proto}://${host}`;

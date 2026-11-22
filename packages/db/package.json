@@ -28,6 +28,7 @@
     "test:hubs": "vitest run --config ../../vitest.config.ts --project hubs"
   },
   "dependencies": {
+    "@supabase/server": "catalog:",
     "@supabase/ssr": "catalog:",
     "@supabase/supabase-js": "catalog:",
     "next": "catalog:",
@@ -38,7 +39,7 @@
     "@repo/typescript-config": "workspace:*",
     "@types/node": "catalog:",
     "eslint": "catalog:",
-    "typescript": "catalog:",
-    "tsx": "catalog:"
+    "tsx": "catalog:",
+    "typescript": "catalog:"
   }
 }

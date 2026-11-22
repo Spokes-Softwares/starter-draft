@@ -1,0 +1,74 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "services": {
+    "auth": {
+      "root": "apps/auth",
+      "framework": "nextjs"
+    },
+    "docs": {
+      "root": "apps/docs",
+      "framework": "nextjs"
+    },
+    "hubs": {
+      "root": "apps/hubs",
+      "framework": "nextjs"
+    },
+    "operations": {
+      "root": "apps/operations",
+      "framework": "nextjs"
+    },
+    "tenant": {
+      "root": "apps/tenant",
+      "framework": "nextjs"
+    }
+  },
+  "redirects": [
+    {
+      "source": "/",
+      "destination": "/docs",
+      "permanent": false
+    }
+  ],
+  "rewrites": [
+    {
+      "source": "/auth",
+      "destination": { "service": "auth" }
+    },
+    {
+      "source": "/auth/(.*)",
+      "destination": { "service": "auth" }
+    },
+    {
+      "source": "/operations",
+      "destination": { "service": "operations" }
+    },
+    {
+      "source": "/operations/(.*)",
+      "destination": { "service": "operations" }
+    },
+    {
+      "source": "/tenant",
+      "destination": { "service": "tenant" }
+    },
+    {
+      "source": "/tenant/(.*)",
+      "destination": { "service": "tenant" }
+    },
+    {
+      "source": "/hubs",
+      "destination": { "service": "hubs" }
+    },
+    {
+      "source": "/hubs/(.*)",
+      "destination": { "service": "hubs" }
+    },
+    {
+      "source": "/docs",
+      "destination": { "service": "docs" }
+    },
+    {
+      "source": "/docs/(.*)",
+      "destination": { "service": "docs" }
+    }
+  ]
+}

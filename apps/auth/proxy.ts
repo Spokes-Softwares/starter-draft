@@ -6,7 +6,8 @@ export async function proxy(request: NextRequest) {
 
   // Skip session refresh on confirm so updateSession does not overwrite the
   // Set-Cookie from the OTP redirect response.
-  if (pathname.startsWith("/auth/confirm")) {
+  // basePath is stripped from pathname, so the public URL /auth/confirm is /confirm here.
+  if (pathname === "/confirm" || pathname.startsWith("/confirm/")) {
     return NextResponse.next();
   }
 
@@ -16,6 +17,7 @@ export async function proxy(request: NextRequest) {
 
 export const config = {
   matcher: [
+    "/",
     "/((?!_next/static|_next/image|favicon.ico|.*\\.(?:svg|png|jpg|jpeg|gif|webp)$).*)",
   ],
 };

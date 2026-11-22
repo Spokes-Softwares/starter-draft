@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { Button } from "../../components/shadcn-ui/button";
 import { CardDescription } from "../../components/shadcn-ui/card";
 import { Heading } from "../../components/shadcn-ui/heading";
@@ -24,12 +25,12 @@ export default function PageHeader({
       <div className="flex items-center">
         <Heading variant="h2">{title}</Heading>
         {link ? (
-          <a href={link.href} className="ml-auto">
+          <Link href={link.href} className="ml-auto">
             <Button className="flex gap-2 hover:cursor-pointer dark:bg-secondary">
               {link.icon ? <span>{link.icon}</span> : null}
               {link.text}
             </Button>
-          </a>
+          </Link>
         ) : null}
       </div>
       {description ? <CardDescription>{description}</CardDescription> : null}

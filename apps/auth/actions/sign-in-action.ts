@@ -6,9 +6,11 @@ import {
 } from "@/components/forms/schemas/auth-schemas";
 import {
   accountDestinations,
+  originFromHeaders,
   resolveAccountKind,
 } from "@repo/db/resolve-account";
 import { createSupabaseServerClient } from "@repo/db/server";
+import { headers } from "next/headers";
 import { redirect } from "next/navigation";
 
 export async function signIn(data: LoginFormValues) {
@@ -39,7 +41,9 @@ export async function signIn(data: LoginFormValues) {
     return { error: accountType.message };
   }
 
-  const destination = accountDestinations()[accountType];
+  const destination = accountDestinations(originFromHeaders(await headers()))[
+    accountType
+  ];
 
   //if no valid destination - sign the user out
   if (!destination) {
