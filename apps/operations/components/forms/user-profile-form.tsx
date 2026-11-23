@@ -1,15 +1,18 @@
+"use client";
+
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
-} from "@node_modules/@repo/ui/src/components/shadcn-ui/card";
-import { Heading } from "@node_modules/@repo/ui/src/components/shadcn-ui/heading";
-import { Input } from "@node_modules/@repo/ui/src/components/shadcn-ui/input";
-import { Label } from "@node_modules/@repo/ui/src/components/shadcn-ui/label";
+} from "@repo/ui/components/shadcn-ui/card";
+import { Heading } from "@repo/ui/components/shadcn-ui/heading";
+import { Input } from "@repo/ui/components/shadcn-ui/input";
 import { ShieldCheckIcon } from "lucide-react";
 import { CurrentUserProfile } from "@repo/db/queries/user/get-current-user-profile";
-import { useForm } from "@node_modules/react-hook-form/dist";
+import { Label } from "@repo/ui/components/shadcn-ui/label";
+import { useForm, UseFormRegister } from "react-hook-form";
+import { Button } from "@repo/ui/components/shadcn-ui/button";
 
 type UserProfileFormValues = {
   firstName: string;
@@ -26,7 +29,8 @@ export default function UserProfileForm({
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { isDirty, errors },
+    reset,
   } = useForm<UserProfileFormValues>({
     defaultValues: {
       firstName: user.firstName,
@@ -36,10 +40,36 @@ export default function UserProfileForm({
     },
   });
 
+  async function handleUserProfileForm(values: UserProfileFormValues) {
+    console.log(values, "<<< values");
+
+    reset({
+      ...values,
+      newPassword: "",
+      confirmPassword: "",
+    });
+  }
+
   return (
-    <form className="grid gap-10">
-      <PersonalInformation user={user} />
-      <ChangePassword />
+    <form
+      className="grid gap-10"
+      onSubmit={handleSubmit(handleUserProfileForm)}
+    >
+      <PersonalInformation register={register} />
+      <ChangePassword register={register} />
+      <div className="flex gap-2 justify-end">
+        <Button
+          variant="outline"
+          type="button"
+          disabled={!isDirty}
+          onClick={() => reset()}
+        >
+          Cancel
+        </Button>
+        <Button type="submit" disabled={!isDirty}>
+          Save
+        </Button>
+      </div>
     </form>
   );
 }
@@ -55,7 +85,11 @@ STEP 2: Build useForm in UserProfileForm
 
 */
 
-const PersonalInformation = ({ user }: { user: CurrentUserProfile }) => {
+const PersonalInformation = ({
+  register,
+}: {
+  register: UseFormRegister<UserProfileFormValues>;
+}) => {
   return (
     <Card>
       <CardHeader>
@@ -71,7 +105,7 @@ const PersonalInformation = ({ user }: { user: CurrentUserProfile }) => {
             <Input
               id="first-name"
               type="text"
-              placeholder={`${user.firstName}`}
+              {...register("firstName")}
               required
             />
           </div>
@@ -80,7 +114,7 @@ const PersonalInformation = ({ user }: { user: CurrentUserProfile }) => {
             <Input
               id="last-name"
               type="text"
-              placeholder={`${user.lastName}`}
+              {...register("lastName")}
               required
             />
           </div>
@@ -90,7 +124,11 @@ const PersonalInformation = ({ user }: { user: CurrentUserProfile }) => {
   );
 };
 
-const ChangePassword = () => {
+const ChangePassword = ({
+  register,
+}: {
+  register: UseFormRegister<UserProfileFormValues>;
+}) => {
   return (
     <Card>
       <CardHeader>
@@ -102,21 +140,21 @@ const ChangePassword = () => {
       <CardContent>
         <div className="flex gap-6">
           <div className="flex flex-col w-full gap-2">
-            <Label htmlFor="first-name">New password</Label>
+            <Label htmlFor="new-password">New password</Label>
             <Input
               id="new-password"
-              type="text"
+              type="password"
               placeholder="New password"
-              required
+              {...register("newPassword")}
             />
           </div>
           <div className="flex flex-col w-full gap-2">
             <Label htmlFor="confirm-password">Confirm new password</Label>
             <Input
               id="confirm-password"
-              type="text"
+              type="password"
               placeholder="Confirm new password"
-              required
+              {...register("confirmPassword")}
             />
           </div>
         </div>
