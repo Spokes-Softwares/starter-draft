@@ -5,6 +5,8 @@ import {
   CardContent,
   CardHeader,
 } from "@repo/ui/components/shadcn-ui/card";
+import PageHeader from "@repo/ui/shared/page-layouts/pageHeader";
+import PageShell from "@repo/ui/shared/page-layouts/pageShell";
 import { Heading } from "@repo/ui/components/shadcn-ui/heading";
 import ProjectOverview from "../../../components/overview/project-overview";
 import DevelopmentOverview from "../../../components/overview/development-overview";
@@ -31,17 +33,16 @@ export function PhaseCards({
 
 export default function OverviewPage() {
   return (
-    <section className="p-10 grid gap-12">
-      <div className="grid gap-6">
-        <Heading>Welcome to Spokes</Heading>
-        <p>
-          This documentation portal is a constant work in progress and is
-          updated as the project develops.
-        </p>
-        <ProjectOverview />
-        <DevelopmentOverview />
-        <TechnologiesOverview />
-      </div>
-    </section>
+    <PageShell>
+      <PageHeader
+        title="Welcome to Spokes"
+        description="  This documentation portal is a constant work in progress and is updated
+        as the project develops."
+      />
+
+      <ProjectOverview />
+      <DevelopmentOverview />
+      <TechnologiesOverview />
+    </PageShell>
   );
 }

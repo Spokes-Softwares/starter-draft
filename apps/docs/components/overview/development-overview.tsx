@@ -77,8 +77,35 @@ const phaseOneCardContent = [
 
 const phaseTwoCardContent = [
   {
-    cardTitle: "Operations App",
-    cardContent: <></>,
+    cardTitle: "Hubs Portal",
+    cardContent: (
+      <>
+        <p>
+          By the end of phase two, the hubs portal should be working as
+          described
+        </p>
+        <ul className="list-disc list-inside">
+          <li>A hub admin should be able to manage hub users</li>
+          <li>
+            A hub user or admin should be able to carry out singular or bulk
+            maintenance on assets
+          </li>
+        </ul>
+      </>
+    ),
+  },
+  {
+    cardTitle: "Tenant Portal",
+    cardContent: (
+      <>
+        <ul className="list-disc list-inside">
+          <li>
+            A tenant shoul be able to view the maintenance records of the assets
+            belonging to hubs in their scope
+          </li>
+        </ul>
+      </>
+    ),
   },
 ] satisfies OverviewCardContentData[];
 
