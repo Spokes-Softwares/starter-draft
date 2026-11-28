@@ -79,6 +79,7 @@ export default function HubOnboardForm({ tenantId }: { tenantId: string }) {
           hub
         </CardDescription>
       </div>
+      {/* data-invalid turns the entire field red when the data that has been inserted does not meet the zod requirements */}
       <Field data-invalid={!!errors.hubDisplayName} className="col-span-2">
         <FieldLabel>Hub Display Name</FieldLabel>
         <Input
@@ -87,6 +88,7 @@ export default function HubOnboardForm({ tenantId }: { tenantId: string }) {
           aria-invalid={!!errors.hubDisplayName}
           {...register("hubDisplayName")}
         />
+        {/* FieldErrors pops up wherever you place it, again when the data that has been inserted does not meet the zod requirements  */}
         <FieldError errors={[errors.hubDisplayName]} />
       </Field>
       <div className="grid col-span-2 gap-6 grid-cols-2">

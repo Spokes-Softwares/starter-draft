@@ -99,6 +99,8 @@ const PersonalInformation = ({
         </CardDescription>
       </CardHeader>
       <CardContent>
+        {/* Replace the div, labels with the 'Field" equivalent. This allows
+        progressive error handling.  */}
         <div className="flex flex-row gap-6">
           <div className="flex flex-col w-full gap-2">
             <Label htmlFor="first-name">First name</Label>
@@ -110,6 +112,7 @@ const PersonalInformation = ({
             />
           </div>
           <div className="flex flex-col w-full gap-2">
+            {/* And here */}
             <Label htmlFor="last-name">Last name</Label>
             <Input
               id="last-name"
